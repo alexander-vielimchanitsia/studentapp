@@ -8,8 +8,9 @@ class Student(models.Model):
     date = models.DateField()
     foto = models.FileField(upload_to = None)
     stud_bilet = models.CharField(max_length = 100)
-    stud_group = models.CharField(max_length = 20)
+    stud_group = models.CharField(max_length = 200)
 
-class Stud_group(models.Model):
+class Table_group(models.Model):
     name_group = models.CharField(max_length = 50)
     king_group = models.CharField(max_length = 50)
+    table_group_student = models.ForeignKey(Student)
