@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from studentapp.models import Student, TableGroup
 from forms import StudentForm, TableGroupForm
+from django.core.context_processors import csrf
 
 
 # Create your views here.
