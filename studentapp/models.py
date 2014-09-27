@@ -10,7 +10,7 @@ class Student(models.Model):
     stud_bilet = models.CharField(max_length = 100)
     stud_group = models.CharField(max_length = 200)
 
-class Table_group(models.Model):
+class TableGroup(models.Model):
     name_group = models.CharField(max_length = 50)
     king_group = models.CharField(max_length = 50)
-    table_group_student = models.ForeignKey(Student)
+    student = models.ForeignKey(Student)

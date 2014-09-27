@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response
-from studentapp.models import Student, Table_group
+from studentapp.models import Student, TableGroup
 # Create your views here.
 def index(request):
     return render_to_response('index.html', {'studentapp_student': Student.objects.all()})

@@ -1,6 +1,6 @@
 from django.contrib import admin
-from studentapp.models import Student, Table_group
+from studentapp.models import Student, TableGroup
 # Register your models here.
 
 admin.site.register(Student)
-admin.site.register(Table_group)
+admin.site.register(TableGroup)
