@@ -5,7 +5,9 @@ from models import Student, TableGroup
 class StudentForm(ModelForm):
     class Meta:
         model = Student
+        fields = ['first_neme', 'last_name', 'middle_name', 'date', 'foto', 'stud_bilet', 'stud_group']
 
 class TableGroupForm(ModelForm):
     class Meta:
         model = TableGroup
+        fields = ['name_group', 'king_group', 'student']
