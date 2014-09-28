@@ -40,24 +40,14 @@
             </tr>
           </thead>
           <tbody>
+            {% for student in index %}
             <tr>
-              <td><input type="checkbox" id="inlineCheckbox1"> 1</td>
+              <td><input type="checkbox" id="inlineCheckbox1"> {{ studentapp_student.id }}</td>
               <td><img src="../static/img/foto_icon.png" style="width:30px"></td>
               <td>{{ studentapp_student.last_name }}</td>
               <td>{{ studentapp_student.first_name }}</td>
             </tr>
-            <tr>
-              <td><input type="checkbox" id="inlineCheckbox1"> 2</td>
-              <td><img src="../static/img/foto_icon.png" style="width:30px"></td>
-              <td>Бішко</td>
-              <td>Юрій</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" id="inlineCheckbox1"> 3</td>
-              <td><img src="../static/img/foto_icon.png" style="width:30px"></td>
-              <td>Багнюк</td>
-              <td>Максим</td>
-            </tr>
+            {% endfor %}
           </tbody>
         </table>
           <div class="pagination pagination-right">

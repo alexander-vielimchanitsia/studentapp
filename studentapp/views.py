@@ -8,13 +8,14 @@ from django.core.context_processors import csrf
 # Create your views here.
 
 def index(request):
-    student_form = StudentForm
-    args = {}
-    args['studentapp_student'] = Student.objects.all()
-    args['form'] = student_form
-    return render_to_response('index.html')
+    return render_to_response('index.html', {'studentapp_student': Student.objects.all()})
 
 def add_student(request):
+    student_form = StudentForm
+    args = {}
+    args.update(csrf(request))
+    args['form'] = student_form
+    form.save()
     return render_to_response('add_student.html')
 
 def add_group(request):
