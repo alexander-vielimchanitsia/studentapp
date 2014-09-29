@@ -8,7 +8,7 @@ from django.core.context_processors import csrf
 # Create your views here.
 
 def index(request):
-    return render_to_response('index.html', {'studentapp_student': Student.objects.all()})
+    return render_to_response('index.html', {'table_student': Student.objects.all()})
 
 def add_student(request):
     student_form = StudentForm

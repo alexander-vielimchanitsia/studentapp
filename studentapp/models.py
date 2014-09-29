@@ -9,6 +9,8 @@ class Student(models.Model):
     foto = models.FileField(upload_to = None)
     stud_bilet = models.CharField(max_length = 100)
     stud_group = models.CharField(max_length = 200)
+    def __str__(self):
+        return '%s' % (self.name)
 
 class TableGroup(models.Model):
     name_group = models.CharField(max_length = 50)
