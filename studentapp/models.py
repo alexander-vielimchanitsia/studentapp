@@ -2,13 +2,15 @@
 
 from django.db import models
 
+
 # Create your models here.
+
 class Student(models.Model):
     first_name = models.CharField(max_length = 15, verbose_name = 'Імя')
     last_name = models.CharField(max_length = 15, verbose_name = 'Прізвище')
     middle_name = models.CharField(max_length = 15, verbose_name = 'По батькові')
     date = models.DateField(verbose_name = 'Дата народження')
-    foto = models.FileField(upload_to = 'static/upload', verbose_name = 'Фото')
+    foto = models.FileField(upload_to = 'photos', verbose_name = 'Фото')
     stud_bilet = models.CharField(max_length = 100, verbose_name = 'Студ.білет')
     stud_group = models.CharField(max_length = 200, verbose_name = 'Група')
     class Meta:
