@@ -6,7 +6,7 @@ class Student(models.Model):
     last_name = models.CharField(max_length = 15)
     middle_name = models.CharField(max_length = 15)
     date = models.DateField()
-    foto = models.FileField(upload_to = None)
+    foto = models.FileField(upload_to = "static/upload")
     stud_bilet = models.CharField(max_length = 100)
     stud_group = models.CharField(max_length = 200)
 

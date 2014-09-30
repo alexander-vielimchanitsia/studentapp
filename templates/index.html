@@ -42,7 +42,7 @@
           <tbody>
             {% for Student in table_student %}
             <tr>
-              <td><input type="checkbox" id="inlineCheckbox1"> {{ studentapp_student.id }}</td>
+              <td><input type="checkbox" id="inlineCheckbox1"> {{ Student.id }}</td>
               <td><img src="{{ Student.foto }}" style="width:30px"></td>
               <td>{{ Student.last_name }}</td>
               <td>{{ Student.first_name }}</td>
