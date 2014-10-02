@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -17,7 +18,9 @@ class Student(models.Model):
             verbose_name = 'Студенти'
             verbose_name_plural = 'Студенти'
     def __unicode__(self):
-        return self.last_name
+        return self.last_name + ' ' + self.first_name
+    def get_absolute_url(self):
+        return reverse('author-detail', kwargs={'pk': self.pk})
 
 
 class Group(models.Model):

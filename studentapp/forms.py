@@ -6,6 +6,7 @@ class StudentForm(ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
+    
 
 class GroupForm(ModelForm):
     class Meta:
