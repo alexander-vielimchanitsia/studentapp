@@ -10,7 +10,9 @@ from django.views.generic.edit import CreateView, UpdateView
 
 
 def index(request):
-    return render_to_response('index.html', {'table_student': Student.objects.all(), 'table_group': Group.objects.all()})
+    table_student = Student.objects.all()
+    table_group = Group.objects.all()
+    return render_to_response('index.html', {'table_student': table_student, 'table_group': table_group})
 
 def add_student(request):
     student_form = StudentForm
