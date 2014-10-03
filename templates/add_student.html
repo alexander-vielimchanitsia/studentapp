@@ -20,9 +20,7 @@
         <div class="tab-pane active" id="tab1">
           <h4>Заповнення нового студента</h4>
         </div>
-        <form class="form-horizontal" action="/index/addstudent/" method="post">
-          {% csrf_token %}
-          {{ form }}
+        <form class="form-horizontal" action="/index/addstudent/" method="post">{% csrf_token %}
           <div class="control-group">
             <label class="control-label" for="first_name">Ім’я</label>
             <div class="controls">

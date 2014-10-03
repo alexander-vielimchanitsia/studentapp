@@ -5,7 +5,6 @@ from models import Student, Group
 class StudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = '__all__'
     
 
 class GroupForm(ModelForm):
