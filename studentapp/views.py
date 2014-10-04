@@ -15,21 +15,19 @@ def index(request):
     return render_to_response('index.html', {'table_student': table_student, 'table_group': table_group})
 
 def add_student(request):
-    student_form = StudentForm
-    args = {}
-    args.update(csrf(request))
-    args['form'] = student_form
-    return render_to_response('add_student.html')
+    student_form = StudentForm()
+    form = student_form
+    return render_to_response('add_student.html', {'form': form})
 
 def add_group(request):
     return render_to_response('add_group.html')
 
 def addstudent(request):
-    if request.POST:
-        form = StudentForm(request.POST)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             student = form.save()
-            form.save()
+            student.save()
     return redirect('/index/')
 
 class StudentCreate(CreateView):
