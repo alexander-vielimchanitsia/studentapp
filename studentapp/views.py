@@ -3,7 +3,6 @@ from django.shortcuts import render_to_response
 from studentapp.models import Student, Group
 from forms import StudentForm, GroupForm
 from django.core.context_processors import csrf
-from django.views.generic.edit import CreateView, UpdateView
 from django.template import RequestContext
 from django.shortcuts import redirect
 
@@ -31,11 +30,3 @@ def addstudent(request):
             student = form.save()
             student.save()
     return redirect('/')
-
-class StudentCreate(CreateView):
-    model = Student
-    fields = ['first_name', 'last_name', 'middle_name', 'date', 'foto', 'stud_bilet', 'stud_group']
-
-class StudentUpdate(UpdateView):
-    model = Student
-    fields = ['first_name', 'last_name', 'middle_name', 'date', 'foto', 'stud_bilet', 'stud_group']

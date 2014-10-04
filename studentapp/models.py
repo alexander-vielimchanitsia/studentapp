@@ -25,8 +25,7 @@ class Student(models.Model):
 
 class Group(models.Model):
     name_group = models.CharField(max_length = 50, verbose_name = 'Назва групи')
-    king_group = models.CharField(max_length = 50, verbose_name = 'Староста групи')
-    student = models.ForeignKey(Student)
+    king_group = models.ForeignKey(Student, verbose_name = 'Староста групи')
     class Meta:
         verbose_name = 'Групи'
         verbose_name_plural = 'Групи'
