@@ -4,6 +4,8 @@ from studentapp.models import Student, Group
 from forms import StudentForm, GroupForm
 from django.core.context_processors import csrf
 from django.views.generic.edit import CreateView, UpdateView
+from django.template import RequestContext
+from django.shortcuts import redirect
 
 
 # Create your views here.
@@ -17,7 +19,7 @@ def index(request):
 def add_student(request):
     student_form = StudentForm()
     form = student_form
-    return render_to_response('add_student.html', {'form': form})
+    return render_to_response('add_student.html', {'form': form}, context_instance=RequestContext(request))
 
 def add_group(request):
     return render_to_response('add_group.html')
@@ -28,7 +30,7 @@ def addstudent(request):
         if form.is_valid():
             student = form.save()
             student.save()
-    return redirect('/index/')
+    return redirect('/')
 
 class StudentCreate(CreateView):
     model = Student

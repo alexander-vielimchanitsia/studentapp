@@ -21,7 +21,8 @@
           <h4>Заповнення нового студента</h4>
         </div>
         <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
-          <div class="control-group">
+         {{ form }}
+          <!--<div class="control-group">
             <label class="control-label" for="first_name">Ім’я</label>
             <div class="controls">
               <input class="input-medium" type="text" id="first_name">
@@ -65,7 +66,7 @@
               <option>2</option>
               <option>3</option>
             </select>
-          </div>
+          </div>-->
           <div class="control-group" style="margin-left:100px">
             <input type="submit" class="btn btn-primary">
             <button type="reset" class="btn">Очистити</button>
