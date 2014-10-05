@@ -17,16 +17,22 @@ def index(request):
 
 def add_student(request):
     student_form = StudentForm()
-    form = student_form
-    return render_to_response('add_student.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('add_student.html', {'student_form': student_form}, context_instance=RequestContext(request))
 
 def add_group(request):
-    return render_to_response('add_group.html')
+    group_form = GroupForm()
+    return render_to_response('add_group.html', {'group_form': group_form}, context_instance=RequestContext(request))
 
 def addstudent(request):
     if request.method == 'POST':
         form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
-            student = form.save()
-            student.save()
+            form.save()
+    return redirect('/')
+
+def addgroup(request):
+    if request.method == 'POST':
+        form = GroupForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
     return redirect('/')

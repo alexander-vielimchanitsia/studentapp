@@ -2,7 +2,7 @@
 
 from django.core.urlresolvers import reverse
 from django.db import models
-
+from django import forms
 
 # Create your models here.
 
@@ -13,7 +13,7 @@ class Student(models.Model):
     date = models.DateField(verbose_name = 'Дата народження')
     foto = models.FileField(upload_to = 'photos', verbose_name = 'Фото')
     stud_bilet = models.CharField(max_length = 100, verbose_name = 'Студ.білет')
-    stud_group = models.CharField(max_length = 200, verbose_name = 'Група')
+    stud_group = models.ForeignKey('Group', verbose_name = 'Група')
     class Meta:
             verbose_name = 'Студенти'
             verbose_name_plural = 'Студенти'
@@ -25,7 +25,7 @@ class Student(models.Model):
 
 class Group(models.Model):
     name_group = models.CharField(max_length = 50, verbose_name = 'Назва групи')
-    king_group = models.ForeignKey(Student, verbose_name = 'Староста групи')
+    king_group = models.ForeignKey(Student, verbose_name = 'Староста групи', blank=True)
     class Meta:
         verbose_name = 'Групи'
         verbose_name_plural = 'Групи'
