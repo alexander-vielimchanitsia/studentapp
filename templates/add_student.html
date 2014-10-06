@@ -21,52 +21,48 @@
           <h4>Заповнення нового студента</h4>
         </div>
         <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
-         {{ student_form }}
-          <!--<div class="control-group">
+          <div class="control-group">
             <label class="control-label" for="first_name">Ім’я</label>
             <div class="controls">
-              <input class="input-medium" type="text" id="first_name">
+              {{ student_form.first_name }}
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="last_name">Прізвище</label>
             <div class="controls">
-              <input class="input-medium" type="text" id="last_name">
+              {{ student_form.last_name }}
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="middle_name">По батькові</label>
             <div class="controls">
-              <input class="input-medium" type="text" id="middle_name">
+              {{ student_form.middle_name }}
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="date">Дата народження</label>
             <div class="controls">
-              <input class="input-medium" type="date" id="date">
+              {{ student_form.date }}
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="foto">Фото</label>
             <div class="controls">
-              <input type="file" id="foto">
+              {{ student_form.foto }}
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="stud_bilet">No.студ-билета</label>
             <div class="controls">
-              <input class="input-medium" type="text" id="stud_bilet">
+              {{ student_form.stud_bilet }}
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" for="stud_group">Група</label>
-            <select class="span2" style="margin-left:20px" id="stud_group">
-              <option>Не вибрано</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
-          </div>-->
+            <div class="controls">
+              {{ student_form.stud_group }}
+            </div>
+          </div>
           <div class="control-group" style="margin-left:100px">
             <input type="submit" class="btn btn-primary">
             <button type="reset" class="btn">Очистити</button>
