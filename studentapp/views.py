@@ -28,6 +28,8 @@ def addstudent(request):
         form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+        else:
+            form = StudentForm()
     return redirect('/')
 
 def addgroup(request):
@@ -35,4 +37,6 @@ def addgroup(request):
         form = GroupForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+        else:
+            form = GroupForm()
     return redirect('/')

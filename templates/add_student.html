@@ -21,43 +21,51 @@
           <h4>Заповнення нового студента</h4>
         </div>
         <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
+          {{ student_form.non_field_errors }}
           <div class="control-group">
+            {{ student_form.first_name.errors }}
             <label class="control-label" for="first_name">Ім’я</label>
             <div class="controls">
               {{ student_form.first_name }}
             </div>
           </div>
           <div class="control-group">
+            {{ student_form.last_name.errors }}
             <label class="control-label" for="last_name">Прізвище</label>
             <div class="controls">
               {{ student_form.last_name }}
             </div>
           </div>
           <div class="control-group">
+            {{ student_form.middle_name.errors }}
             <label class="control-label" for="middle_name">По батькові</label>
             <div class="controls">
               {{ student_form.middle_name }}
             </div>
           </div>
           <div class="control-group">
+            {{ student_form.date.errors }}
             <label class="control-label" for="date">Дата народження</label>
             <div class="controls">
               {{ student_form.date }}
             </div>
           </div>
           <div class="control-group">
+            {{ student_form.foto.errors }}
             <label class="control-label" for="foto">Фото</label>
             <div class="controls">
               {{ student_form.foto }}
             </div>
           </div>
           <div class="control-group">
+            {{ student_form.stud_bilet.errors }}
             <label class="control-label" for="stud_bilet">No.студ-билета</label>
             <div class="controls">
               {{ student_form.stud_bilet }}
             </div>
           </div>
           <div class="control-group">
+            {{ student_form.stud_group.errors }}
             <label class="control-label" for="stud_group">Група</label>
             <div class="controls">
               {{ student_form.stud_group }}

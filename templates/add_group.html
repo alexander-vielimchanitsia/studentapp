@@ -21,13 +21,16 @@
           <h4>Створення нової групи</h4>
         </div>
         <form class="form-horizontal" id="group_form" action="/index/addgroup/" method="post" enctype="multipart/form-data">{% csrf_token %}
+          {{ group_form.non_field_errors }}
           <div class="control-group">
+            {{ group_form.name_group.errors }}
             <label class="control-label" for="name_group">Назва групи</label>
             <div class="controls">
               {{ group_form.name_group }}
             </div>
           </div>
           <div class="control-group">
+            {{ group_form.king_group.errors }}
             <label class="control-label" for="king_group">Староста групи</label>
             <div class="controls">
               {{ group_form.king_group }}
