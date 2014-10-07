@@ -10,4 +10,3 @@ class StudentForm(ModelForm):
 class GroupForm(ModelForm):
     class Meta:
         model = Group
-        fields = ['name_group', 'king_group']

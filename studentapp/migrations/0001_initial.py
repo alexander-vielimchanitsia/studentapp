@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateField(verbose_name=b'\xd0\x94\xd0\xb0\xd1\x82\xd0\xb0 \xd0\xbd\xd0\xb0\xd1\x80\xd0\xbe\xd0\xb4\xd0\xb6\xd0\xb5\xd0\xbd\xd0\xbd\xd1\x8f')),
                 ('foto', models.FileField(upload_to=b'photos', verbose_name=b'\xd0\xa4\xd0\xbe\xd1\x82\xd0\xbe')),
                 ('stud_bilet', models.CharField(max_length=100, verbose_name=b'\xd0\xa1\xd1\x82\xd1\x83\xd0\xb4.\xd0\xb1\xd1\x96\xd0\xbb\xd0\xb5\xd1\x82')),
-                ('stud_group', models.CharField(max_length=200, verbose_name=b'\xd0\x93\xd1\x80\xd1\x83\xd0\xbf\xd0\xb0')),
+                ('stud_group', models.ForeignKey(verbose_name=b'\xd0\x93\xd1\x80\xd1\x83\xd0\xbf\xd0\xb0', to='studentapp.Group')),
             ],
             options={
                 'verbose_name': '\u0421\u0442\u0443\u0434\u0435\u043d\u0442\u0438',
@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='group',
             name='king_group',
-            field=models.ForeignKey(verbose_name=b'\xd0\xa1\xd1\x82\xd0\xb0\xd1\x80\xd0\xbe\xd1\x81\xd1\x82\xd0\xb0 \xd0\xb3\xd1\x80\xd1\x83\xd0\xbf\xd0\xb8', to='studentapp.Student'),
+            field=models.ForeignKey(verbose_name=b'\xd0\xa1\xd1\x82\xd0\xb0\xd1\x80\xd0\xbe\xd1\x81\xd1\x82\xd0\xb0 \xd0\xb3\xd1\x80\xd1\x83\xd0\xbf\xd0\xb8', blank=True, to='studentapp.Student', null=True),
             preserve_default=True,
         ),
     ]
