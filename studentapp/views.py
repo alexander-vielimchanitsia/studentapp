@@ -30,29 +30,23 @@ def add_group(request):
     return render_to_response('add_group.html', {'group_form': group_form}, context_instance=RequestContext(request))
 
 def addstudent(request):
-    if request.method == 'POST':
-        form = StudentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+    if request.POST:
+        student_form = StudentForm(request.POST)
+        if student_form.is_valid():
+            student_form.save()
             return redirect('/')
         else:
-            form = StudentForm()
-            return redirect('/index/add_student.html')
+            studet_form = StudentForm()
+        return render(request, 'add_student.html', { 'student_form': student_form })
 
 def addgroup(request):
-    errors = []
-    form = {}
-    group_form = GroupForm(request.POST)
     if request.POST:
-        form['name_group'] = request.POST.get('name_group')
-        form['king_group'] = request.POST.get('king_group')
-        if not form['name_group']:
-            errors.append('Напишіть назву групи')
-        if not errors:
-            if group_form.is_valid():
-                group_form.save()
-                return redirect('/')
-                return HttpResponse('Ви додали групу')
-        return render(request, 'add_group.html', {'errors': errors, 'form': form, 'group_form': group_form})
+        group_form = GroupForm(request.POST)
+        if group_form.is_valid():
+            group_form.save()
+            return redirect('/')
+        else:
+            group_form = GroupForm()
+        return render(request, 'add_group.html', { 'group_form': group_form })
         
     
