@@ -20,24 +20,17 @@
         <div class="tab-pane active" id="tab1">
           <h4>Створення нової групи</h4>
         </div>
-        {% if errors %}
-            <ul>
-                {% for error in errors %}
-                    <li style="color: red;"></li>
-                {% endfor %}
-            </ul>
-        {% endif %}
         <form class="form-horizontal" id="group_form" action="/index/addgroup/" method="post" enctype="multipart/form-data">{% csrf_token %}
           <div class="control-group">
             <label class="control-label" for="name_group">Назва групи</label>
             <div class="controls">
-              {{ group_form.name_group }}
+              <input class="input-medium" type="text" id="name_group" name="name_group">
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" for="king_group">Староста групи</label>
+            <label class="control-label" for="king_group" name="king_group">Староста групи</label>
             <div class="controls">
-              {{ group_form.king_group }}
+              <input class="input-medium" type="text" id="name_group" name="name_king">
             </div>
           </div>
           <div class="control-group" style="margin-left:100px">

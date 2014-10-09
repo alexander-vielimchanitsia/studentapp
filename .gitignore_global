@@ -5,3 +5,4 @@
 *.egg
 *.sqlite3
 media
+.idea
