@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from studentapp.models import Student, Group
 from forms import StudentForm, GroupForm
-from django.core.context_processors import csrf
 from django.template import RequestContext
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -35,19 +34,15 @@ def add_group(request):
 
 def addstudent(request):
     if request.POST:
-        first_name = request.POST.get('name_group', '')
-        last_name = request.POST.get('last_name', '')
-        middle_name = request.POST.get('middle_name', '')
-        date = request.POST.get('date', '')
-        foto = request.POST.get('foto', '')
-        stud_bilet = request.POST.get('stud_bilet', '')
-        stud_group = request.POST.get('stud_group', '')
-        if student_form.is_valid():
-            student_form.save()
-            return redirect('/')
-        else:
-            studet_form = StudentForm()
-        return render(request, 'add_student.html', { 'student_form': student_form })
+        first_name = request.POST.get('first_name', '').strip() == ''
+        last_name = request.POST.get('last_name', '').strip() == ''
+        middle_name = request.POST.get('middle_name', '').strip() == ''
+        date = request.POST.get('date', '').strip() == ''
+        foto = request.POST.get('foto', '').strip() == ''
+        stud_bilet = request.POST.get('stud_bilet', '').strip() == ''
+        stud_group = request.POST.get('stud_group', '').strip() == ''
+        student = first_name, last_name, middle_name, date, foto, stud_bilet, stud_group
+        return render(request, 'add_student.html', { 'firs_name': first_name, 'last_name': last_name, 'middle_name': middle_name, 'date': date, 'foto': foto, 'stud_bilet': stud_bilet, 'stud_group': stud_group })
 
 def addgroup(request):
     group_form = GroupForm(request.POST)
