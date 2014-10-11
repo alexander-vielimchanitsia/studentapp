@@ -23,49 +23,51 @@
         <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
           {{ student_form.non_field_errors }}
           <div class="control-group">
-            {{ student_form.first_name.errors }}
+            {% if errors.first_name %}
+            {{ errors.first_name }}
+            {% endif %}
             <label class="control-label" for="first_name">Ім’я</label>
             <div class="controls">
               <input class="input-medium" type="text" id="first_name" name="first_name">
             </div>
           </div>
           <div class="control-group">
-            {{ student_form.last_name.errors }}
+            {{ errors.last_name }}
             <label class="control-label" for="last_name">Прізвище</label>
             <div class="controls">
               <input class="input-medium" type="text" id="last_name" name="last_name">
             </div>
           </div>
           <div class="control-group">
-            {{ student_form.middle_name.errors }}
+            {{ errors.middle_name }}
             <label class="control-label" for="middle_name">По батькові</label>
             <div class="controls">
               <input class="input-medium" type="text" id="middle_name" name="middle_name">
             </div>
           </div>
           <div class="control-group">
-            {{ student_form.date.errors }}
+            {{ errors.date }}
             <label class="control-label" for="date">Дата народження</label>
             <div class="controls">
               <input class="input-medium" type="date" id="date" name="date">
             </div>
           </div>
           <div class="control-group">
-            {{ student_form.foto.errors }}
+            {{ erorrs.foto }}
             <label class="control-label" for="foto">Фото</label>
             <div class="controls">
               <input type="file" id="foto" name="foto">
             </div>
           </div>
           <div class="control-group">
-            {{ student_form.stud_bilet.errors }}
+            {{ errors.stud_bilet }}
             <label class="control-label" for="stud_bilet">No.студ-билета</label>
             <div class="controls">
               <input class="input-medium" type="text" id="stud_bilet" name="stud_bilet">
             </div>
           </div>
           <div class="control-group">
-            {{ student_form.stud_group.errors }}
+            {{ errors.stud_group }}
             <label class="control-label" for="stud_group" >Група</label>
             <div class="controls">
               {{ student_form.stud_group }}

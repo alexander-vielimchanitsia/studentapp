@@ -33,16 +33,38 @@ def add_group(request):
         'group_form': group_form})
 
 def addstudent(request):
-    if request.POST:
-        first_name = request.POST.get('first_name', '').strip() == ''
-        last_name = request.POST.get('last_name', '').strip() == ''
-        middle_name = request.POST.get('middle_name', '').strip() == ''
-        date = request.POST.get('date', '').strip() == ''
-        foto = request.POST.get('foto', '').strip() == ''
-        stud_bilet = request.POST.get('stud_bilet', '').strip() == ''
-        stud_group = request.POST.get('stud_group', '').strip() == ''
-        student = first_name, last_name, middle_name, date, foto, stud_bilet, stud_group
-        return render(request, 'add_student.html', { 'firs_name': first_name, 'last_name': last_name, 'middle_name': middle_name, 'date': date, 'foto': foto, 'stud_bilet': stud_bilet, 'stud_group': stud_group })
+    student_form = StudentForm()
+    errors = {}
+    if request.POST.get('first_name', '').strip() == '':
+        errors['first_name'] = 'Введіть будь ласка Ім’я студента'
+    if request.POST.get('last_name', '').strip() == '':
+        errors['last_name'] = 'Введіть будь ласка Прізвище студента'
+    if request.POST.get('middle_name', '').strip() == '':
+        errors['middle_name'] = 'Введіть будь ласка по батькові студента'
+    if request.POST.get('date', '').strip() == '':
+        errors['date'] = 'Введіть будь ласка дату народження студента'
+    if request.POST.get('foto', '').strip() == '':
+        errors['foto'] = 'Виберіть будь ласка фото студента'
+    if request.POST.get('stud_bilet', '').strip() == '':
+        errors['stud_bilet'] = 'Введіть будь ласка номер студентського білету'
+    if request.POST.get('stud_group', '').strip() == '':
+        errors['stud_group'] = 'Виберіть будь ласка групу студента'
+    if errors:
+        return render_to_response('add_student.html', {
+            'errors': errors, 'student_form': student_form},
+            context_instance=RequestContext(request)
+        )
+    else:
+        return redirect('/')
+
+        #if request.POST:
+        #first_name = request.POST.get('first_name', '').strip() == ''
+        #last_name = request.POST.get('last_name', '').strip() == ''
+        #middle_name = request.POST.get('middle_name', '').strip() == ''
+        #date = request.POST.get('date', '').strip() == ''
+        #foto = request.POST.get('foto', '').strip() == ''
+        #stud_bilet = request.POST.get('stud_bilet', '').strip() == ''
+        #stud_group = request.POST.get('stud_group', '').strip() == ''
 
 def addgroup(request):
     group_form = GroupForm(request.POST)
