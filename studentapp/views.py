@@ -8,7 +8,6 @@ from django.template import RequestContext
 from django.shortcuts import redirect
 from django.http import HttpResponse
 
-
 # Create your views here.
 
 
@@ -36,9 +35,9 @@ def addstudent(request):
     student_form = StudentForm()
     errors = {}
     if request.POST.get('first_name', '').strip() == '':
-        errors['first_name'] = 'Введіть будь ласка Ім’я студента'
+        errors['first_name'] = 'Введіть будь ласка ім’я студента'
     if request.POST.get('last_name', '').strip() == '':
-        errors['last_name'] = 'Введіть будь ласка Прізвище студента'
+        errors['last_name'] = 'Введіть будь ласка прізвище студента'
     if request.POST.get('middle_name', '').strip() == '':
         errors['middle_name'] = 'Введіть будь ласка по батькові студента'
     if request.POST.get('date', '').strip() == '':
@@ -51,20 +50,18 @@ def addstudent(request):
         errors['stud_group'] = 'Виберіть будь ласка групу студента'
     if errors:
         return render_to_response('add_student.html', {
-            'errors': errors, 'student_form': student_form},
-            context_instance=RequestContext(request)
+                                                        'errors': errors,
+                                                        'student_form': student_form,
+                                                        'first_name': request.POST.get('first_name')},
+                                                        context_instance=RequestContext(request)
+        )
+    if not errors:
+        return render_to_response('add_student.html', {
+                                                        'student_form': student_form},
+                                                        context_instance=RequestContext(request)
         )
     else:
         return redirect('/')
-
-        #if request.POST:
-        #first_name = request.POST.get('first_name', '').strip() == ''
-        #last_name = request.POST.get('last_name', '').strip() == ''
-        #middle_name = request.POST.get('middle_name', '').strip() == ''
-        #date = request.POST.get('date', '').strip() == ''
-        #foto = request.POST.get('foto', '').strip() == ''
-        #stud_bilet = request.POST.get('stud_bilet', '').strip() == ''
-        #stud_group = request.POST.get('stud_group', '').strip() == ''
 
 def addgroup(request):
     group_form = GroupForm(request.POST)
