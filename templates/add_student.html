@@ -22,7 +22,31 @@
           <h4>Заповнення нового студента</h4>
         </div>
         <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
-          {{ student_form.non_field_errors }}
+          {% if error %}
+            <ul class="errorlist_global">
+            {% if error.first_name %}
+              <li>{{ error.first_name }}</li>
+            {% endif %}
+            {% if error.last_name %}
+              <li>{{ error.last_name }}</li>
+            {% endif %}
+            {% if error.middle_name %}
+              <li>{{ error.middle_name }}</li>
+            {% endif %}
+            {% if error.date %}
+              <li>{{ error.date }}</li>
+            {% endif %}
+            {% if error.foto %}
+              <li>{{ error.foto }}</li>
+            {% endif %}
+            {% if error.stud_bilet %}
+              <li>{{ error.stud_bilet }}</li>
+            {% endif %}
+            {%  if error.stud_group %}
+              <li>{{ error.stud_group }}</li>
+            {% endif %}
+            </ul>
+          {% endif %}
           <div class="control-group">
             {% if errors.first_name %}
               <ul class="errorlist">
@@ -97,7 +121,12 @@
             {% endif %}
             <label class="control-label" for="stud_group" >Група</label>
             <div class="controls">
-              {{ student_form.stud_group }}
+              <select id="id_stud_group" name="stud_group">
+                <option value="" selected="selected">---------</option>
+                {% for stud_group in table_group %}
+                  <option value="{{ stud_group }}">{{ stud_group }}</option>
+                {% endfor %}
+              </select>
             </div>
           </div>
           <div class="control-group" style="margin-left:100px">

@@ -20,9 +20,13 @@ def index(request):
     })
 
 def add_student(request):
+    table_group = Group.objects.all()
+    table_student = Student.objects.all()
     student_form = StudentForm()
     return render_to_response('add_student.html', {
-        'student_form': student_form},
+        'student_form': student_form,
+        'table_group': table_group,
+        'table_student': table_student,},
         context_instance=RequestContext(request)
     )
 
@@ -32,35 +36,51 @@ def add_group(request):
         'group_form': group_form})
 
 def addstudent(request):
+    table_student = Student.objects.all()
+    table_group = Group.objects.all()
     student_form = StudentForm()
     errors = {}
+    error = {}
     if request.POST.get('first_name', '').strip() == '':
         errors['first_name'] = 'Введіть будь ласка ім’я студента'
+        error['first_name'] = 'поле Ім’я обов’язвоке'
     if request.POST.get('last_name', '').strip() == '':
         errors['last_name'] = 'Введіть будь ласка прізвище студента'
+        error['last_name'] = 'поле Прізвище обов’язкове'
     if request.POST.get('middle_name', '').strip() == '':
         errors['middle_name'] = 'Введіть будь ласка по батькові студента'
+        error['middle_name'] = 'поле По батькові обов’язкове'
     if request.POST.get('date', '').strip() == '':
         errors['date'] = 'Введіть будь ласка дату народження студента'
+        error['date'] = 'поле Дата народження обов’язвове'
     if request.POST.get('foto', '').strip() == '':
         errors['foto'] = 'Виберіть будь ласка фото студента'
+        error['foto'] = 'поле Фото обов’язвове'
     if request.POST.get('stud_bilet', '').strip() == '':
-        errors['stud_bilet'] = 'Введіть будь ласка номер студентського білету'
+        errors['stud_bilet'] = 'Введіть будь ласка ім’я студента'
+        error['stud_bilet'] = 'поле No.студ-билета обов’язкове'
     if request.POST.get('stud_group', '').strip() == '':
         errors['stud_group'] = 'Виберіть будь ласка групу студента'
+        error['stud_group'] = 'поле Група обов’язкове'
     if errors:
         return render_to_response('add_student.html', {
                                                         'errors': errors,
+                                                        'error': error,
+                                                        'table_student': table_student,
                                                         'student_form': student_form,
+                                                        'table_group': table_group,
                                                         'first_name': request.POST.get('first_name')},
                                                         context_instance=RequestContext(request)
         )
     if not errors:
         return render_to_response('add_student.html', {
-                                                        'student_form': student_form},
+                                                        'table_student': table_student,
+                                                        'student_form': student_form,
+                                                        'table_group': table_group,},
                                                         context_instance=RequestContext(request)
         )
     else:
+
         return redirect('/')
 
 def addgroup(request):
