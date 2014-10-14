@@ -50,10 +50,10 @@ def addstudent(request):
     if request.POST.get('middle_name', '').strip() == '':
         errors['middle_name'] = 'Введіть будь ласка по батькові студента'
         error['middle_name'] = 'поле По батькові обов’язкове'
-    if request.POST.get('date', '').strip() == '':
+    if  request.POST.get('date', '').strip() == '':
         errors['date'] = 'Введіть будь ласка дату народження студента'
         error['date'] = 'поле Дата народження обов’язвове'
-    if request.POST.get('foto', '').strip() == '':
+    if  request.FILES.get('foto', '').strip() == '':
         errors['foto'] = 'Виберіть будь ласка фото студента'
         error['foto'] = 'поле Фото обов’язвове'
     if request.POST.get('stud_bilet', '').strip() == '':
@@ -80,7 +80,15 @@ def addstudent(request):
                                                         context_instance=RequestContext(request)
         )
     else:
-
+        Student.objects.all()
+        s = Student(first_name = 'first_name',
+                    last_name = 'last_name',
+                    middle_name = 'middle_name',
+                    date = 'date',
+                    foto ='foto',
+                    stud_bilet = 'stud_bilet',
+                    stud_group = 'stud_group')
+        s.save()
         return redirect('/')
 
 def addgroup(request):
