@@ -53,7 +53,7 @@ def addstudent(request):
     if  request.POST.get('date', '').strip() == '':
         errors['date'] = 'Введіть будь ласка дату народження студента'
         error['date'] = 'поле Дата народження обов’язвове'
-    if  request.FILES.get('foto', '').strip() == '':
+    if  request.FILES.get('foto', ''):
         errors['foto'] = 'Виберіть будь ласка фото студента'
         error['foto'] = 'поле Фото обов’язвове'
     if request.POST.get('stud_bilet', '').strip() == '':

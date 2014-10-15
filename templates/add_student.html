@@ -21,7 +21,7 @@
         <div class="tab-pane active" id="tab1">
           <h4>Заповнення нового студента</h4>
         </div>
-        <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="http://127.0.0.1:8000/media/photos/">{% csrf_token %}
+        <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
           {% if error %}
             <ul class="errorlist_global">
             {% if error.first_name %}
