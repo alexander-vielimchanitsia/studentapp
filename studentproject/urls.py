@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', include('studentapp.urls')),
     url(r'^index/', include('studentapp.urls')),
-
+    url(r'^page/(\d+)/$', 'studentapp.views.index'),
 )
 
 if settings.DEBUG:
