@@ -121,11 +121,11 @@
             {% endif %}
             <label class="control-label" for="stud_group" >Група</label>
             <div class="controls">
-              <select id="id_stud_group" name="stud_group">
+              <select id="id_stud_group"  name="stud_group">
                 <option value="" selected="selected">---------</option>
-                {% for stud_group in table_group %}
-                  <option value="{{ stud_group }}">{{ stud_group }}</option>
-                {% endfor %}
+                  {% for stud_group in table_group %}
+                    <option value="{{ stud_group }}">{{ stud_group }}</option>
+                  {% endfor %}
               </select>
             </div>
           </div>

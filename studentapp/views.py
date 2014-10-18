@@ -39,7 +39,6 @@ def add_group(request):
 def addstudent(request):
     table_student = Student.objects.all()
     table_group = Group.objects.all()
-    student_form = StudentForm()
     errors = {}
     error = {}
     if request.POST.get('first_name', '').strip() == '':
@@ -51,10 +50,10 @@ def addstudent(request):
     if request.POST.get('middle_name', '').strip() == '':
         errors['middle_name'] = 'Введіть будь ласка по батькові студента'
         error['middle_name'] = 'поле По батькові обов’язкове'
-    if  request.POST.get('date', '').strip() == '':
+    if request.POST.get('date', '').strip() == '':
         errors['date'] = 'Введіть будь ласка дату народження студента'
         error['date'] = 'поле Дата народження обов’язкове'
-    if  request.FILES.get('foto', ''):
+    if not request.FILES.get('foto', None) or request.FILES['foto'].size == 0:
         errors['foto'] = 'Виберіть будь ласка фото студента'
         error['foto'] = 'поле Фото обов’язкове'
     if request.POST.get('stud_bilet', '').strip() == '':
@@ -68,14 +67,6 @@ def addstudent(request):
                                                         'errors': errors,
                                                         'error': error,
                                                         'table_student': table_student,
-                                                        'student_form': student_form,
-                                                        'table_group': table_group,},
-                                                        context_instance=RequestContext(request)
-        )
-    if not errors:
-        return render_to_response('add_student.html', {
-                                                        'table_student': table_student,
-                                                        'student_form': student_form,
                                                         'table_group': table_group,},
                                                         context_instance=RequestContext(request)
         )
