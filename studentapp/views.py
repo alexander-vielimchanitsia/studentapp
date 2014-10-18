@@ -69,8 +69,7 @@ def addstudent(request):
                                                         'error': error,
                                                         'table_student': table_student,
                                                         'student_form': student_form,
-                                                        'table_group': table_group,
-                                                        'first_name': request.POST.get('first_name')},
+                                                        'table_group': table_group,},
                                                         context_instance=RequestContext(request)
         )
     if not errors:
