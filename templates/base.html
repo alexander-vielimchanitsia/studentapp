@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}База даних студентів{% endblock %}</title>
+    <!-- Bootstrap -->
+    <link href="http://127.0.0.1:8000/static/css/bootstrap.min.css" rel="stylesheet">
+    {% block scripts %} {% endblock %}
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Суденти</h1>
+        <div class="group pull-right" style="width: 200px">
+            <h5 class="pull-left" style="padding: 3px 3px 0 0">Група:<h5>
+                <select class="span2">
+                    <option>Усі студенти</option>
+                    <option>Усі студенти</option>
+                    <option>Усі студенти</option>
+                    <option>Усі студенти</option>
+                    <option>Усі студенти</option>
+                </select>
+        </div>
+    </header>
+    <div class="tabbable" style="margin-top:33px"> <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">Студенти</a></li>
+            <li><a href="#tab2" data-toggle="tab">Групи</a></li>
+        </ul>
+{% block content %}{% endblock %}
+    </div>
+</div>
+<!-- Bootstrap -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://127.0.0.1:8000/static/js/bootstrap.min.js"></script>
+</body>
+</html>

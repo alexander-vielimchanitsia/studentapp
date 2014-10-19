@@ -1,144 +1,144 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Додати студента</title>
     <!-- Bootstrap -->
     <link href="http://127.0.0.1:8000/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://127.0.0.1:8000/static/css/style.css" rel="stylesheet">
-  </head>
-  <body>
-  <div class="container">
+</head>
+<body>
+<div class="container">
     <header>
-      <h1>Студенти</h1>
+        <h1>Студенти</h1>
     </header>
     <div class="tabbable"> <!-- Only required for left/right tabs -->
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Додати студента</a></li>
-        <li><a href="http://127.0.0.1:8000/" data-toggle="tab">Перейти на главну</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab1">
-          <h4>Заповнення нового студента</h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">Додати студента</a></li>
+            <li><a href="http://127.0.0.1:8000/" data-toggle="tab">Перейти на главну</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                <h4>Заповнення нового студента</h4>
+            </div>
+            <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
+                {% if error %}
+                    <ul class="errorlist_global">
+                        {% if error.first_name %}
+                            <li>{{ error.first_name }}</li>
+                        {% endif %}
+                        {% if error.last_name %}
+                            <li>{{ error.last_name }}</li>
+                        {% endif %}
+                        {% if error.middle_name %}
+                            <li>{{ error.middle_name }}</li>
+                        {% endif %}
+                        {% if error.date %}
+                            <li>{{ error.date }}</li>
+                        {% endif %}
+                        {% if error.foto %}
+                            <li>{{ error.foto }}</li>
+                        {% endif %}
+                        {% if error.stud_bilet %}
+                            <li>{{ error.stud_bilet }}</li>
+                        {% endif %}
+                        {%  if error.stud_group %}
+                            <li>{{ error.stud_group }}</li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+                <div class="control-group">
+                    {% if errors.first_name %}
+                        <ul class="errorlist">
+                            <li>{{ errors.first_name }}</li>
+                        </ul>
+                    {% endif %}
+                    <label class="control-label" for="first_name">Ім’я</label>
+                    <div class="controls">
+                        <input class="input-medium" type="text" id="first_name" name="first_name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    {% if errors.last_name %}
+                        <ul class="errorlist">
+                            <li>{{ errors.last_name }}</li>
+                        </ul>
+                    {% endif %}
+                    <label class="control-label" for="last_name">Прізвище</label>
+                    <div class="controls">
+                        <input class="input-medium" type="text" id="last_name" name="last_name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    {% if errors.middle_name %}
+                        <ul class="errorlist">
+                            <li>{{ errors.middle_name }}</li>
+                        </ul>
+                    {% endif %}
+                    <label class="control-label" for="middle_name">По батькові</label>
+                    <div class="controls">
+                        <input class="input-medium" type="text" id="middle_name" name="middle_name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    {% if errors.date %}
+                        <ul class="errorlist">
+                            <li>{{ errors.date }}</li>
+                        </ul>
+                    {% endif %}
+                    <label class="control-label" for="date">Дата народження</label>
+                    <div class="controls">
+                        <input class="input-medium" type="date" id="date" name="date">
+                    </div>
+                </div>
+                <div class="control-group">
+                    {% if errors.foto %}
+                        <ul class="errorlist">
+                            <li>{{ erorrs.foto }}</li>
+                        </ul>
+                    {% endif %}
+                    <label class="control-label" for="foto">Фото</label>
+                    <div class="controls">
+                        <input type="file" id="foto" name="foto">
+                    </div>
+                </div>
+                <div class="control-group">
+                    {% if errors.stud_bilet %}
+                        <ul class="errorlist">
+                            <li>{{ errors.stud_bilet }}</li>
+                        </ul>
+                    {% endif %}
+                    <label class="control-label" for="stud_bilet">No.студ-билета</label>
+                    <div class="controls">
+                        <input class="input-medium" type="text" id="stud_bilet" name="stud_bilet">
+                    </div>
+                </div>
+                <div class="control-group">
+                    {% if errors.stud_group %}
+                        <ul class="errorlist">
+                            <li>{{ errors.stud_group }}</li>
+                        </ul>
+                    {% endif %}
+                    <label class="control-label" for="stud_group" >Група</label>
+                    <div class="controls">
+                        <select id="id_stud_group"  name="stud_group">
+                            <option value="" selected="selected">---------</option>
+                            {% for stud_group in table_group %}
+                                <option value="{{ stud_group }}">{{ stud_group }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group" style="margin-left:100px">
+                    <input type="submit" class="btn btn-primary">
+                    <button type="reset" class="btn">Очистити</button>
+                </div>
+            </form>
         </div>
-        <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
-          {% if error %}
-            <ul class="errorlist_global">
-            {% if error.first_name %}
-              <li>{{ error.first_name }}</li>
-            {% endif %}
-            {% if error.last_name %}
-              <li>{{ error.last_name }}</li>
-            {% endif %}
-            {% if error.middle_name %}
-              <li>{{ error.middle_name }}</li>
-            {% endif %}
-            {% if error.date %}
-              <li>{{ error.date }}</li>
-            {% endif %}
-            {% if error.foto %}
-              <li>{{ error.foto }}</li>
-            {% endif %}
-            {% if error.stud_bilet %}
-              <li>{{ error.stud_bilet }}</li>
-            {% endif %}
-            {%  if error.stud_group %}
-              <li>{{ error.stud_group }}</li>
-            {% endif %}
-            </ul>
-          {% endif %}
-          <div class="control-group">
-            {% if errors.first_name %}
-              <ul class="errorlist">
-                <li>{{ errors.first_name }}</li>
-              </ul>
-            {% endif %}
-            <label class="control-label" for="first_name">Ім’я</label>
-            <div class="controls">
-              <input class="input-medium" type="text" id="first_name" name="first_name">
-            </div>
-          </div>
-          <div class="control-group">
-            {% if errors.last_name %}
-              <ul class="errorlist">
-                <li>{{ errors.last_name }}</li>
-              </ul>
-            {% endif %}
-            <label class="control-label" for="last_name">Прізвище</label>
-            <div class="controls">
-              <input class="input-medium" type="text" id="last_name" name="last_name">
-            </div>
-          </div>
-          <div class="control-group">
-            {% if errors.middle_name %}
-              <ul class="errorlist">
-                <li>{{ errors.middle_name }}</li>
-              </ul>
-            {% endif %}
-            <label class="control-label" for="middle_name">По батькові</label>
-            <div class="controls">
-              <input class="input-medium" type="text" id="middle_name" name="middle_name">
-            </div>
-          </div>
-          <div class="control-group">
-            {% if errors.date %}
-              <ul class="errorlist">
-                <li>{{ errors.date }}</li>
-              </ul>
-            {% endif %}
-            <label class="control-label" for="date">Дата народження</label>
-            <div class="controls">
-              <input class="input-medium" type="date" id="date" name="date">
-            </div>
-          </div>
-          <div class="control-group">
-            {% if errors.foto %}
-              <ul class="errorlist">
-                <li>{{ erorrs.foto }}</li>
-              </ul>
-            {% endif %}
-            <label class="control-label" for="foto">Фото</label>
-            <div class="controls">
-              <input type="file" id="foto" name="foto">
-            </div>
-          </div>
-          <div class="control-group">
-            {% if errors.stud_bilet %}
-              <ul class="errorlist">
-                <li>{{ errors.stud_bilet }}</li>
-              </ul>
-            {% endif %}
-            <label class="control-label" for="stud_bilet">No.студ-билета</label>
-            <div class="controls">
-              <input class="input-medium" type="text" id="stud_bilet" name="stud_bilet">
-            </div>
-          </div>
-          <div class="control-group">
-            {% if errors.stud_group %}
-              <ul class="errorlist">
-                <li>{{ errors.stud_group }}</li>
-              </ul>
-            {% endif %}
-            <label class="control-label" for="stud_group" >Група</label>
-            <div class="controls">
-              <select id="id_stud_group"  name="stud_group">
-                <option value="" selected="selected">---------</option>
-                  {% for stud_group in table_group %}
-                    <option value="{{ stud_group }}">{{ stud_group }}</option>
-                  {% endfor %}
-              </select>
-            </div>
-          </div>
-          <div class="control-group" style="margin-left:100px">
-            <input type="submit" class="btn btn-primary">
-            <button type="reset" class="btn">Очистити</button>
-          </div>
-        </form>
-      </div>
     </div>
-    </div>
-    <!-- Bootstrap -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="http://127.0.0.1:8000/static/js/bootstrap.min.js"></script>
-  </body>
+</div>
+<!-- Bootstrap -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://127.0.0.1:8000/static/js/bootstrap.min.js"></script>
+</body>
 </html>
