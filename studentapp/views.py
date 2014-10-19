@@ -12,12 +12,16 @@ from django.core.paginator import Paginator
 
 def index(request, page_number = 1):
     table_student = Student.objects.all()
-    table_group = Group.objects.all()
     student_page = Paginator(table_student, 10)
-    group_page = Paginator(table_group, 10)
     return render_to_response('index.html', {
         'table_student': student_page.page(page_number),
-        'table_group': group_page.page(page_number),
+    })
+
+def groups(request, page_number = 1):
+    table_group = Group.objects.all()
+    group_page = Paginator(table_group, 10)
+    return render_to_response('groups.html', {
+        'table_group': group_page.page(page_number)
     })
 
 def add_student(request):

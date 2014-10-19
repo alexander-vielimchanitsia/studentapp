@@ -5,7 +5,7 @@
     <title>{% block title %}База даних студентів{% endblock %}</title>
     <!-- Bootstrap -->
     <link href="http://127.0.0.1:8000/static/css/bootstrap.min.css" rel="stylesheet">
-    {% block scripts %} {% endblock %}
+    {% block scripts %}{% endblock %}
 </head>
 <body>
 <div class="container">
@@ -22,12 +22,8 @@
                 </select>
         </div>
     </header>
-    <div class="tabbable" style="margin-top:33px"> <!-- Only required for left/right tabs -->
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab1" data-toggle="tab">Студенти</a></li>
-            <li><a href="#tab2" data-toggle="tab">Групи</a></li>
-        </ul>
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock %}
     </div>
 </div>
 <!-- Bootstrap -->

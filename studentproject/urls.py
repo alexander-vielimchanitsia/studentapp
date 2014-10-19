@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     url(r'^$', include('studentapp.urls')),
     url(r'^index/', include('studentapp.urls')),
     url(r'^page/(\d+)/$', 'studentapp.views.index'),
+    url(r'groups/$', 'studentapp.views.groups'),
+    url(r'^groups/page/(\d+)/$', 'studentapp.views.groups'),
 )
 
 if settings.DEBUG:

@@ -1,93 +1,56 @@
-        {% extends 'base.html' %}
-        {% block content %}
-            <div class="tab-content">
-                <div class="tab-pane active" id="tab1">
-                    <h2>База Студентів</h2>
-                    <a href="/index/add_student.html/" class="btn btn-primary">Додати Студента</a>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>№</th>
-                            <th>Фото</th>
-                            <th>Прізвище</th>
-                            <th>Ім’я</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for Student in table_student %}
-                            <tr>
-                                <td><input type="checkbox" id="inlineCheckbox1"> {{ Student.id }}</td>
-                                <td><img src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width:30px"></td>
-                                <td>{{ Student.last_name }}</td>
-                                <td>{{ Student.first_name }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    <div class="pagination">
-                        <ul>
-                            {% if table_student.has_previous %}
-                                <li class="disabled"><a href="/page/{{ table_student.previous_page_number }}/">&laquo</a></li>
-                            {% else %}
-                                <li class="active"><a href="">&laquo</a></li>
-                            {% endif %}
-                            {% for page in table_student.paginator.page_range %}
-                                {% if page == table_student.number %}
-                                    <li class="active"><a href="/page/{{ page }}/">{{ page }}</a></li>
-                                {% else %}
-                                    <li class="disabled"><a href="/page/{{ page }}/">{{ page }}</a></li>
-                                {% endif %}
-                            {% endfor %}
-                            {% if table_student.has_next %}
-                                <li class="disabled"><a href="/page/{{ table_student.next_page_number }}/">&raquo</a></li>
-                            {% else %}
-                                <li class="active"><a href="">&raquo</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-                <div class="tab-pane" id="tab2">
-                    <h2>Список груп</h2>
-                    <a href="/index/add_group.html/" class="btn btn-primary">Додати Групу</a>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>№</th>
-                            <th>Назва групи</th>
-                            <th>Староста</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for Group in table_group %}
-                            <tr>
-                                <td><input type="checkbox" id="inlineCheckbox1"> {{ Group.id }}</td>
-                                <td>{{ Group.name_group }}</td>
-                                <td>{{ Group.king_group }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    <div class="pagination">
-                        <ul>
-                            {% if table_group.has_previous %}
-                                <li class="disabled"><a href="/page/{{ table_group.previous_page_number }}/">&laquo</a></li>
-                            {% else %}
-                                <li class="active"><a href="">&laquo</a></li>
-                            {% endif %}
-                            {% for page in table_group.paginator.page_range %}
-                                {% if page == table_group.number %}
-                                    <li class="active"><a href="/page/{{ page }}/">{{ page }}</a></li>
-                                {% else %}
-                                    <li class="disabled"><a href="/page/{{ page }}/">{{ page }}</a></li>
-                                {% endif %}
-                            {% endfor %}
-                            {% if table_group.has_next %}
-                                <li class="disabled"><a href="/page/{{ table_group.next_page_number }}/">&raquo</a></li>
-                            {% else %}
-                                <li class="active"><a href="">&raquo</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="tab-content">
+        <div class="tabbable" style="margin-top:33px">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="/" data-toggle="tab" target="_blank">Студенти</a></li>
+                <li><a href="/groups/" data-toggle="tab" target="_blank">Групи</a></li>
+            </ul>
+        </div>
+        <div class="tab-pane active" id="tab1">
+            <h2>База Студентів</h2>
+            <a href="/index/add_student.html/" class="btn btn-primary">Додати Студента</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Фото</th>
+                    <th>Прізвище</th>
+                    <th>Ім’я</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for Student in table_student %}
+                    <tr>
+                        <td><input type="checkbox" id="inlineCheckbox1"> {{ Student.id }}</td>
+                        <td><img src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width:30px"></td>
+                        <td>{{ Student.last_name }}</td>
+                        <td>{{ Student.first_name }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                <ul>
+                    {% if table_student.has_previous %}
+                        <li class="disabled"><a href="/page/{{ table_student.previous_page_number }}/">&laquo</a></li>
+                    {% else %}
+                        <li class="active"><a href="">&laquo</a></li>
+                    {% endif %}
+                    {% for page in table_student.paginator.page_range %}
+                        {% if page == table_student.number %}
+                            <li class="active"><a href="/page/{{ page }}/">{{ page }}</a></li>
+                        {% else %}
+                            <li class="disabled"><a href="/page/{{ page }}/">{{ page }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if table_student.has_next %}
+                        <li class="disabled"><a href="/page/{{ table_student.next_page_number }}/">&raquo</a></li>
+                    {% else %}
+                        <li class="active"><a href="">&raquo</a></li>
+                    {% endif %}
+                </ul>
             </div>
-            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
