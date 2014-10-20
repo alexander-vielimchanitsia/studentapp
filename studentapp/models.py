@@ -11,7 +11,7 @@ class Student(models.Model):
     last_name = models.CharField(max_length = 15, verbose_name = 'Прізвище')
     middle_name = models.CharField(max_length = 15, verbose_name = 'По батькові')
     date = models.DateField(verbose_name = 'Дата народження')
-    foto = models.FileField(upload_to = 'photos', verbose_name = 'Фото')
+    foto = models.ImageField(upload_to = 'photos', verbose_name = 'Фото')
     stud_bilet = models.CharField(max_length = 100, verbose_name = 'Студ.білет')
     stud_group = models.ForeignKey('Group', verbose_name = 'Група')
     class Meta:
