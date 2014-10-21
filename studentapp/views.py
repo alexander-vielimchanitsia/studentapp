@@ -76,13 +76,14 @@ def addstudent(request):
         )
     else:
         Student.objects.all()
+        v = Group.objects.get(id=1)
         s = Student(first_name = 'first_name',
                     last_name = 'last_name',
                     middle_name = 'middle_name',
                     date = 'date',
                     foto ='foto',
                     stud_bilet = 'stud_bilet',
-                    stud_group = 'stud_group')
+                    stud_group = stud_group(v, v.name_group))
         s.save()
         return redirect('/')
 
