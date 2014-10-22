@@ -24,25 +24,10 @@ def groups(request, page_number = 1):
         'table_group': group_page.page(page_number)
     })
 
-def add_student(request):
-    table_group = Group.objects.all()
-    table_student = Student.objects.all()
-    student_form = StudentForm()
-    return render_to_response('add_student.html', {
-        'student_form': student_form,
-        'table_group': table_group,
-        'table_student': table_student,},
-        context_instance=RequestContext(request)
-    )
-
-def add_group(request):
-    group_form = GroupForm()
-    return render(request, 'add_group.html', {
-        'group_form': group_form})
-
 def addstudent(request):
     table_student = Student.objects.all()
     table_group = Group.objects.all()
+    student_form = StudentForm()
     errors = {}
     error = {}
     if request.POST.get('first_name', '').strip() == '':
@@ -71,7 +56,8 @@ def addstudent(request):
                                                         'errors': errors,
                                                         'error': error,
                                                         'table_student': table_student,
-                                                        'table_group': table_group,},
+                                                        'table_group': table_group,
+                                                        'student_form': student_form,},
                                                         context_instance=RequestContext(request)
         )
     else:
@@ -83,17 +69,33 @@ def addstudent(request):
                     date = 'date',
                     foto ='foto',
                     stud_bilet = 'stud_bilet',
-                    stud_group = stud_group(v, v.name_group))
+                    stud_group = 'stud_group'(v, v.name_group))
         s.save()
         return redirect('/')
 
 def addgroup(request):
+    table_student = Student.objects.all()
     group_form = GroupForm(request.POST)
-    if group_form.is_valid():
-        group_form.save()
-        return redirect('/')
+    errors = {}
+    error = {}
+    if request.POST.get('name_group', '').strip() == '':
+        errors['name_group'] = 'Введіть будь ласка назву групи'
+        error['name_group'] = 'поле Назва групи обов’язкове'
+    if errors:
+        return render_to_response('add_group.html', {
+                                                    'errors': errors,
+                                                    'error': error,
+                                                    'group_form': group_form,
+                                                    'table_student': table_student},
+                                                    context_instance=RequestContext(request)
+        )
+
     else:
-        group_form = GroupForm()
-    return render(request, 'add_group.html', { 'group_form': group_form })
+        Group.objects.all()
+        v = Group.objects.get(id=1)
+        g = Group(group_name = 'group_name',
+                    king_group = 'king_group')
+        g.save()
+        return redirect('/groups/')
         
     

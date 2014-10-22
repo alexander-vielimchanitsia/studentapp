@@ -1,48 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Додати Групу</title>
     <!-- Bootstrap -->
     <link href="http://127.0.0.1:8000/static/css/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body>
-  <div class="container">
+    <link href="http://127.0.0.1:8000/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
     <header>
-      <h1>Студенти</h1>
+        <h1>Студенти</h1>
     </header>
     <div class="tabbable"> <!-- Only required for left/right tabs -->
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1">Додати групу</a></li>
-        <li><a href="http://127.0.0.1:8000/">Перейти на главну</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab1">
-          <h4>Створення нової групи</h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1">Додати групу</a></li>
+            <li><a href="http://127.0.0.1:8000/">Перейти на главну</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                <h4>Створення нової групи</h4>
+            </div>
+            <form class="form-horizontal" id="group_form" action="/index/addgroup/" method="post" enctype="multipart/form-data">{% csrf_token %}
+                {% if error %}
+                    <ul class="errorlist_global">
+                        {% if error.name_group %}
+                            <li>{{ error.name_group }}</li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+                <div class="control-group">
+                    {% if errors.name_group %}
+                        <ul class="errorlist">
+                            <li>{{ errors.name_group }}</li>
+                        </ul>
+                    {% endif %}
+                    <label class="control-label" for="name_group">Назва групи</label>
+                    <div class="controls">
+                        <input class="input-medium" type="text" id="name_group" name="name_group">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="king_group" name="king_group">Староста групи</label>
+                    <div class="controls">
+                        <select id="king_group"  name="king_group">
+                            <option value="" selected="selected">---------</option>
+                            {% for king_group in table_student %}
+                                <option value="{{ king_group }}">{{ king_group }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group" style="margin-left:100px">
+                    <input type="submit" class="btn btn-primary">
+                    <button type="reset" class="btn">Очистити</button>
+                </div>
+            </form>
         </div>
-        <form class="form-horizontal" id="group_form" action="/index/addgroup/" method="post" enctype="multipart/form-data">{% csrf_token %}
-          <div class="control-group">
-            <label class="control-label" for="name_group">Назва групи</label>
-            <div class="controls">
-              <input class="input-medium" type="text" id="name_group" name="name_group">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="king_group" name="king_group">Староста групи</label>
-            <div class="controls">
-              <input class="input-medium" type="text" id="name_group" name="name_king">
-            </div>
-          </div>
-          <div class="control-group" style="margin-left:100px">
-            <input type="submit" class="btn btn-primary">
-            <button type="reset" class="btn">Очистити</button>
-          </div>
-        </form>
-      </div>
     </div>
-  </div> 
-    <!-- Bootstrap -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="http://127.0.0.1:8000/static/js/bootstrap.min.js"></script>
-  </body>
+</div>
+<!-- Bootstrap -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://127.0.0.1:8000/static/js/bootstrap.min.js"></script>
+</body>
 </html>
