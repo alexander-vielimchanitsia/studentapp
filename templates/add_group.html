@@ -45,8 +45,8 @@
                     <div class="controls">
                         <select id="king_group"  name="king_group">
                             <option value="" selected="selected">---------</option>
-                            {% for king_group in table_student %}
-                                <option value="{{ king_group }}">{{ king_group }}</option>
+                            {% for student in table_student %}
+                                <option value="{{ student.id }}">{{ student }}</option>
                             {% endfor %}
                         </select>
                     </div>

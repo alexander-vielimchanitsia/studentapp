@@ -123,8 +123,8 @@
                     <div class="controls">
                         <select id="stud_group"  name="stud_group">
                             <option value="" selected="selected">---------</option>
-                            {% for groups_id in table_group %}
-                                <option value="{{ groups_id }}">{{ groups_id }}</option>
+                            {% for group in table_group %}
+                                <option value="{{ group.id }}">{{ group.name_group }}</option>
                             {% endfor %}
                         </select>
                     </div>
