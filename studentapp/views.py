@@ -51,6 +51,26 @@ def addstudent(request):
     if request.POST.get('stud_group', '').strip() == '':
         errors['stud_group'] = 'Виберіть будь ласка групу студента'
         error['stud_group'] = 'поле Група обов’язкове'
+    if not errors:
+        name_group = Group.objects.name_group
+        king_group = Group.objects.king_group
+        s = Student(first_name = 'first_name',
+                    last_name = 'last_name',
+                    middle_name = 'middle_name',
+                    date = 'date',
+                    foto ='foto',
+                    stud_bilet = 'sntud_bilet',
+                    stud_group = Group.objects.create(name_group=name_group, king_group=king_group)
+        )
+        s.save()
+        return render_to_response('add_student.html', {
+            'table_student': table_student,
+            'table_group': table_group,
+            'student_form': student_form,
+            'groups': groups},
+            context_instance=RequestContext(request)
+        )
+
     if errors:
         return render_to_response('add_student.html', {
                                                         'errors': errors,
@@ -60,18 +80,7 @@ def addstudent(request):
                                                         'student_form': student_form,},
                                                         context_instance=RequestContext(request)
         )
-    else:
-        Student.objects.all()
-        v = Group.objects.get(id=1)
-        s = Student(first_name = 'first_name',
-                    last_name = 'last_name',
-                    middle_name = 'middle_name',
-                    date = 'date',
-                    foto ='foto',
-                    stud_bilet = 'stud_bilet',
-                    stud_group = 'stud_group'(v, v.name_group))
-        s.save()
-        return redirect('/')
+
 
 def addgroup(request):
     table_student = Student.objects.all()
