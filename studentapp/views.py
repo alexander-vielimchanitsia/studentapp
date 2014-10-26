@@ -101,3 +101,9 @@ def addgroup(request):
         )
         g.save()
         return redirect('/groups/')
+
+def edit_student(request, student_id):
+    return render_to_response('edit_student.html', {
+                                                    'table_student': Student.objects.get(id=student_id),
+                                                    'table_group': Group.objects.all()
+    })

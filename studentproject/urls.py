@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^page/(\d+)/$', 'studentapp.views.index'),
     url(r'groups/$', 'studentapp.views.groups'),
     url(r'^groups/page/(\d+)/$', 'studentapp.views.groups'),
+    url(r'^edit_student/(?P<student_id>\d+)/$', 'studentapp.views.edit_student'),
 )
 
 if settings.DEBUG:

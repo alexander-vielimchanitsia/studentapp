@@ -17,15 +17,28 @@
                     <th>Фото</th>
                     <th>Прізвище</th>
                     <th>Ім’я</th>
+                    <th>№ Білету</th>
+                    <th>Дії</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for Student in table_student %}
                     <tr>
-                        <td><input type="checkbox" id="inlineCheckbox1"> {{ Student.id }}</td>
+                        <td>{{ Student.id }}</td>
                         <td><img src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width:30px"></td>
                         <td>{{ Student.last_name }}</td>
                         <td>{{ Student.first_name }}</td>
+                        <td>{{ Student.stud_bilet }}</td>
+                        <td><div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                Дія
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/edit_student/{{ Student.id }}/">Редагувати</a></li>
+                                <li><a href="#">Видалити</a></li>
+                            </ul>
+                        </div></td>
                     </tr>
                 {% endfor %}
                 </tbody>
