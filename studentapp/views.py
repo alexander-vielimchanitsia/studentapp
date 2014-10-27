@@ -103,6 +103,59 @@ def addgroup(request):
         return redirect('/groups/')
 
 def edit_student(request, student_id):
+    table_student = Student.objects.get(id=student_id)
+    student_form = StudentForm()
+    errors = {}
+    error = {}
+    if request.POST.get('first_name', '').strip() == '':
+        errors['first_name'] = 'Введіть будь ласка ім’я студента'
+        error['first_name'] = 'поле Ім’я обов’язкоке'
+    if request.POST.get('last_name', '').strip() == '':
+        errors['last_name'] = 'Введіть будь ласка прізвище студента'
+        error['last_name'] = 'поле Прізвище обов’язкове'
+    if request.POST.get('middle_name', '').strip() == '':
+        errors['middle_name'] = 'Введіть будь ласка по батькові студента'
+        error['middle_name'] = 'поле По батькові обов’язкове'
+    if request.POST.get('date', '').strip() == '':
+        errors['date'] = 'Введіть будь ласка дату народження студента'
+        error['date'] = 'поле Дата народження обов’язкове'
+    if not request.FILES.get('foto', None) or request.FILES['foto'].size == 0:
+        errors['foto'] = 'Виберіть будь ласка фото студента'
+        error['foto'] = 'поле Фото обов’язкове'
+    if request.POST.get('stud_bilet', '').strip() == '':
+        errors['stud_bilet'] = 'Введіть будь ласка ім’я студента'
+        error['stud_bilet'] = 'поле No.студ-билета обов’язкове'
+    if request.POST.get('stud_group', '').strip() == '':
+        errors['stud_group'] = 'Виберіть будь ласка групу студента'
+        error['stud_group'] = 'поле Група обов’язкове'
+    if not errors:
+        s = Student(first_name = table_student.first_name,
+                    last_name = table_student.last_name,
+                    middle_name = table_student.middle_name,
+                    date = table_student.date,
+                    foto = table_student.foto,
+                    stud_bilet = table_student.stud_bilet,
+                    stud_group = table_student.stud_group,
+        )
+        estud = s.save(commit=False)
+        estud.s = table_student
+        s.save()
+        return render_to_response('edit_student.html', {
+            'table_student': table_student,
+            'table_group': Group.objects.all(),
+            'student_form': student_form,
+            'groups': groups},
+                                  context_instance=RequestContext(request)
+        )
+    if errors:
+        return render_to_response('edit_student.html', {
+            'errors': errors,
+            'error': error,
+            'table_student': table_student,
+            'table_group': Group.objects.all(),
+            'student_form': student_form,},
+                                  context_instance=RequestContext(request)
+        )
     return render_to_response('edit_student.html', {
                                                     'table_student': Student.objects.get(id=student_id),
                                                     'table_group': Group.objects.all()}

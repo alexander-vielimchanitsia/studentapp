@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Додати студента</title>
+    <title>Редагувати студента</title>
     <!-- Bootstrap -->
     <link href="http://127.0.0.1:8000/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://127.0.0.1:8000/static/css/style.css" rel="stylesheet">
@@ -99,7 +99,8 @@
                     {% endif %}
                     <label class="control-label" for="foto">Фото</label>
                     <div class="controls">
-                        <input type="file" id="foto" name="foto" value="{{ table_student.foto }}">
+                        <p>Наразі: <a href="{{ table_student.foto }}">{{ table_student.foto }}</a></p>
+                        <p>Змінити: <input type="file" id="foto" name="foto" value="{{ table_student.foto }}"></p>
                     </div>
                 </div>
                 <div class="control-group">
@@ -130,7 +131,7 @@
                     </div>
                 </div>
                 <div class="control-group" style="margin-left:100px">
-                    <input type="submit" class="btn btn-primary">
+                    <input type="submit" class="btn btn-primary" value="Зберегти">
                     <button type="reset" class="btn">Очистити</button>
                 </div>
             </form>
