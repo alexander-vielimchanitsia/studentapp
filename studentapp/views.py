@@ -105,5 +105,5 @@ def addgroup(request):
 def edit_student(request, student_id):
     return render_to_response('edit_student.html', {
                                                     'table_student': Student.objects.get(id=student_id),
-                                                    'table_group': Group.objects.all()
-    })
+                                                    'table_group': Group.objects.all()}
+    )
