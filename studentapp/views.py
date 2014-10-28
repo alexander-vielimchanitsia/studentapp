@@ -96,7 +96,6 @@ def addgroup(request):
                                                         'table_student': table_student},
                                                         context_instance=RequestContext(request)
             )
-
         if not errors:
             import pdb;pdb.set_trace()
             g = Group(name_group = request.POST['name_group'],
@@ -137,17 +136,27 @@ def edit_student(request, student_id):
         error['stud_group'] = 'поле Група обов’язкове'
     if request.POST.get('submit'):
         if not errors:
-            s = Student(first_name = table_student.first_name,
-                        last_name = table_student.last_name,
-                        middle_name = table_student.middle_name,
-                        date = table_student.date,
-                        foto = table_student.foto,
-                        stud_bilet = table_student.stud_bilet,
-                        stud_group = table_student.stud_group,
+            object = Student.objects.get(id=student_id,
+                                         first_name = request.POST['first_name'],
+                                         last_name = request.POST['last_name'],
+                                         middle_name = request.POST['middle_name'],
+                                         date = request.POST['date'],
+                                         foto = request.FILES['foto'],
+                                         stud_bilet = request.POST['stud_bilet'],
+                                         stud_group = Group.objects.get(pk=request.POST['stud_group'])
             )
-            estud = s.save(commit=False)
-            estud.s = table_student
-            s.save()
+            # model = Student(request.POST)
+            #  s = Student(first_name = request.POST['first_name'],
+            #              last_name = request.POST['last_name'],
+            #              middle_name = request.POST['middle_name'],
+            #              date = request.POST['date'],
+            #              foto = request.FILES['foto'],
+            #              stud_bilet = request.POST['stud_bilet'],
+            #              stud_group = Group.objects.get(pk=request.POST['stud_group'])
+            # )
+            # estud = model.save(commit=False)
+            # estud.s = table_student
+            object.save()
             return redirect('/')
         if errors:
             return render_to_response('edit_student.html', {
@@ -159,7 +168,7 @@ def edit_student(request, student_id):
                                                             context_instance=RequestContext(request)
             )
     return render_to_response('edit_student.html', {
-                                                    'table_student': Student.objects.get(id=student_id),
+                                                    'table_student': table_student,
                                                     'table_group': Group.objects.all(),
                                                     'groups': groups},
                                                     context_instance=RequestContext(request)
