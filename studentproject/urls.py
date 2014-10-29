@@ -14,6 +14,8 @@ urlpatterns = patterns('',
     url(r'groups/$', 'studentapp.views.groups'),
     url(r'^groups/page/(\d+)/$', 'studentapp.views.groups'),
     url(r'^edit_student/(?P<student_id>\d+)/$', 'studentapp.views.edit_student'),
+    url(r'^stud_delete/(?P<student_id>\d+)/$', 'studentapp.views.stud_delete'),
+    url(r'^groups/group_delete/(?P<group_id>\d+)/$', 'studentapp.views.group_delete'),
 )
 
 if settings.DEBUG:

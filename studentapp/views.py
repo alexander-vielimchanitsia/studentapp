@@ -173,3 +173,13 @@ def edit_student(request, student_id):
                                                     'groups': groups},
                                                     context_instance=RequestContext(request)
     )
+
+def stud_delete(request, student_id):
+    s = Student.objects.get(id=student_id)
+    s.delete()
+    return redirect('/')
+
+def group_delete(request, group_id):
+    g = Group.objects.get(id=group_id)
+    g.delete()
+    return redirect('/groups/')
