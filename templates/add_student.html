@@ -55,7 +55,7 @@
                     {% endif %}
                     <label class="control-label" for="first_name">Ім’я</label>
                     <div class="controls">
-                        <input class="input-medium" type="text" id="first_name" name="first_name">
+                        <input class="input-medium" type="text" id="first_name" name="first_name" value="{{ field.first_name }}">
                     </div>
                 </div>
                 <div class="control-group">
@@ -66,7 +66,7 @@
                     {% endif %}
                     <label class="control-label" for="last_name">Прізвище</label>
                     <div class="controls">
-                        <input class="input-medium" type="text" id="last_name" name="last_name">
+                        <input class="input-medium" type="text" id="last_name" name="last_name" value="{{ field.last_name }}">
                     </div>
                 </div>
                 <div class="control-group">
@@ -77,7 +77,7 @@
                     {% endif %}
                     <label class="control-label" for="middle_name">По батькові</label>
                     <div class="controls">
-                        <input class="input-medium" type="text" id="middle_name" name="middle_name">
+                        <input class="input-medium" type="text" id="middle_name" name="middle_name" value="{{ field.middle_name }}">
                     </div>
                 </div>
                 <div class="control-group">
@@ -88,7 +88,7 @@
                     {% endif %}
                     <label class="control-label" for="date">Дата народження</label>
                     <div class="controls">
-                        <input class="input-medium" type="date" id="date" name="date">
+                        <input class="input-medium" type="date" id="date" name="date" value="{{ field.date }}">
                     </div>
                 </div>
                 <div class="control-group">
@@ -110,7 +110,7 @@
                     {% endif %}
                     <label class="control-label" for="stud_bilet">No.студ-билета</label>
                     <div class="controls">
-                        <input class="input-medium" type="text" id="stud_bilet" name="stud_bilet">
+                        <input class="input-medium" type="text" id="stud_bilet" name="stud_bilet" value="{{ field.stud_bilet }}">
                     </div>
                 </div>
                 <div class="control-group">

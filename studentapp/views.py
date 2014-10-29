@@ -52,7 +52,23 @@ def addstudent(request):
         errors['stud_group'] = 'Виберіть будь ласка групу студента'
         error['stud_group'] = 'поле Група обов’язкове'
     if request.POST.get('submit'):
-        if not errors:
+        if errors:
+            fs = Student(first_name = request.POST['first_name'],
+                        last_name = request.POST['last_name'],
+                        middle_name = request.POST['middle_name'],
+                        date = request.POST['date'],
+                        stud_bilet = request.POST['stud_bilet'],
+            )
+            return render_to_response('add_student.html', {
+                                                            'errors': errors,
+                                                            'error': error,
+                                                            'table_student': table_student,
+                                                            'table_group': table_group,
+                                                            'student_form': student_form,
+                                                            'field': fs},
+                                                            context_instance=RequestContext(request)
+            )
+        else:
             s = Student(first_name = request.POST['first_name'],
                         last_name = request.POST['last_name'],
                         middle_name = request.POST['middle_name'],
@@ -63,15 +79,7 @@ def addstudent(request):
             )
             s.save()
             return redirect('/')
-        if errors:
-            return render_to_response('add_student.html', {
-                                                            'errors': errors,
-                                                            'error': error,
-                                                            'table_student': table_student,
-                                                            'table_group': table_group,
-                                                            'student_form': student_form,},
-                                                            context_instance=RequestContext(request)
-            )
+
     return render_to_response('add_student.html', {
                                                     'table_student': table_student,
                                                     'table_group': table_group,
@@ -93,11 +101,11 @@ def addgroup(request):
                                                         'errors': errors,
                                                         'error': error,
                                                         'group_form': group_form,
-                                                        'table_student': table_student},
+                                                        'table_student': table_student,
+                                                        },
                                                         context_instance=RequestContext(request)
             )
-        if not errors:
-            import pdb;pdb.set_trace()
+        else:
             g = Group(name_group = request.POST['name_group'],
                     king_group = Student.objects.get(pk=request.POST['king_group'])
             )
