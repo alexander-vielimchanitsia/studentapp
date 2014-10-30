@@ -8,5 +8,4 @@ urlpatterns = patterns('',
 
     url(r'^$', 'studentapp.views.index'),
     url(r'^addstudent/$', 'studentapp.views.addstudent'),
-    url(r'^addgroup/$', 'studentapp.views.addgroup'),
 )

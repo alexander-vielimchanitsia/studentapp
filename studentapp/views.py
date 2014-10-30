@@ -89,7 +89,6 @@ def addstudent(request):
     )
 def addgroup(request):
     table_student = Student.objects.all()
-    group_form = GroupForm(request.POST)
     errors = {}
     error = {}
     if request.POST.get('name_group', '').strip() == '':
@@ -100,19 +99,22 @@ def addgroup(request):
             return render_to_response('add_group.html', {
                                                         'errors': errors,
                                                         'error': error,
-                                                        'group_form': group_form,
                                                         'table_student': table_student,
                                                         },
                                                         context_instance=RequestContext(request)
             )
         else:
-            g = Group(name_group = request.POST['name_group'],
-                    king_group = Student.objects.get(pk=request.POST['king_group'])
-            )
+            if request.POST.get('king_group', '').strip() == '':
+                g = Group(name_group = request.POST['name_group'],
+                        king_group = None
+                )
+            else:
+                g = Group(name_group = request.POST['name_group'],
+                          king_group = Student.objects.get(pk=request.POST['king_group'])
+                )
             g.save()
             return redirect('/groups/')
     return render_to_response('add_group.html', {
-                                                'group_form': group_form,
                                                 'table_student': table_student},
                                                 context_instance=RequestContext(request)
     )
@@ -143,7 +145,17 @@ def edit_student(request, student_id):
         errors['stud_group'] = 'Виберіть будь ласка групу студента'
         error['stud_group'] = 'поле Група обов’язкове'
     if request.POST.get('submit'):
-        if not errors:
+        if errors:
+            return render_to_response('edit_student.html', {
+                'errors': errors,
+                'error': error,
+                'table_student': table_student,
+                'table_group': Group.objects.all(),
+                'student_form': student_form,},
+                                      context_instance=RequestContext(request)
+            )
+
+        else:
             object = Student.objects.get(id=student_id,
                                          first_name = request.POST['first_name'],
                                          last_name = request.POST['last_name'],
@@ -153,33 +165,49 @@ def edit_student(request, student_id):
                                          stud_bilet = request.POST['stud_bilet'],
                                          stud_group = Group.objects.get(pk=request.POST['stud_group'])
             )
-            # model = Student(request.POST)
-            #  s = Student(first_name = request.POST['first_name'],
-            #              last_name = request.POST['last_name'],
-            #              middle_name = request.POST['middle_name'],
-            #              date = request.POST['date'],
-            #              foto = request.FILES['foto'],
-            #              stud_bilet = request.POST['stud_bilet'],
-            #              stud_group = Group.objects.get(pk=request.POST['stud_group'])
-            # )
-            # estud = model.save(commit=False)
-            # estud.s = table_student
             object.save()
             return redirect('/')
-        if errors:
-            return render_to_response('edit_student.html', {
-                                                            'errors': errors,
-                                                            'error': error,
-                                                            'table_student': table_student,
-                                                            'table_group': Group.objects.all(),
-                                                            'student_form': student_form,},
-                                                            context_instance=RequestContext(request)
-            )
+
     return render_to_response('edit_student.html', {
                                                     'table_student': table_student,
                                                     'table_group': Group.objects.all(),
                                                     'groups': groups},
                                                     context_instance=RequestContext(request)
+    )
+
+def edit_group(request, group_id):
+    table_group = Group.objects.get(id=group_id)
+    table_student = Student.objects.all()
+    errors = {}
+    error = {}
+    if request.POST.get('name_group', '').strip() == '':
+        errors['name_group'] = 'Введіть будь ласка назву групи'
+        error['name_group'] = 'поле Назва групи обов’язкове'
+    if request.POST.get('submit'):
+        if errors:
+            return render_to_response('edit_group.html', {
+                                                          'errors': errors,
+                                                          'error': error,
+                                                          },
+                                                          context_instance=RequestContext(request)
+            )
+        else:
+            if request.POST.get('king_group', '').strip() == '':
+                object = Group(id=group_id,
+                               name_group = request.POST['name_group'],
+                          king_group = None
+                )
+            else:
+                object = Group(id=group_id,
+                               name_group = request.POST['name_group'],
+                          king_group = Student.objects.get(pk=request.POST['king_group'])
+                )
+            object.save()
+            return redirect('/groups/')
+    return render_to_response('edit_group.html', {
+                                                  'table_student': table_student,
+                                                  'table_group': table_group},
+                                                  context_instance=RequestContext(request)
     )
 
 def stud_delete(request, student_id):

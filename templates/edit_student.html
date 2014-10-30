@@ -14,14 +14,14 @@
     </header>
     <div class="tabbable"> <!-- Only required for left/right tabs -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="/edit_student/">Редагувати студента</a></li>
+            <li class="active disabled"><a href="#">Редагувати студента</a></li>
             <li><a href="http://127.0.0.1:8000/">Перейти на главну</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab1">
                 <h4>Редагування студента</h4>
             </div>
-            <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <form class="form-horizontal" id="student_form" action="/edit_student/{{ table_student.id }}/" method="post" enctype="multipart/form-data">{% csrf_token %}
                 {% if error %}
                     <ul class="errorlist_global">
                         {% if error.first_name %}
@@ -123,9 +123,9 @@
                     <label class="control-label" for="stud_group" >Група</label>
                     <div class="controls">
                         <select id="stud_group"  name="stud_group">
-                            <option value="">---------</option>
+                            <option value="{{ table_student.id }}">{{ table_student.stud_group }}</option>
                             {% for group in table_group %}
-                                <option value="{{ group.id }}" selected="selected">{{ group.name_group }}</option>
+                                <option value="{{ group.id }}">{{ group.name_group }}</option>
                             {% endfor %}
                         </select>
                     </div>
