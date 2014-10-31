@@ -99,8 +99,8 @@
                     {% endif %}
                     <label class="control-label" for="foto">Фото</label>
                     <div class="controls">
-                        <p>Наразі: <a href="{{ table_student.foto }}">{{ table_student.foto }}</a></p>
-                        <p>Змінити: <input type="file" id="foto" name="foto" value="{{ table_student.foto }}"></p>
+                        <p name="previous_foto">Наразі: <a href="{{ table_student.foto }}">{{ table_student.foto }}</a></p>
+                        <p>Змінити: <input type="file" id="foto" name="new_foto" value="{{ table_student.foto }}"></p>
                     </div>
                 </div>
                 <div class="control-group">
@@ -123,7 +123,7 @@
                     <label class="control-label" for="stud_group" >Група</label>
                     <div class="controls">
                         <select id="stud_group"  name="stud_group">
-                            <option value="{{ table_student.id }}">{{ table_student.stud_group }}</option>
+                            <option value="{{ table_student.id }}" selected>{{ table_student.stud_group }}</option>
                             {% for group in table_group %}
                                 <option value="{{ group.id }}">{{ group.name_group }}</option>
                             {% endfor %}

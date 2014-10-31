@@ -135,7 +135,7 @@ def edit_student(request, student_id):
     if request.POST.get('date', '').strip() == '':
         errors['date'] = 'Введіть будь ласка дату народження студента'
         error['date'] = 'поле Дата народження обов’язкове'
-    if not request.FILES.get('foto', None) or request.FILES['foto'].size == 0:
+    if not request.FILES.get('new_foto', None) or request.FILES['new_foto'].size == 0:
         errors['foto'] = 'Виберіть будь ласка фото студента'
         error['foto'] = 'поле Фото обов’язкове'
     if request.POST.get('stud_bilet', '').strip() == '':
@@ -161,7 +161,7 @@ def edit_student(request, student_id):
                                          last_name = request.POST['last_name'],
                                          middle_name = request.POST['middle_name'],
                                          date = request.POST['date'],
-                                         foto = request.FILES['foto'],
+                                         foto = request.FILES['new_foto'],
                                          stud_bilet = request.POST['stud_bilet'],
                                          stud_group = Group.objects.get(pk=request.POST['stud_group'])
             )
@@ -195,12 +195,12 @@ def edit_group(request, group_id):
             if request.POST.get('king_group', '').strip() == '':
                 object = Group(id=group_id,
                                name_group = request.POST['name_group'],
-                          king_group = None
+                               king_group = None
                 )
             else:
                 object = Group(id=group_id,
                                name_group = request.POST['name_group'],
-                          king_group = Student.objects.get(pk=request.POST['king_group'])
+                               king_group = Student.objects.get(pk=request.POST['king_group'])
                 )
             object.save()
             return redirect('/groups/')
