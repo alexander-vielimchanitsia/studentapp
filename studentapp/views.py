@@ -135,9 +135,10 @@ def edit_student(request, student_id):
     if request.POST.get('date', '').strip() == '':
         errors['date'] = 'Введіть будь ласка дату народження студента'
         error['date'] = 'поле Дата народження обов’язкове'
-    if not request.FILES.get('new_foto', None) or request.FILES['new_foto'].size == 0:
-        errors['foto'] = 'Виберіть будь ласка фото студента'
-        error['foto'] = 'поле Фото обов’язкове'
+    if request.FILES.get('new_foto') > 0:
+        if not request.FILES.get('new_foto', None) or request.FILES['new_foto'].size == 0:
+            errors['foto'] = 'Виберіть будь ласка фото студента'
+            error['foto'] = 'поле Фото обов’язкове'
     if request.POST.get('stud_bilet', '').strip() == '':
         errors['stud_bilet'] = 'Введіть будь ласка ім’я студента'
         error['stud_bilet'] = 'поле No.студ-билета обов’язкове'
@@ -156,15 +157,26 @@ def edit_student(request, student_id):
             )
 
         else:
-            object = Student.objects.get(id=student_id,
-                                         first_name = request.POST['first_name'],
-                                         last_name = request.POST['last_name'],
-                                         middle_name = request.POST['middle_name'],
-                                         date = request.POST['date'],
-                                         foto = request.FILES['new_foto'],
-                                         stud_bilet = request.POST['stud_bilet'],
-                                         stud_group = Group.objects.get(pk=request.POST['stud_group'])
-            )
+            if request.FILES.get('new_foto') > 0:
+                object = Student.objects.get(id=student_id,
+                                             first_name = request.POST['first_name'],
+                                             last_name = request.POST['last_name'],
+                                             middle_name = request.POST['middle_name'],
+                                             date = request.POST['date'],
+                                             foto = request.FILES['new_foto'],
+                                             stud_bilet = request.POST['stud_bilet'],
+                                             stud_group = Group.objects.get(pk=request.POST['stud_group'])
+                )
+            else:
+                object = Student.objects.get(id=student_id,
+                                             first_name = request.POST['first_name'],
+                                             last_name = request.POST['last_name'],
+                                             middle_name = request.POST['middle_name'],
+                                             date = request.POST['date'],
+                                             foto = table_student.foto,
+                                             stud_bilet = request.POST['stud_bilet'],
+                                             stud_group = Group.objects.get(pk=request.POST['stud_group'])
+                )
             object.save()
             return redirect('/')
 
