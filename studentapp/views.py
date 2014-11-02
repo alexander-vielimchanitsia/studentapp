@@ -62,9 +62,6 @@ def addstudent(request):
             return render_to_response('add_student.html', {
                                                             'errors': errors,
                                                             'error': error,
-                                                            'table_student': table_student,
-                                                            'table_group': table_group,
-                                                            'student_form': student_form,
                                                             'field': fs},
                                                             context_instance=RequestContext(request)
             )
@@ -78,7 +75,8 @@ def addstudent(request):
                         stud_group = Group.objects.get(pk=request.POST['stud_group'])
             )
             s.save()
-            return redirect('/')
+            return redirect('/', {
+                'new_student': s})
 
     return render_to_response('add_student.html', {
                                                     'table_student': table_student,
@@ -142,9 +140,9 @@ def edit_student(request, student_id):
     if request.POST.get('stud_bilet', '').strip() == '':
         errors['stud_bilet'] = 'Введіть будь ласка ім’я студента'
         error['stud_bilet'] = 'поле No.студ-билета обов’язкове'
-    if request.POST.get('stud_group', '').strip() == '':
-        errors['stud_group'] = 'Виберіть будь ласка групу студента'
-        error['stud_group'] = 'поле Група обов’язкове'
+    # if request.POST.get('stud_group', '').strip() == '':
+    #     errors['stud_group'] = 'Виберіть будь ласка групу студента'
+    #     error['stud_group'] = 'поле Група обов’язкове'
     if request.POST.get('submit'):
         if errors:
             return render_to_response('edit_student.html', {
@@ -158,24 +156,24 @@ def edit_student(request, student_id):
 
         else:
             if request.FILES.get('new_foto') > 0:
-                object = Student.objects.get(id=student_id,
+                object = Student(id=student_id,
                                              first_name = request.POST['first_name'],
                                              last_name = request.POST['last_name'],
                                              middle_name = request.POST['middle_name'],
                                              date = request.POST['date'],
                                              foto = request.FILES['new_foto'],
                                              stud_bilet = request.POST['stud_bilet'],
-                                             stud_group = Group.objects.get(pk=request.POST['stud_group'])
+                                             stud_group = Group(pk=request.POST['stud_group'])
                 )
             else:
-                object = Student.objects.get(id=student_id,
+                object = Student(id=student_id,
                                              first_name = request.POST['first_name'],
                                              last_name = request.POST['last_name'],
                                              middle_name = request.POST['middle_name'],
                                              date = request.POST['date'],
                                              foto = table_student.foto,
                                              stud_bilet = request.POST['stud_bilet'],
-                                             stud_group = Group.objects.get(pk=request.POST['stud_group'])
+                                             stud_group = Group(pk=request.POST['stud_group'])
                 )
             object.save()
             return redirect('/')
@@ -212,7 +210,7 @@ def edit_group(request, group_id):
             else:
                 object = Group(id=group_id,
                                name_group = request.POST['name_group'],
-                               king_group = Student.objects.get(pk=request.POST['king_group'])
+                               king_group = Student(pk=request.POST['king_group'])
                 )
             object.save()
             return redirect('/groups/')
