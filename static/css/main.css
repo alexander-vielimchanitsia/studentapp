@@ -24,3 +24,15 @@
     color: #ff0000;
 }
 /* End Forms Error Style */
+
+.field {
+    margin-bottom: 10px;
+}
+
+.col-xs-4 h4 {
+    margin-bottom: 20px;
+}
+
+#stud_group_selector {
+    width: 100%;
+}
