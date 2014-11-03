@@ -21,29 +21,34 @@
             <div class="tab-pane active" id="tab1">
                 <h4>Створення нової групи</h4>
             </div>
+        <!-- Start Form -->
             <form class="form-horizontal" id="group_form" action="/groups/addgroup/" method="post" enctype="multipart/form-data">{% csrf_token %}
-                {% if error %}
-                    <ul class="errorlist_global">
-                        {% if error.name_group %}
-                            <li>{{ error.name_group }}</li>
+            <!-- Start Name Group Field -->
+                <div class="row field">
+                    <div class="col-xs-2">
+                        <label class="control-label pull-right" for="name_group">Назва групи</label>
+                    </div>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" id="name_group" name="name_group">
+                    </div>
+                    <div class="col-xs-6">
+                        {% if error %}
+                            <ul class="errorlist_global">
+                                {% if error.name_group %}
+                                    <li>{{ error.name_group }}</li>
+                                {% endif %}
+                            </ul>
                         {% endif %}
-                    </ul>
-                {% endif %}
-                <div class="control-group">
-                    {% if errors.name_group %}
-                        <ul class="errorlist">
-                            <li>{{ errors.name_group }}</li>
-                        </ul>
-                    {% endif %}
-                    <label class="control-label" for="name_group">Назва групи</label>
-                    <div class="controls">
-                        <input class="input-medium" type="text" id="name_group" name="name_group">
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="king_group">Староста групи</label>
-                    <div class="controls">
-                        <select id="king_group"  name="king_group">
+            <!-- End Name Group Field -->
+            <!-- Start King Group Field -->
+                <div class="row field">
+                    <div class="col-xs-2">
+                        <label class="control-label pull-right" for="king_group">Староста групи</label>
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="king_group_selector"  name="king_group">
                             <option value="" selected="selected">---------</option>
                             {% for student in table_student %}
                                 <option value="{{ student.id }}">{{ student }}</option>
@@ -51,11 +56,15 @@
                         </select>
                     </div>
                 </div>
+            <!-- End King Group Field -->
+            <!-- Start Buttons Form -->
                 <div class="control-group" style="margin-left:100px">
                     <input type="submit" class="btn btn-primary" name="submit">
                     <button type="reset" class="btn">Очистити</button>
                 </div>
+            <!-- End Buttons Form -->
             </form>
+        <!-- End Form -->
         </div>
     </div>
 </div>
