@@ -19,64 +19,68 @@
     </div>
 </div>
 <!-- End Status Message -->
-<div class="tab-pane active" id="tab1">
-    <h2>База Студентів</h2>
-    <a href="/index/addstudent/" class="btn btn-primary">Додати Студента</a>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>№</th>
-            <th>Фото</th>
-            <th>Прізвище</th>
-            <th>Ім’я</th>
-            <th>№ Білету</th>
-            <th>Дії</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for Student in table_student %}
+<!-- Start Content -->
+<div class="row" id="content-columns">
+    <div class="col-xs-12" id="content-column">
+        <h2>База Студентів</h2>
+        <a href="/index/addstudent/" class="btn btn-primary">Додати Студента</a>
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <td>{{ Student.id }}</td>
-                <td><img src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width:30px"></td>
-                <td>{{ Student.last_name }}</td>
-                <td>{{ Student.first_name }}</td>
-                <td>{{ Student.stud_bilet }}</td>
-                <td><div class="btn-group">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                        Дія
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/edit_student/{{ Student.id }}/">Редагувати</a></li>
-                        <li><a href="/stud_delete/{{ Student.id }}/">Видалити</a></li>
-                    </ul>
-                </div></td>
+                <th>№</th>
+                <th>Фото</th>
+                <th>Прізвище</th>
+                <th>Ім’я</th>
+                <th>№ Білету</th>
+                <th>Дії</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <!-- Start paginations -->
-    <nav class="pull-right">
-        <ul class="pagination">
-            {% if table_student.has_previous %}
-                <li><a href="/page/{{ table_student.previous_page_number }}/">&laquo</a></li>
-            {% else %}
-                <li class="active"><a href="">&laquo</a></li>
-            {% endif %}
-            {% for page in table_student.paginator.page_range %}
-                {% if page == table_student.number %}
-                    <li class="active"><a href="/page/{{ page }}/">{{ page }}</a></li>
-                {% else %}
-                    <li><a href="/page/{{ page }}/">{{ page }}</a></li>
-                {% endif %}
+            </thead>
+            <tbody>
+            {% for Student in table_student %}
+                <tr>
+                    <td>{{ Student.id }}</td>
+                    <td><img src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width:30px"></td>
+                    <td>{{ Student.last_name }}</td>
+                    <td>{{ Student.first_name }}</td>
+                    <td>{{ Student.stud_bilet }}</td>
+                    <td><div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            Дія
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/edit_student/{{ Student.id }}/">Редагувати</a></li>
+                            <li><a href="/stud_delete/{{ Student.id }}/">Видалити</a></li>
+                        </ul>
+                    </div></td>
+                </tr>
             {% endfor %}
-            {% if table_student.has_next %}
-                <li><a href="/page/{{ table_student.next_page_number }}/">&raquo</a></li>
-            {% else %}
-                <li class="active"><a href="">&raquo</a></li>
-            {% endif %}
-        </ul>
-    </nav>
+            </tbody>
+        </table>
+        <!-- Start paginations -->
+        <nav class="pull-right">
+            <ul class="pagination">
+                {% if table_student.has_previous %}
+                    <li><a href="/page/{{ table_student.previous_page_number }}/">&laquo</a></li>
+                {% else %}
+                    <li class="active"><a href="">&laquo</a></li>
+                {% endif %}
+                {% for page in table_student.paginator.page_range %}
+                    {% if page == table_student.number %}
+                        <li class="active"><a href="/page/{{ page }}/">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="/page/{{ page }}/">{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if table_student.has_next %}
+                    <li><a href="/page/{{ table_student.next_page_number }}/">&raquo</a></li>
+                {% else %}
+                    <li class="active"><a href="">&raquo</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     <!-- End paginations -->
+    </div>
 </div>
+<!-- End Content -->
 {% endblock %}

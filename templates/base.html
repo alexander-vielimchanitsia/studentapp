@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}База даних студентів{% endblock %}</title>
+    <title>{% block title %}Сервіс Обліку Студентів{% endblock %}</title>
     <!-- Bootstrap -->
     <link href="http://127.0.0.1:8000/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://127.0.0.1:8000/static/css/main.css" rel="stylesheet">
@@ -14,7 +14,7 @@
     <!-- Start header -->
     <div class="row" id="header">
         <div class="col-xs-8">
-            <h1>Суденти</h1>
+            <h1>Сервіс Обліку Студентів</h1>
         </div>
         <div class="col-xs-4" id="group-selector">
             <strong>Група:</strong>
@@ -30,6 +30,13 @@
     <!-- End header -->
 {% block content %}
 {% endblock %}
+    <!-- Start Footer -->
+    <div class="row" id="footer">
+        <div class="col-xs-12">
+            &copy; 2014 Сервіс Обліку Студентів
+        </div>
+    </div>
+    <!-- End Footer -->
 </div>
 <!-- End container -->
 
