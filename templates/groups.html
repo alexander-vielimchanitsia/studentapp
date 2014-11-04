@@ -28,16 +28,22 @@
                 <td>{{ Group.id }}</td>
                 <td>{{ Group.name_group }}</td>
                 <td>{{ Group.king_group }}</td>
-                <td><div class="btn-group">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                        Дія
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/groups/edit_group/{{ Group.id }}/">Редагувати</a></li>
-                        <li><a href="/groups/group_delete/{{ Group.id }}/">Видалити</a></li>
-                    </ul>
-                </div></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle"
+                                type="button" data-toggle="dropdown">Дія
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="/groups/edit_group/{{ Group.id }}/">Редагувати</a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="/groups/group_delete/{{ Group.id }}/">Видалити</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

@@ -5,6 +5,15 @@
     padding: 10px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+#footer {
+    border-top: 1px solid #dddddd;
+    padding-top: 10px;
+}
+
 #group-selector {
     margin-top: 30px;
 }
@@ -25,7 +34,7 @@
 }
 /* End Forms Error Style */
 
-.field {
+.field_retreat {
     margin-bottom: 10px;
 }
 
@@ -39,4 +48,17 @@
 
 #king_group_selector {
     width: 100%;
+}
+
+#group-selector {
+    margin: 10px 0;
+}
+#group-selector select {
+    margin: 0;
+    width: 85%;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    height: 30px;
+    line-height: 30px;
+    color: #555555;
 }
