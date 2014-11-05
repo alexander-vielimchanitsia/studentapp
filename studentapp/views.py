@@ -156,23 +156,23 @@ def edit_student(request, student_id):
         else:
             if request.FILES.get('new_foto') > 0:
                 student_object = Student(id=student_id,
-                                             first_name = request.POST['first_name'],
-                                             last_name = request.POST['last_name'],
-                                             middle_name = request.POST['middle_name'],
-                                             date = request.POST['date'],
-                                             foto = request.FILES['new_foto'],
-                                             stud_bilet = request.POST['stud_bilet'],
-                                             stud_group = Group(pk=request.POST['stud_group'])
+                                        first_name = request.POST['first_name'],
+                                        last_name = request.POST['last_name'],
+                                        middle_name = request.POST['middle_name'],
+                                        date = request.POST['date'],
+                                        foto = request.FILES['new_foto'],
+                                        stud_bilet = request.POST['stud_bilet'],
+                                        stud_group = Group(pk=request.POST['stud_group'])
                 )
             else:
                 student_object = Student(id=student_id,
-                                             first_name = request.POST['first_name'],
-                                             last_name = request.POST['last_name'],
-                                             middle_name = request.POST['middle_name'],
-                                             date = request.POST['date'],
-                                             foto = table_student.foto,
-                                             stud_bilet = request.POST['stud_bilet'],
-                                             stud_group = Group(pk=request.POST['stud_group'])
+                                        first_name = request.POST['first_name'],
+                                        last_name = request.POST['last_name'],
+                                        middle_name = request.POST['middle_name'],
+                                        date = request.POST['date'],
+                                        foto = table_student.foto,
+                                        stud_bilet = request.POST['stud_bilet'],
+                                        stud_group = Group(pk=request.POST['stud_group'])
                 )
             student_object.save()
             return redirect('/')
@@ -202,21 +202,21 @@ def edit_group(request, group_id):
             )
         else:
             if request.POST.get('king_group', '').strip() == '':
-                group_object = Group(id=group_id,
-                               name_group = request.POST['name_group'],
-                               king_group = None
+                group_object = Group(id = group_id,
+                                    name_group = request.POST['name_group'],
+                                    king_group = None
                 )
             else:
-                group_object = Group(id=group_id,
-                               name_group = request.POST['name_group'],
-                               king_group = Student(pk=request.POST['king_group'])
+                group_object = Group(id = group_id,
+                                    name_group = request.POST['name_group'],
+                                    king_group = Student(pk=request.POST['king_group'])
                 )
             group_object.save()
             return redirect('/groups/')
     return render_to_response('edit_group.html', {
-                                                  'table_student': table_student,
-                                                  'table_group': table_group},
-                                                  context_instance=RequestContext(request)
+                                                'table_student': table_student,
+                                                'table_group': table_group},
+                                                context_instance=RequestContext(request)
     )
 
 def stud_delete(request, student_id):
