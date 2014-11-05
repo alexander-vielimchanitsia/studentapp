@@ -62,7 +62,8 @@ def addstudent(request):
             return render_to_response('add_student.html', {
                                                             'errors': errors,
                                                             'error': error,
-                                                            'field': fs},
+                                                            'field': fs
+                                                            },
                                                             context_instance=RequestContext(request)
             )
         else:
@@ -81,7 +82,8 @@ def addstudent(request):
                                                     'table_student': table_student,
                                                     'table_group': table_group,
                                                     'student_form': student_form,
-                                                    'groups': groups},
+                                                    'groups': groups
+                                                    },
                                                     context_instance=RequestContext(request)
     )
 def addgroup(request):
@@ -107,7 +109,7 @@ def addgroup(request):
                 )
             else:
                 g = Group(name_group = request.POST['name_group'],
-                          king_group = Student.objects.get(pk=request.POST['king_group'])
+                        king_group = Student.objects.get(pk=request.POST['king_group'])
                 )
             g.save()
             return redirect('/groups/')
@@ -145,12 +147,12 @@ def edit_student(request, student_id):
     if request.POST.get('submit'):
         if errors:
             return render_to_response('edit_student.html', {
-                'errors': errors,
-                'error': error,
-                'table_student': table_student,
-                'table_group': Group.objects.all(),
-                'student_form': student_form,},
-                                      context_instance=RequestContext(request)
+                                                            'errors': errors,
+                                                            'error': error,
+                                                            'table_student': table_student,
+                                                            'table_group': Group.objects.all(),
+                                                            'student_form': student_form,},
+                                                            context_instance=RequestContext(request)
             )
 
         else:
