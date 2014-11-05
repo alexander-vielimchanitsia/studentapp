@@ -36,81 +36,102 @@
                         {% endif %}
                     </ul>
                 {% endif %}
-                <div class="control-group">
-                    {% if errors.first_name %}
-                        <ul class="errorlist">
-                            <li>{{ errors.first_name }}</li>
-                        </ul>
-                    {% endif %}
-                    <label class="control-label" for="first_name">Ім’я</label>
-                    <div class="controls">
-                        <input class="input-medium" type="text" id="first_name" name="first_name" value="{{ table_student.first_name }}">
+                <div class="row field_retreat" id="id_first_name">
+                    <div class="col-xs-2">
+                        <label class="control-label pull-right" for="first_name">Ім’я</label>
+                    </div>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" id="first_name" name="first_name" value="{{ table_student.first_name }}">
+                    </div>
+                    <div class="col-xs-6">
+                        {% if errors.first_name %}
+                            <ul class="errorlist">
+                                <li>{{ errors.first_name }}</li>
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="control-group">
-                    {% if errors.last_name %}
-                        <ul class="errorlist">
-                            <li>{{ errors.last_name }}</li>
-                        </ul>
-                    {% endif %}
-                    <label class="control-label" for="last_name">Прізвище</label>
-                    <div class="controls">
-                        <input class="input-medium" type="text" id="last_name" name="last_name" value="{{ table_student.last_name }}">
+                 <div class="row field_retreat" id="id_last_name">
+                    <div class="col-xs-2">
+                        <label class="control-label pull-right" for="last_name">Прізвище</label>
+                    </div>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" id="last_name" name="last_name" value="{{ table_student.last_name }}">
+                    </div>
+                    <div class="col-xs-6">
+                        {% if errors.last_name %}
+                            <ul class="errorlist">
+                                <li>{{ errors.last_name }}</li>
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="control-group">
-                    {% if errors.middle_name %}
-                        <ul class="errorlist">
-                            <li>{{ errors.middle_name }}</li>
-                        </ul>
-                    {% endif %}
-                    <label class="control-label" for="middle_name">По батькові</label>
-                    <div class="controls">
-                        <input class="input-medium" type="text" id="middle_name" name="middle_name" value="{{ table_student.middle_name }}">
+                <div class="row field_retreat" id="id_middle_name">
+                    <div class="col-xs-2">
+                        <label class="control-label pull-right" for="middle_name">По батькові</label>
+                    </div>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" id="middle_name" name="middle_name" value="{{ table_student.middle_name }}">
+                    </div>
+                    <div class="col-xs-6">
+                        {% if errors.middle_name %}
+                            <ul class="errorlist">
+                                <li>{{ errors.middle_name }}</li>
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="control-group">
-                    {% if errors.date %}
-                        <ul class="errorlist">
-                            <li>{{ errors.date }}</li>
-                        </ul>
-                    {% endif %}
-                    <label class="control-label" for="date">Дата народження</label>
-                    <div class="controls">
-                        <input class="input-medium" type="text" id="date" name="date" value="{{ table_student.date }}">
+                <div class="row field_retreat" id="id_date">
+                    <div class="col-xs-2">
+                        <label class="control-label pull-right" for="date">Дата народження</label>
+                    </div>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" id="date" name="date" value="{{ table_student.date }}">
+                    </div>
+                    <div class="col-xs-6">
+                        {% if errors.date %}
+                            <ul class="errorlist">
+                                <li>{{ errors.date }}</li>
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="control-group">
-                    {% if errors.foto %}
-                        <ul class="errorlist">
-                            <li>{{ errors.foto }}</li>
-                        </ul>
-                    {% endif %}
-                    <label class="control-label" for="foto">Фото</label>
-                    <div class="controls">
+                <div class="row field_retreat" id="id_foto">
+                    <div class="col-xs-2">
+                        <label class="control-label pull-right" for="foto">Фото</label>
+                    </div>
+                    <div class="col-xs-2">
                         <p>Наразі: <a href="{{ table_student.foto }}">{{ table_student.foto }}</a></p>
                         <p>Змінити: <input type="file" id="foto" name="new_foto" value="{{ table_student.foto }}"></p>
                     </div>
-                </div>
-                <div class="control-group">
-                    {% if errors.stud_bilet %}
-                        <ul class="errorlist">
-                            <li>{{ errors.stud_bilet }}</li>
-                        </ul>
-                    {% endif %}
-                    <label class="control-label" for="stud_bilet">No.студ-билета</label>
-                    <div class="controls">
-                        <input class="input-medium" type="text" id="stud_bilet" name="stud_bilet" value="{{ table_student.stud_bilet }}">
+                    <div class="col-xs-6">
+                        {% if errors.foto %}
+                            <ul class="errorlist">
+                                <li>{{ errors.foto }}</li>
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="control-group">
-                    {% if errors.stud_group %}
-                        <ul class="errorlist">
-                            <li>{{ errors.stud_group }}</li>
-                        </ul>
-                    {% endif %}
-                    <label class="control-label" for="stud_group" >Група</label>
-                    <div class="controls">
+                <div class="row field_retreat" id="id_stud_bilet">
+                    <div class="col-xs-2">
+                        <label class="control-label pull-right" for="stud_bilet">No.студ-билета</label>
+                    </div>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" id="stud_bilet" name="stud_bilet" value="{{ table_student.stud_bilet }}">
+                    </div>
+                    <div class="col-xs-6">
+                        {% if errors.stud_bilet %}
+                            <ul class="errorlist">
+                                <li>{{ errors.stud_bilet }}</li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row field_retreat" id="id_stud_group">
+                    <div class="col-xs-2">
+                        <label class="control-label pull-right" for="stud_group" >Група</label>
+                    </div>
+                    <div class="col-xs-2">
                         <select id="stud_group"  name="stud_group">
                             <option value="{{ table_student.id }}" selected>{{ table_student.stud_group }}</option>
                             {% for group in table_group %}
@@ -118,8 +139,15 @@
                             {% endfor %}
                         </select>
                     </div>
+                    <div class="col-xs-6">
+                        {% if errors.stud_group %}
+                            <ul class="errorlist">
+                                <li>{{ errors.stud_group }}</li>
+                            </ul>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="control-group" style="margin-left:100px">
+                <div class="row field_retreat" style="margin-left:100px">
                     <input type="submit" class="btn btn-primary" value="Зберегти" name="submit">
                     <button type="reset" class="btn">Очистити</button>
                 </div>
