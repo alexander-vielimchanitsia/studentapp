@@ -76,7 +76,8 @@ def addstudent(request):
                         stud_group = Group.objects.get(pk=request.POST['stud_group'])
             )
             s.save()
-            return redirect('/', {'new_student': s,})
+            addstudent_message = request.GET.get('addstudent_message')
+            return redirect('/')
 
     return render_to_response('add_student.html', {
                                                     'table_student': table_student,
