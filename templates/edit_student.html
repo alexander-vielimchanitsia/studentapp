@@ -101,7 +101,7 @@
                         <label class="control-label pull-right" for="foto">Фото</label>
                     </div>
                     <div class="col-xs-2">
-                        <p>Наразі: <a href="{{ table_student.foto }}">{{ table_student.foto }}</a></p>
+                        <p>Наразі: <img src="http://127.0.0.1:8000/media/{{table_student.foto }}" style="width:30px"></p>
                         <p>Змінити: <input type="file" id="foto" name="new_foto" value="{{ table_student.foto }}"></p>
                     </div>
                     <div class="col-xs-6">

@@ -76,13 +76,13 @@ def addstudent(request):
                         stud_group = Group.objects.get(pk=request.POST['stud_group'])
             )
             s.save()
-            render_to_response('index.html/?status-message' )
+            return redirect('/', {'new_student': s,})
 
     return render_to_response('add_student.html', {
                                                     'table_student': table_student,
                                                     'table_group': table_group,
                                                     'student_form': student_form,
-                                                    'groups': groups
+                                                    'groups': groups,
                                                     },
                                                     context_instance=RequestContext(request)
     )
