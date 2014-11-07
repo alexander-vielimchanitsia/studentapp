@@ -44,20 +44,20 @@
                     <td>{{ Student.first_name }}</td>
                     <td>{{ Student.stud_bilet }}</td>
                     <td>
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle"
-                                type="button" data-toggle="dropdown">Дія
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="/edit_student/{{ Student.id }}/">Редагувати</a>
-                            </li>
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="/stud_delete/{{ Student.id }}/">Видалити</a>
-                            </li>
-                        </ul>
-                    </div>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle"
+                                    type="button" data-toggle="dropdown">Дія
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" href="/edit_student/{{ Student.id }}/">Редагувати</a>
+                                </li>
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" href="/stud_delete/{{ Student.id }}/">Видалити</a>
+                                </li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
