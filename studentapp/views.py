@@ -4,7 +4,7 @@ from django.shortcuts import render, render_to_response, redirect
 from studentapp.models import Student, Group
 from forms import StudentForm, GroupForm
 from django.template import RequestContext
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
 
 # Create your views here.
@@ -76,7 +76,9 @@ def addstudent(request):
                         stud_group = Group.objects.get(pk=request.POST['stud_group'])
             )
             s.save()
-            return redirect('/index/?message=addstudent_message/')
+            message_add_student = 'Студент успішно доданий!'
+            #return redirect('/index/?message=addstudent_message/')
+            return HttpResponseRedirect('/index/?message=addstudent_message/', {'message_add_student': message_add_student})
 
     return render_to_response('add_student.html', {
                                                     'table_student': table_student,

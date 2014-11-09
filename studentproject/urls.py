@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
+from django.views.generic import TemplateView
 
 urlpatterns = patterns('',
     # Examples:
@@ -11,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^$', include('studentapp.urls')),
     url(r'^index/', include('studentapp.urls')),
     #url(r'^index/?message=addstudent_message/', view='studentapp.views.addstudent' name='addstudent_message'),
+    url(r'^index/?message=addstudent_message/', TemplateView.as_view(template_name='index.html'), name='message_add_student'),
     url(r'^page/(\d+)/$', 'studentapp.views.index'),
     url(r'^groups/$', 'studentapp.views.groups'),
     url(r'^groups/addgroup/$', 'studentapp.views.addgroup'),
