@@ -133,9 +133,12 @@
                     </div>
                     <div class="col-xs-2">
                         <select id="stud_group"  name="stud_group">
-                            <option value="{{ table_student.id }}" selected>{{ table_student.stud_group }}</option>
                             {% for group in table_group %}
-                                <option value="{{ group.id }}">{{ group.name_group }}</option>
+                                {% if not table_student.stud_group %}
+                                    <option value="{{ group.id }}">{{ group.name_group }}</option>  
+                                {% else %}
+                                    <option value="{{ group.id }}" selected>{{ group.name_group }}</option>
+                                {% endif%}
                             {% endfor %}
                         </select>
                     </div>

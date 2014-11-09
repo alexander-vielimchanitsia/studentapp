@@ -47,7 +47,7 @@
                         <label class="control-label pull-right" for="first_name">Ім’я</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="first_name" name="first_name" value="{{ field.first_name }}">
+                        <input class="form-control" type="text" id="first_name" name="first_name" value="{{ Student.request.POST.first_name }}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.first_name %}

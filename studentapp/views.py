@@ -53,16 +53,16 @@ def addstudent(request):
         error['stud_group'] = 'поле Група обов’язкове'
     if request.POST.get('submit'):
         if errors:
-            fs = Student(first_name = request.POST['first_name'],
-                        last_name = request.POST['last_name'],
-                        middle_name = request.POST['middle_name'],
-                        date = request.POST['date'],
-                        stud_bilet = request.POST['stud_bilet'],
-            )
+            # fs = Student(first_name = request.POST['first_name'],
+            #             last_name = request.POST['last_name'],
+            #             middle_name = request.POST['middle_name'],
+            #             date = request.POST['date'],
+            #             stud_bilet = request.POST['stud_bilet'],
+            # )
             return render_to_response('add_student.html', {
                                                             'errors': errors,
                                                             'error': error,
-                                                            'field': fs
+                                                            #'field': fs
                                                             },
                                                             context_instance=RequestContext(request)
             )
