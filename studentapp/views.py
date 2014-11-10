@@ -62,7 +62,8 @@ def addstudent(request):
             return render_to_response('add_student.html', {
                                                             'errors': errors,
                                                             'error': error,
-                                                            #'field': fs
+                                                            #'field': fs,
+                                                            'table_group': table_group,
                                                             },
                                                             context_instance=RequestContext(request)
             )
@@ -76,9 +77,11 @@ def addstudent(request):
                         stud_group = Group.objects.get(pk=request.POST['stud_group'])
             )
             s.save()
-            message_add_student = 'Студент успішно доданий!'
+            addstudent_message = 'Студент успішно доданий!'
             #return redirect('/index/?message=addstudent_message/')
-            return HttpResponseRedirect('/index/?message=addstudent_message/', {'message_add_student': message_add_student})
+            return HttpResponseRedirect('/index/?message=addstudent_message/', {'addstudent_message': addstudent_message,
+                                                                                },
+                                        )
 
     return render_to_response('add_student.html', {
                                                     'table_student': table_student,
