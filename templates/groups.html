@@ -10,66 +10,77 @@
     </div>
 </div>
 <!-- End Sub-header -->
-<div class="tab-pane" id="tab2">
-    <h2>Список груп</h2>
-    <a href="/groups/addgroup/" class="btn btn-primary">Додати Групу</a>
-    <table class="table table-hover table-striped">
-        <thead>
-        <tr>
-            <th>№</th>
-            <th>Назва групи</th>
-            <th>Староста</th>
-            <th>Дії</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for Group in table_group %}
+<!-- Start Status Message -->
+<div class="row" id="status-message">
+    <div class="col-xs-12">
+        {% if request.GET.status_message %}
+            <div class="alert alert-success" role="alert" name="addstudent_message">Група успішно додана!</div>
+        {% endif %}
+    </div>
+</div>
+<!-- End Status Message -->
+<div class="row" id="content-columns">
+    <div class="col-xs-12" id="content-column">
+        <h2>Список груп</h2>
+        <a href="/groups/addgroup/" class="btn btn-primary">Додати Групу</a>
+        <table class="table table-hover table-striped">
+            <thead>
             <tr>
-                <td>{{ Group.id }}</td>
-                <td>{{ Group.name_group }}</td>
-                <td>{{ Group.king_group }}</td>
-                <td>
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle"
-                                type="button" data-toggle="dropdown">Дія
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="/groups/edit_group/{{ Group.id }}/">Редагувати</a>
-                            </li>
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="/groups/group_delete/{{ Group.id }}/">Видалити</a>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
+                <th>№</th>
+                <th>Назва групи</th>
+                <th>Староста</th>
+                <th>Дії</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <!-- Start paginations -->
-    <nav class="pull-right">
-        <ul class="pagination">
-            {% if table_group.has_previous %}
-                <li><a href="/groups/page/{{ table_group.previous_page_number }}/">&laquo</a></li>
-            {% else %}
-                <li class="active"><a href="">&laquo</a></li>
-            {% endif %}
-            {% for page in table_group.paginator.page_range %}
-                {% if page == table_group.number %}
-                    <li class="active"><a href="/groups/page/{{ page }}/">{{ page }}</a></li>
-                {% else %}
-                    <li><a href="/groups/page/{{ page }}/">{{ page }}</a></li>
-                {% endif %}
+            </thead>
+            <tbody>
+            {% for Group in table_group %}
+                <tr>
+                    <td>{{ Group.id }}</td>
+                    <td>{{ Group.name_group }}</td>
+                    <td>{{ Group.king_group }}</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle"
+                                    type="button" data-toggle="dropdown">Дія
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" href="/groups/edit_group/{{ Group.id }}/">Редагувати</a>
+                                </li>
+                                <li role="presentation">
+                                    <a role="menuitem" tabindex="-1" href="/groups/group_delete/{{ Group.id }}/">Видалити</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
             {% endfor %}
-            {% if table_group.has_next %}
-                <li><a href="/groups/page/{{ table_group.next_page_number }}/">&raquo</a></li>
-            {% else %}
-                <li class="active"><a href="">&raquo</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    <!-- End paginations -->
+            </tbody>
+        </table>
+        <!-- Start paginations -->
+        <nav class="pull-right">
+            <ul class="pagination">
+                {% if table_group.has_previous %}
+                    <li><a href="/groups/page/{{ table_group.previous_page_number }}/">&laquo</a></li>
+                {% else %}
+                    <li class="active"><a href="">&laquo</a></li>
+                {% endif %}
+                {% for page in table_group.paginator.page_range %}
+                    {% if page == table_group.number %}
+                        <li class="active"><a href="/groups/page/{{ page }}/">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="/groups/page/{{ page }}/">{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if table_group.has_next %}
+                    <li><a href="/groups/page/{{ table_group.next_page_number }}/">&raquo</a></li>
+                {% else %}
+                    <li class="active"><a href="">&raquo</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- End paginations -->
+    </div>
 </div>
 {% endblock %}

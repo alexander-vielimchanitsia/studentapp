@@ -47,7 +47,7 @@
                         <label class="control-label pull-right" for="first_name">Ім’я</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="first_name" name="first_name" value="{{ Student.request.POST.first_name }}">
+                        <input class="form-control" type="text" id="first_name" name="first_name" value="{{ request.POST.first_name }}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.first_name %}
@@ -64,7 +64,7 @@
                         <label class="control-label pull-right" for="last_name">Прізвище</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="last_name" name="last_name" value="{{ field.last_name }}">
+                        <input class="form-control" type="text" id="last_name" name="last_name" value="{{ request.POST.last_name }}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.last_name %}
@@ -81,7 +81,7 @@
                         <label class="control-label pull-right" for="middle_name">По батькові</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="middle_name" name="middle_name" value="{{ field.middle_name }}">
+                        <input class="form-control" type="text" id="middle_name" name="middle_name" value="{{ request.POST.middle_name }}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.middle_name %}
@@ -98,7 +98,7 @@
                         <label class="control-label pull-right" for="date">Дата народження</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="date" id="date" placeholder="2014-12-31" name="date" value="{{ field.date }}">
+                        <input class="form-control" type="date" id="date" placeholder="2014-12-31" name="date" value="{{ request.POST.date }}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.date %}
@@ -132,7 +132,7 @@
                         <label class="control-label pull-right" for="stud_bilet">No.студ-билета</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="stud_bilet" name="stud_bilet" value="{{ field.stud_bilet }}">
+                        <input class="form-control" type="text" id="stud_bilet" name="stud_bilet" value="{{ request.POST.stud_bilet }}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.stud_bilet %}

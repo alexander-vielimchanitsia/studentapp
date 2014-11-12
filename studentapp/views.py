@@ -15,14 +15,18 @@ def index(request, page_number = 1):
     student_page = Paginator(table_student, 10)
     return render_to_response('index.html', {
         'table_student': student_page.page(page_number),
-    })
+    },
+    context_instance=RequestContext(request)
+    )
 
 def groups(request, page_number = 1):
     table_group = Group.objects.all()
     group_page = Paginator(table_group, 10)
     return render_to_response('groups.html', {
         'table_group': group_page.page(page_number)
-    })
+    },
+    context_instance=RequestContext(request)
+    )
 
 def addstudent(request):
     table_student = Student.objects.all()
@@ -53,16 +57,9 @@ def addstudent(request):
         error['stud_group'] = 'поле Група обов’язкове'
     if request.POST.get('submit'):
         if errors:
-            # fs = Student(first_name = request.POST['first_name'],
-            #             last_name = request.POST['last_name'],
-            #             middle_name = request.POST['middle_name'],
-            #             date = request.POST['date'],
-            #             stud_bilet = request.POST['stud_bilet'],
-            # )
             return render_to_response('add_student.html', {
                                                             'errors': errors,
                                                             'error': error,
-                                                            #'field': fs,
                                                             'table_group': table_group,
                                                             },
                                                             context_instance=RequestContext(request)
@@ -77,11 +74,7 @@ def addstudent(request):
                         stud_group = Group.objects.get(pk=request.POST['stud_group'])
             )
             s.save()
-            addstudent_message = 'Студент успішно доданий!'
-            #return redirect('/index/?message=addstudent_message/')
-            return HttpResponseRedirect('/index/?message=addstudent_message/', {'addstudent_message': addstudent_message,
-                                                                                },
-                                        )
+            return redirect(u'/index/?status_message=Студент успішно доданий!/')
 
     return render_to_response('add_student.html', {
                                                     'table_student': table_student,
@@ -117,7 +110,7 @@ def addgroup(request):
                         king_group = Student.objects.get(pk=request.POST['king_group'])
                 )
             g.save()
-            return redirect('/groups/')
+            return redirect(u'/groups/?status_message=Група успішно додана!/')
     return render_to_response('add_group.html', {
                                                 'table_student': table_student},
                                                 context_instance=RequestContext(request)
