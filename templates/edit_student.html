@@ -132,13 +132,10 @@
                         <label class="control-label pull-right" for="stud_group" >Група</label>
                     </div>
                     <div class="col-xs-2">
+                    {{ table_student.stud_group }}
                         <select id="stud_group_selector"  name="stud_group">
                             {% for group in table_group %}
-                                {% if not table_student.stud_group %}
-                                    <option value="{{ group.id }}">{{ group.name_group }}</option>  
-                                {% else %}
-                                    <option value="{{ table_student.id }}" selected>{{ table_student.stud_group }}</option>
-                                {% endif%}
+                                <option value="{{ group.id }}" {% if table_student.id %}selected{% endif %}>{{ group.name_group }}</option>
                             {% endfor %}
                         </select>
                     </div>
