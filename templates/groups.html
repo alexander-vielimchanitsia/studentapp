@@ -17,6 +17,7 @@
             <div class="alert alert-success" role="alert" name="addstudent_message">Група успішно додана!</div>
         {% endif %}
         <div class="alert alert-warning" role="alert" name="">Група успішно відредагована!</div>
+        <div class="alert alert-danger" role="alert">Група успішно видалена!</div>
     </div>
 </div>
 <!-- End Status Message -->
@@ -24,6 +25,13 @@
     <div class="col-xs-12" id="content-column">
         <h2>Список груп</h2>
         <a href="/groups/addgroup/" class="btn btn-primary">Додати Групу</a>
+        {% if not table_group %}
+        <div class="jumbotron" style="margin-top:10px;">
+            <h1>Групи поки немає!</h1>
+            <p>Натисніть на <a href="/groups/addgroup/" class="btn btn-success">Додати нову групу</a> щоб добавити нову групу.</p>
+        </div>
+        {% endif %}
+        {% if table_group %}
         <table class="table table-hover table-striped">
             <thead>
             <tr>
@@ -59,6 +67,7 @@
             {% endfor %}
             </tbody>
         </table>
+        {% endif %}
         <!-- Start paginations -->
         <nav class="pull-right">
             <ul class="pagination">

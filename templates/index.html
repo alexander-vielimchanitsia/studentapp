@@ -17,6 +17,7 @@
             <div class="alert alert-success" role="alert" name="addstudent_message">Студент успішно доданий!</div>
         {% endif %}
         <div class="alert alert-warning" role="alert" name="">Студент успішно відредагований!</div>
+        <div class="alert alert-danger" role="alert">Студент успішно видалений!</div>
     </div>
 </div>
 <!-- End Status Message -->
@@ -25,6 +26,13 @@
     <div class="col-xs-12" id="content-column">
         <h2>База Студентів</h2>
         <a href="/index/addstudent/" class="btn btn-primary">Додати Студента</a>
+        {% if not table_student %}
+        <div class="jumbotron" style="margin-top:10px;">
+            <h1>Студентів поки немає!</h1>
+            <p>Натисніть на <a href="/index/addstudent/" class="btn btn-success">Додати нового студента</a> щоб добавити нового студента.</p>
+        </div>
+        {% endif %}
+        {% if table_student %}
         <table class="table table-hover table-striped">
             <thead>
             <tr>
@@ -64,6 +72,7 @@
             {% endfor %}
             </tbody>
         </table>
+        {% endif %}
         <!-- Start paginations -->
         <nav class="pull-right">
             <ul class="pagination">
