@@ -25,11 +25,11 @@
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-column">
         <h2>База Студентів</h2>
-        <a href="/index/addstudent/" class="btn btn-primary">Додати Студента</a>
+        <a href="/index/addstudent/" class="btn btn-primary" id="button-add-student">Додати Студента</a>
         {% if not table_student %}
         <div class="jumbotron" style="margin-top:10px;">
             <h1>Студентів поки немає!</h1>
-            <p>Натисніть на <a href="/index/addstudent/" class="btn btn-success">Додати нового студента</a> щоб добавити нового студента.</p>
+            <p>Натисніть <a href="/index/addstudent/" class="btn btn-success">Додати нового студента</a> щоб добавити нового студента.</p>
         </div>
         {% endif %}
         {% if table_student %}

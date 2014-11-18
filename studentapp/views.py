@@ -9,6 +9,8 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
+def test(request):
+    return render_to_response('test.html')
 
 def index(request, page_number = 1):
     table_student = Student.objects.all()
@@ -31,8 +33,8 @@ def groups(request, page_number = 1):
 def addstudent(request):
     table_student = Student.objects.all()
     table_group = Group.objects.all()
+    form = StudentForm(request.POST, request.FILES)
     if request.POST:
-        form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect(u'/index/?status_message=Студент успішно доданий!/')
@@ -41,10 +43,12 @@ def addstudent(request):
         return render(request, 'add_student.html', {
                                                     'table_student': table_student,
                                                     'table_group': table_group,
+                                                    'form': form,
                                                     })
     return render(request, 'add_student.html', {
                                                 'table_student': table_student,
                                                 'table_group': table_group,
+                                                'form': form,
                                                 })
     
 def addgroup(request):

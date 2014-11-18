@@ -14,6 +14,7 @@
             </div>
         <!-- Start Form -->
             <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.name_of_field.errors }}
             <!-- Start Error List -->
                 {% if error %}
                     <ul class="errorlist_global">
@@ -50,11 +51,7 @@
                         <input class="form-control" type="text" id="first_name" name="first_name" value="{{ request.POST.first_name }}">
                     </div>
                     <div class="col-xs-6">
-                        {% if errors.first_name %}
-                            <ul class="errorlist">
-                                <li>{{ errors.first_name }}</li>
-                            </ul>
-                        {% endif %}
+                        {{ form.first_name.errors }}
                     </div>
                 </div>
             <!-- End First Name Field -->
@@ -67,11 +64,7 @@
                         <input class="form-control" type="text" id="last_name" name="last_name" value="{{ request.POST.last_name }}">
                     </div>
                     <div class="col-xs-6">
-                        {% if errors.last_name %}
-                            <ul class="errorlist">
-                                <li>{{ errors.last_name }}</li>
-                            </ul>
-                        {% endif %}
+                        {{ form.last_name.errors }}
                     </div>
                 </div>
             <!-- End Last Name Field -->
@@ -84,11 +77,7 @@
                         <input class="form-control" type="text" id="middle_name" name="middle_name" value="{{ request.POST.middle_name }}">
                     </div>
                     <div class="col-xs-6">
-                        {% if errors.middle_name %}
-                            <ul class="errorlist">
-                                <li>{{ errors.middle_name }}</li>
-                            </ul>
-                        {% endif %}
+                        {{ form.middle_name.errors }}
                     </div>
                 </div>
             <!-- End Middle Name Field-->
@@ -101,11 +90,7 @@
                         <input class="form-control" type="date" id="date" placeholder="2014-12-31" name="date" value="{{ request.POST.date }}">
                     </div>
                     <div class="col-xs-6">
-                        {% if errors.date %}
-                            <ul class="errorlist">
-                                <li>{{ errors.date }}</li>
-                            </ul>
-                        {% endif %}
+                        {{ form.date.errors }}
                     </div>
                 </div>
             <!-- End Date Field-->
@@ -118,11 +103,7 @@
                         <input type="file" id="foto" name="foto">
                     </div>
                     <div class="col-xs-6">
-                        {% if errors.foto %}
-                            <ul class="errorlist">
-                                <li>{{ errors.foto }}</li>
-                            </ul>
-                        {% endif %}
+                        {{ form.foto.errors }}
                     </div>
                 </div>
             <!-- End Foto Field -->
@@ -135,11 +116,7 @@
                         <input class="form-control" type="text" id="stud_bilet" name="stud_bilet" value="{{ request.POST.stud_bilet }}">
                     </div>
                     <div class="col-xs-6">
-                        {% if errors.stud_bilet %}
-                            <ul class="errorlist">
-                                <li>{{ errors.stud_bilet }}</li>
-                            </ul>
-                        {% endif %}
+                        {{ form.stud_bilet.errors }}
                     </div>
                 </div>
             <!-- End Stud Bilet Field -->
@@ -157,11 +134,7 @@
                         </select>
                     </div>
                     <div class="col-xs-6">
-                        {% if errors.stud_group %}
-                            <ul class="errorlist">
-                                <li>{{ errors.stud_group }}</li>
-                            </ul>
-                        {% endif %}
+                        {{ form.stud_bilet.errors }}
                     </div>
                 </div>
             <!-- End Group Field -->
