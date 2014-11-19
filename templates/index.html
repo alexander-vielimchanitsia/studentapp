@@ -16,8 +16,12 @@
         {% if request.GET.status_message %}
             <div class="alert alert-success" role="alert" name="addstudent_message">Студент успішно доданий!</div>
         {% endif %}
-        <div class="alert alert-warning" role="alert" name="">Студент успішно відредагований!</div>
-        <div class="alert alert-danger" role="alert">Студент успішно видалений!</div>
+        {% if request.GET.status_message %}
+            <div class="alert alert-warning" role="alert" name="">Студент успішно відредагований!</div>
+        {% endif %}
+        {% if request.GET.status_message %}
+            <div class="alert alert-danger" role="alert">Студент успішно видалений!</div>
+        {% endif %}
     </div>
 </div>
 <!-- End Status Message -->

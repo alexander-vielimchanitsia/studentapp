@@ -33,14 +33,14 @@ def groups(request, page_number = 1):
 def addstudent(request):
     table_student = Student.objects.all()
     table_group = Group.objects.all()
-    form = StudentForm(request.POST, request.FILES)
+    errors = []
     if request.POST:
+        form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect(u'/index/?status_message=Студент успішно доданий!/')
         else:
-            form = StudentForm()
-        return render(request, 'add_student.html', {
+            return render(request, 'add_student.html', {
                                                     'table_student': table_student,
                                                     'table_group': table_group,
                                                     'form': form,
@@ -48,7 +48,6 @@ def addstudent(request):
     return render(request, 'add_student.html', {
                                                 'table_student': table_student,
                                                 'table_group': table_group,
-                                                'form': form,
                                                 })
     
 def addgroup(request):
@@ -126,7 +125,7 @@ def edit_student(request, student_id):
                                         stud_group = Group(pk=request.POST['stud_group'])
                 )
             student_object.save()
-            return redirect('/')
+            return redirect(u'/?status_message=Студент успішно відредагований!/')
 
     return render_to_response('edit_student.html', {
                                                     'table_student': table_student,
@@ -173,7 +172,7 @@ def edit_group(request, group_id):
 def stud_delete(request, student_id):
     s = Student.objects.get(id=student_id)
     s.delete()
-    return redirect('/')
+    return redirect(u'/?status_message=Студент успішно видалений!/')
 
 def group_delete(request, group_id):
     g = Group.objects.get(id=group_id)

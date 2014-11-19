@@ -14,34 +14,6 @@
             </div>
         <!-- Start Form -->
             <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
-            {{ form.name_of_field.errors }}
-            <!-- Start Error List -->
-                {% if error %}
-                    <ul class="errorlist_global">
-                        {% if error.first_name %}
-                            <li>{{ error.first_name }}</li>
-                        {% endif %}
-                        {% if error.last_name %}
-                            <li>{{ error.last_name }}</li>
-                        {% endif %}
-                        {% if error.middle_name %}
-                            <li>{{ error.middle_name }}</li>
-                        {% endif %}
-                        {% if error.date %}
-                            <li>{{ error.date }}</li>
-                        {% endif %}
-                        {% if error.foto %}
-                            <li>{{ error.foto }}</li>
-                        {% endif %}
-                        {% if error.stud_bilet %}
-                            <li>{{ error.stud_bilet }}</li>
-                        {% endif %}
-                        {%  if error.stud_group %}
-                            <li>{{ error.stud_group }}</li>
-                        {% endif %}
-                    </ul>
-                {% endif %}
-            <!-- End Error List -->
             <!-- Start First Name Field -->
                 <div class="row field_retreat" id="id_first_name">
                     <div class="col-xs-2">
