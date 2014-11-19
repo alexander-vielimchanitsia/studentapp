@@ -41,12 +41,10 @@ def addstudent(request):
             return redirect(u'/index/?status_message=Студент успішно доданий!/')
         else:
             return render(request, 'add_student.html', {
-                                                    'table_student': table_student,
                                                     'table_group': table_group,
                                                     'form': form,
                                                     })
     return render(request, 'add_student.html', {
-                                                'table_student': table_student,
                                                 'table_group': table_group,
                                                 })
     
@@ -58,9 +56,9 @@ def addgroup(request):
             form.save()
             return redirect(u'/groups/?status_message=Група успішно додана!/')
         else:
-            form = GroupForm()
-        return render(request, 'add_group.html', {
+            return render(request, 'add_group.html', {
                                                     'table_student': table_student,
+                                                    'form': form,
                                                     })
     return render(request, 'add_group.html', {
                                                 'table_student': table_student,

@@ -21,13 +21,7 @@
                         <input class="form-control" type="text" id="name_group" name="name_group">
                     </div>
                     <div class="col-xs-6">
-                        {% if error %}
-                            <ul class="errorlist_global">
-                                {% if error.name_group %}
-                                    <li>{{ error.name_group }}</li>
-                                {% endif %}
-                            </ul>
-                        {% endif %}
+                        {{ form.name_group.errors }}
                     </div>
                 </div>
                 <!-- End Name Group Field -->
