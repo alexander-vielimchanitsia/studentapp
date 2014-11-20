@@ -114,4 +114,4 @@ STATICFILES_FINDERS = (
 
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
-CRISPY_TEMPLATE_PACK  =  'bootstrap2.3.2'
+CRISPY_TEMPLATE_PACK  =  'bootstrap3.3.1'
