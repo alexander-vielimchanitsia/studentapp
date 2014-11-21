@@ -149,11 +149,10 @@
                         <label class="control-label pull-right" for="stud_group">Група</label>
                     </div>
                     <div class="col-xs-2">
-                    {{request.POST.stud_group}}
                         <select id="stud_group_selector" name="stud_group">
                             <option value="" selected="selected">---------</option>
                             {% for group in table_group %}
-                                <option value="{{ group.id }}" {% if request.POST.stud_group %}selected="selected"{% endif %}>{{ group.name_group }}</option>
+                                <option value="{{ group.id }}" {% ifequal request.POST.stud_group|add:"0" group.id %}selected="selected"{% endifequal %}>{{ group.name_group }}</option>
                             {% endfor %}
                         </select>
                     </div>

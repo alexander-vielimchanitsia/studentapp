@@ -135,7 +135,7 @@
                     {{ table_student.stud_group }}
                         <select id="stud_group_selector"  name="stud_group">
                             {% for group in table_group %}
-                                <option value="{{ group.id }}" {% if table_student.id %}selected="selected"{% endif %}>{{ group.name_group }}</option>
+                                <option value="{{ group.id }}" {% if table_student.stud_group == group.id %}selected="selected"{% endif %}>{{ group.name_group }}</option>
                             {% endfor %}
                         </select>
                     </div>
