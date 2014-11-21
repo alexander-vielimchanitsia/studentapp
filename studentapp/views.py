@@ -31,8 +31,6 @@ def groups(request, page_number = 1):
     )
 
 def addstudent(request):
-    table_student = Student.objects.all()
-    table_group = Group.objects.all()
     if request.POST:
         form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
@@ -41,12 +39,10 @@ def addstudent(request):
     else:
         form = StudentForm()
     return render(request, 'add_student.html', {
-                                                'table_group': table_group,
                                                 'form': form,
                                                 })
     
 def addgroup(request):
-    table_student = Student.objects.all()
     if request.POST:
         form = GroupForm(request.POST)
         if form.is_valid():
@@ -55,7 +51,6 @@ def addgroup(request):
     else:
         form = GroupForm()
     return render(request, 'add_group.html', {
-                                                'table_student': table_student,
                                                 'form': form,
                                                 })
 
@@ -87,8 +82,7 @@ def edit_student(request, student_id):
          errors['stud_group'] = 'Виберіть будь ласка групу студента'
          error['stud_group'] = 'поле Група обов’язкове'
     if request.POST.get('submit'):
-        if errors:
-            return render_to_response('edit_student.html', {
+        if errors:return render_to_response('edit_student.html', {
                                                             'errors': errors,
                                                             'error': error,
                                                             'table_student': table_student,
@@ -96,7 +90,6 @@ def edit_student(request, student_id):
                                                             'student_form': student_form,},
                                                             context_instance=RequestContext(request)
             )
-
         else:
             if request.FILES.get('new_foto') > 0:
                 student_object = Student(id=student_id,
@@ -120,13 +113,13 @@ def edit_student(request, student_id):
                 )
             student_object.save()
             return redirect(u'/?status_message=Студент успішно відредагований!/')
-
     return render_to_response('edit_student.html', {
-                                                    'table_student': table_student,
-                                                    'table_group': Group.objects.all(),
-                                                    'groups': groups},
-                                                    context_instance=RequestContext(request)
-    )
+                                                        'table_student': table_student,
+                                                        'table_group': Group.objects.all(),
+                                                        'groups': groups},
+                                                        context_instance=RequestContext(request)
+        )
+
 
 def edit_group(request, group_id):
     table_group = Group.objects.get(id=group_id)

@@ -13,33 +13,7 @@
             <!-- Start Form -->
             <form class="form-horizontal" id="group_form" action="/groups/addgroup/" method="post" enctype="multipart/form-data">{% csrf_token %}
                 <!-- Start Name Group Field -->
-                <div class="row field_retreat">
-                    <div class="col-xs-2">
-                        <label class="control-label pull-right" for="name_group">Назва групи</label>
-                    </div>
-                    <div class="col-xs-2">
-                        <input class="form-control" type="text" id="name_group" name="name_group">
-                    </div>
-                    <div class="col-xs-6">
-                        {{ form.name_group.errors }}
-                    </div>
-                </div>
-                <!-- End Name Group Field -->
-                <!-- Start King Group Field -->
-                <div class="row field_retreat">
-                    <div class="col-xs-2">
-                        <label class="control-label pull-right" for="king_group">Староста групи</label>
-                    </div>
-                    <div class="col-xs-2">
-                        <select id="king_group_selector"  name="king_group">
-                            <option value="" selected="selected">---------</option>
-                            {% for student in table_student %}
-                                <option value="{{ student.id }}">{{ student }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <!-- End King Group Field -->
+                {{ form.as_p }}
                 <!-- Start Buttons Form -->
                 <div class="control-group field_retreat" style="margin-left:100px">
                     <input type="submit" class="btn btn-primary" name="submit">

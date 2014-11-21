@@ -14,7 +14,7 @@
             </div>
         <!-- Start Form -->
             <form class="form-horizontal" id="student_form" action="/index/addstudent/" method="post" enctype="multipart/form-data">{% csrf_token %}
-            {{ form.as_p }}
+                {{ form.as_p }}
             <!-- Start Buttons Form -->
                 <div class="control-group field_retreat" style="margin-left:100px">
                     <input type="submit" class="btn btn-primary" name="submit">
