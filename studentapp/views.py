@@ -25,6 +25,7 @@ def index(request, page_number = 1):
                             'order_first_name_down': order_first_name_down,
                             'order_last_name_up': order_last_name_up,
                             'order_last_name_down': order_last_name_down,
+                            'form': StudentForm(),
     },
     context_instance=RequestContext(request)
     )
