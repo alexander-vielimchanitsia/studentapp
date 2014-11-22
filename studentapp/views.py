@@ -13,10 +13,18 @@ def test(request):
     return render_to_response('test.html')
 
 def index(request, page_number = 1):
+    order_first_name_up = Student.objects.order_by('-first_name')
+    order_first_name_down = Student.objects.order_by('first_name')
+    order_last_name_up = Student.objects.order_by('-last_name')
+    order_last_name_down = Student.objects.order_by('last_name')
     table_student = Student.objects.all()
     student_page = Paginator(table_student, 10)
     return render_to_response('index.html', {
-        'table_student': student_page.page(page_number),
+                            'table_student': student_page.page(page_number),
+                            'order_first_name_up': order_first_name_up,
+                            'order_first_name_down': order_first_name_down,
+                            'order_last_name_up': order_last_name_up,
+                            'order_last_name_down': order_last_name_down,
     },
     context_instance=RequestContext(request)
     )
