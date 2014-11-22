@@ -42,8 +42,8 @@
             <tr>
                 <th>№</th>
                 <th>Фото</th>
-                <th>Прізвище</th>
-                <th>Ім’я</th>
+                <th><a href="?order_by=Вверх">Прізвище &uarr; &darr;</a></th>
+                <th><a href="?order_by=Вверх">Ім’я &uarr; &darr;</a></th>
                 <th>№ Білету</th>
                 <th>Дії</th>
             </tr>
@@ -52,9 +52,9 @@
             {% for Student in table_student %}
                 <tr>
                     <td>{{ Student.id }}</td>
-                    <td><img src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width:30px"></td>
-                    <td>{{ Student.last_name }}</td>
-                    <td>{{ Student.first_name }}</td>
+                    <td><img class="img-circle" src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width:30px"></td>
+                    <td><a href="#">{{ Student.last_name }}</a></td>
+                    <td><a href="#">{{ Student.first_name }}</a></td>
                     <td>{{ Student.stud_bilet }}</td>
                     <td>
                         <div class="dropdown">
