@@ -44,9 +44,9 @@
                     <a href="{% url 'home' %}?order_by=id{% if request.GET.order_by == 'id' and request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
                         № 
                         {% if request.GET.order_by == 'id' and request.GET.reverse != '1' %}
-                            &uarr; 
+                            &darr; 
                         {% elif request.GET.order_by == 'id' and request.GET.reverse == '1' %}
-                            &darr;
+                            &uarr;
                         {% endif %}
                     </a>
                 </th>
