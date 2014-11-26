@@ -17,7 +17,7 @@ def index(request, page_number = 1):
 
     # try ro order students list
     order_by = request.GET.get('order_by', '')
-    if order_by in ('last_name', 'first_name'):
+    if order_by in ('last_name', 'first_name', 'id'):
         table_student = table_student.order_by(order_by)
         if request.GET.get('reverse', '') == '1':
             table_student = table_student.reverse()
