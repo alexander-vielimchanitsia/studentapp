@@ -16,8 +16,8 @@ def index(request, page_number = 1):
     table_student = Student.objects.all()
 
     # try ro order students list
-    order_by = request.GET.get('order_by', '')
-    if order_by in ('last_name', 'first_name', 'id'):
+    order_by = request.GET.get('order_by', 'last_name')
+    if order_by in ('id', 'last_name', 'first_name'):
         table_student = table_student.order_by(order_by)
         if request.GET.get('reverse', '') == '1':
             table_student = table_student.reverse()
