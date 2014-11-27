@@ -29,7 +29,7 @@
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-column">
         <h2>База Студентів</h2>
-        <a href="/addstudent/" class="btn btn-primary" id="button-add-student">Додати Студента</a>
+        <a href="#" class="btn btn-primary" id="button-add-student">Додати Студента</a>
         {% if not table_student %}
         <div class="jumbotron" style="margin-top:10px;">
             <h1>Студентів поки немає!</h1>
@@ -129,5 +129,19 @@
     <!-- End paginations -->
     </div>
 </div>
+<div class="popup-box" id="popup-menu"></div>
+<script>
+$.ajax({
+   type: "GET",
+   url: "/addstudent/",
+   dataType: "html",
+   success: function(addstudent){
+    $( "#button-add-student" ).click(function() {
+        $( "#popup-menu").html(addstudent);
+    });
+     
+   }
+ });
+  </script>
 <!-- End Content -->
 {% endblock %}

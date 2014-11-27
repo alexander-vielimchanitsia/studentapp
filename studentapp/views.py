@@ -43,7 +43,7 @@ def addstudent(request):
         form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect(u'/index/?status_message=Студент успішно доданий!/')
+            return redirect(u'/?status_message=Студент успішно доданий!/')
     else:
         form = StudentForm()
     return render(request, 'add_student.html', {
@@ -69,7 +69,7 @@ def edit_student(request, student_id):
         form = Student.objects.get(id=student_id)
         if form.is_valid():
             form.save()
-            return redirect(u'/index/?status_message=Студент успішно відредагований!/')
+            return redirect(u'/?status_message=Студент успішно відредагований!/')
     else:
         form = StudentForm()
     return render(request, 'edit_student.html', {

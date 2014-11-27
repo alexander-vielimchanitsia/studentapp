@@ -14,7 +14,7 @@ class StudentForm(ModelForm):
         self.helper.form_id = 'id-student-form'
         self.helper.form_class = 'form-horizontal'
         self.helper.form_method = 'post'
-        self.helper.form_action = '/index/addstudent/'
+        self.helper.form_action = '/addstudent/'
         self.helper.add_input(Submit('submit', 'Submit', css_class="buttons-form"))
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
