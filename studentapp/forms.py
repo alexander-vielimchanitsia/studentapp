@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
+
 from django import forms
 from django.forms import ModelForm
 from models import Student, Group
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
+from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, ButtonHolder
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 
 class StudentForm(ModelForm):
@@ -15,7 +17,6 @@ class StudentForm(ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.form_method = 'post'
         self.helper.form_action = '/addstudent/'
-        self.helper.add_input(Submit('submit', 'Submit', css_class="buttons-form"))
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-2'
@@ -27,6 +28,11 @@ class StudentForm(ModelForm):
             'foto',
             'stud_bilet',
             'stud_group',
+            FormActions(
+                Submit('save', u'Зберегти'),
+                Button('cancel', u'Назад'),
+                css_class="buttons-form-submit"
+            ),
         )
 
 class GroupForm(ModelForm):

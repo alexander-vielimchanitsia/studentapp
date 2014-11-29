@@ -12,7 +12,6 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <!-- End AJAX -->
-
 </head>
 <body>
 <!-- Start container -->
@@ -36,10 +35,35 @@
         {% endblock %}
     </div>
     <!-- End header -->
-<!-- Content -->
-{% block content %}
-{% endblock %}
-<!-- Content -->
+    <!-- Sub-header -->
+    {% block tablist %}{% endblock %}
+    <!-- Start Status Message -->
+    <div class="row" id="status-message">
+        <div class="col-xs-12">
+            {% if request.GET.status_message == 'Create_student' %}
+                <div class="alert alert-success" role="alert" name="addstudent_message">Студент успішно доданий!</div>
+            {% endif %}
+            {% if request.GET.status_message == 'Edit_student' %}
+                <div class="alert alert-warning" role="alert" name="">Студент успішно відредагований!</div>
+            {% endif %}
+            {% if request.GET.status_message == 'Delete_student' %}
+                <div class="alert alert-danger" role="alert">Студент успішно видалений!</div>
+            {% endif %}
+            {% if request.GET.status_message == 'Create_group' %}
+                <div class="alert alert-success" role="alert" name="addstudent_message">Група успішно додана!</div>
+            {% endif %}
+            {% if request.GET.status_message == 'Edit_group' %}
+                <div class="alert alert-warning" role="alert" name="">Група успішно відредагована!</div>
+            {% endif %}
+            {% if request.GET.status_message == 'Delete_group' %}
+                <div class="alert alert-danger" role="alert">Група успішно видалена!</div>
+            {% endif %}
+        </div>
+    </div>
+<!-- End Status Message -->
+    <!-- Content -->
+    {% block content %}{% endblock %}
+
     <!-- Start Footer -->
     <div class="row" id="footer">
         <div class="col-xs-12">

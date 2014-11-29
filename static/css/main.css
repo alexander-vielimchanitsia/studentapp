@@ -10,7 +10,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #footer {
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    margin-left: 0;
     padding-top: 10px;
 }
 
@@ -47,15 +49,15 @@ h1, h2, h3, h4, h5, h6 {
 #group-selector select {
     margin: 0;
     width: 85%;
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
+    background-color: #fff;
+    border: 1px solid #ccc;
     height: 30px;
     line-height: 30px;
-    color: #555555;
+    color: #555;
 }
 
-.buttons-form {
-    margin-left: 22%;
+.buttons-form-submit {
+    margin-left: 10%;
     margin-bottom: 10px;
 }
 
@@ -65,7 +67,19 @@ h1, h2, h3, h4, h5, h6 {
     top: 10%;
     left: 25%;
     border-radius: 5px;
-    background: #fff;
+    background-color: #fff;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-    z-index: 9999999;
+    z-index: 1000;
+}
+
+.ajax-fone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 999;
+    display: none;
 }
