@@ -16,7 +16,7 @@
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-column">
         <h2>Список груп</h2>
-        <a href="/groups/addgroup/" class="btn btn-primary">Додати Групу</a>
+        <a href="#" class="btn btn-primary" id="button-add-group">Додати Групу</a>
         {% if not table_group %}
         <div class="jumbotron" style="margin-top:10px;">
             <h1>Групи поки немає!</h1>
@@ -85,4 +85,7 @@
         <!-- End paginations -->
     </div>
 </div>
+<div class="ajax-fone" id="ajax-fone-addgroup"></div>
+<div class="popup-box" id="popup-box-addgroup"></div>
+<script type="text/javascript" src="../static/js/pop-up-addgroup.js" ></script>
 {% endblock %}

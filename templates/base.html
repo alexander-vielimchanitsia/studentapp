@@ -40,26 +40,15 @@
     <!-- Start Status Message -->
     <div class="row" id="status-message">
         <div class="col-xs-12">
-            {% if request.GET.status_message == 'Create_student' %}
-                <div class="alert alert-success" role="alert" name="addstudent_message">Студент успішно доданий!</div>
-            {% endif %}
-            {% if request.GET.status_message == 'Edit_student' %}
-                <div class="alert alert-warning" role="alert" name="">Студент успішно відредагований!</div>
-            {% endif %}
-            {% if request.GET.status_message == 'Delete_student' %}
-                <div class="alert alert-danger" role="alert">Студент успішно видалений!</div>
-            {% endif %}
-            {% if request.GET.status_message == 'Create_group' %}
-                <div class="alert alert-success" role="alert" name="addstudent_message">Група успішно додана!</div>
-            {% endif %}
-            {% if request.GET.status_message == 'Edit_group' %}
-                <div class="alert alert-warning" role="alert" name="">Група успішно відредагована!</div>
-            {% endif %}
-            {% if request.GET.status_message == 'Delete_group' %}
-                <div class="alert alert-danger" role="alert">Група успішно видалена!</div>
+            {% if request.GET.status_message %}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>{{ request.GET.status_message }}</p>
+                </div>
             {% endif %}
         </div>
     </div>
+    
 <!-- End Status Message -->
     <!-- Content -->
     {% block content %}{% endblock %}

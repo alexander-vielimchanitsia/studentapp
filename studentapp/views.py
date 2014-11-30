@@ -40,7 +40,7 @@ def addstudent(request):
         form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect(u'/?status_message=Create_student/')
+            return redirect(u'/?status_message=Студент успішно доданий!')
     else:
         form = StudentForm()
     return render(request, 'add_student.html', {
@@ -52,7 +52,7 @@ def addgroup(request):
         form = GroupForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(u'/groups/?status_message=Група успішно додана!/')
+            return redirect(u'/groups/?status_message=Група успішно додана!')
     else:
         form = GroupForm()
     return render(request, 'add_group.html', {
@@ -66,7 +66,7 @@ def edit_student(request, student_id):
         form = Student.objects.get(id=student_id)
         if form.is_valid():
             form.save()
-            return redirect(u'/?status_message=Edit_student/')
+            return redirect(u'/?status_message=Студент успішно відредагований!')
     else:
         form = StudentForm()
     return render(request, 'edit_student.html', {
@@ -162,7 +162,7 @@ def edit_group(request, group_id):
                                     king_group = Student(pk=request.POST['king_group'])
                 )
             group_object.save()
-            return redirect('/groups/')
+            return redirect(u'/groups/?status_message=Група успішно відредагована!')
     return render_to_response('edit_group.html', {
                                                 'table_student': table_student,
                                                 'table_group': table_group},
@@ -172,9 +172,9 @@ def edit_group(request, group_id):
 def stud_delete(request, student_id):
     s = Student.objects.get(id=student_id)
     s.delete()
-    return redirect(u'/?status_message=Delete_student/')
+    return redirect(u'/?status_message=Студент успішно видалений!')
 
 def group_delete(request, group_id):
     g = Group.objects.get(id=group_id)
     g.delete()
-    return redirect('/groups/')
+    return redirect('/groups/?status_message=Група успішно видалена!')

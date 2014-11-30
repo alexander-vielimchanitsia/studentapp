@@ -45,4 +45,9 @@ class GroupForm(ModelForm):
     helper.layout = Layout(
         'name_group',
         'king_group',
+        FormActions(
+                Submit('save', u'Зберегти'),
+                Button('cancel', u'Назад'),
+                css_class="buttons-form-submit"
+            ),
     )
