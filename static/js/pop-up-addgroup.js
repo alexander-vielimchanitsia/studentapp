@@ -10,8 +10,8 @@ $.ajax({
         $("#ajax-fone-addgroup").fadeIn(300);
         });
     // Close pop-up
-    $('#button-id-cancel, #ajax-fone-addgroup').click(function() {
-        $('#ajax-fone-addgroup, #popup-box-addgroup').fadeOut(300);
+    $("#button-id-cancel, #ajax-fone-addgroup").click(function() {
+        $("#ajax-fone-addgroup, #popup-box-addgroup").fadeOut(300);
     });
     }
 });
