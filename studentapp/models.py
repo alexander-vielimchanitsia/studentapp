@@ -13,7 +13,7 @@ class Student(models.Model):
     date = models.DateField(verbose_name = 'Дата народження')
     foto = models.ImageField(upload_to = 'photos', verbose_name = 'Фото')
     stud_bilet = models.CharField(max_length = 100, verbose_name = 'Студ.білет')
-    stud_group = models.ForeignKey('Group', verbose_name = 'Група')
+    stud_group = models.ForeignKey('Group', verbose_name = 'Група', on_delete=models.PROTECT )
     class Meta:
             verbose_name = 'Студенти'
             verbose_name_plural = 'Студенти'
@@ -25,7 +25,7 @@ class Student(models.Model):
 
 class Group(models.Model):
     name_group = models.CharField(max_length = 50, verbose_name = 'Назва групи')
-    king_group = models.ForeignKey(Student, verbose_name = 'Староста групи', blank = True, null = True)
+    king_group = models.ForeignKey(Student, verbose_name = 'Староста групи', blank = True, null = True, on_delete=models.SET_NULL)
     class Meta:
         verbose_name = 'Групи'
         verbose_name_plural = 'Групи'
