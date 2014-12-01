@@ -26,16 +26,19 @@
                     {% endif %}
                     <label class="control-label" for="name_group">Назва групи</label>
                     <div class="controls">
-                        <input class="input-medium" type="text" id="name_group" name="name_group" value="{{ table_group.name_group }}">
+                        <input class="input-medium" type="text" id="name_group" name="name_group" value="{% if request.POST.name_group %}{{ request.POST.name_group }}{% else %}{{ table_group.name_group }}{% endif %}">
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="king_group">Староста групи</label>
                     <div class="controls">
                         <select id="king_group"  name="king_group">
-                            <option value="" selected="selected">---------</option>
                             {% for student in table_student %}
-                                <option value="{{ student.id }}">{{ student }}</option>
+                                {% if request.POST.king_group %}
+                                    <option value="{{ student.id }}" {% ifequal request.POST.king_group|add:"0" student.id %}selected="selected"{% endifequal %}>{{ student }}</option>
+                                {% else %}
+                                    <option value="{{ student.id }}" {% ifequal table_group.king_group.id student.id %}selected="selected"{% endifequal %}>{{ student }}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     </div>

@@ -50,7 +50,7 @@ def addstudent(request):
         errors['foto'] = 'Виберіть будь ласка фото студента'
         error['foto'] = 'поле Фото обов’язкове'
     if request.POST.get('stud_bilet', '').strip() == '':
-        errors['stud_bilet'] = 'Введіть будь ласка ім’я студента'
+        errors['stud_bilet'] = 'Введіть будь ласка номер студ.білету студента'
         error['stud_bilet'] = 'поле No.студ-билета обов’язкове'
     if request.POST.get('stud_group', '').strip() == '':
         errors['stud_group'] = 'Виберіть будь ласка групу студента'
@@ -137,7 +137,7 @@ def edit_student(request, student_id):
             errors['foto'] = 'Виберіть будь ласка фото студента'
             error['foto'] = 'поле Фото обов’язкове'
     if request.POST.get('stud_bilet', '').strip() == '':
-        errors['stud_bilet'] = 'Введіть будь ласка ім’я студента'
+        errors['stud_bilet'] = 'Введіть будь ласка студ.білет студента'
         error['stud_bilet'] = 'поле No.студ-билета обов’язкове'
     if request.POST.get('stud_group', '').strip() == '':
          errors['stud_group'] = 'Виберіть будь ласка групу студента'
@@ -195,10 +195,12 @@ def edit_group(request, group_id):
     if request.POST.get('submit'):
         if errors:
             return render_to_response('edit_group.html', {
-                                                          'errors': errors,
-                                                          'error': error,
-                                                          },
-                                                          context_instance=RequestContext(request)
+                                                        'errors': errors,
+                                                        'error': error,
+                                                        'table_student': table_student,
+                                                        'table_group': table_group,
+                                                        },
+                                                        context_instance=RequestContext(request)
             )
         else:
             if request.POST.get('king_group', '').strip() == '':

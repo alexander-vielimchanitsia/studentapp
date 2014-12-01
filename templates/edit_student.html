@@ -41,7 +41,7 @@
                         <label class="control-label pull-right" for="first_name">Ім’я</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="first_name" name="first_name" value="{{ table_student.first_name }}">
+                        <input class="form-control" type="text" id="first_name" name="first_name" value="{% if request.POST.first_name %}{{ request.POST.first_name }}{% else %}{{ table_student.first_name }}{% endif %}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.first_name %}
@@ -56,7 +56,7 @@
                         <label class="control-label pull-right" for="last_name">Прізвище</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="last_name" name="last_name" value="{{ table_student.last_name }}">
+                        <input class="form-control" type="text" id="last_name" name="last_name" value="{% if request.POST.last_name %}{{ request.POST.last_name }}{% else %}{{ table_student.last_name }}{% endif %}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.last_name %}
@@ -71,7 +71,7 @@
                         <label class="control-label pull-right" for="middle_name">По батькові</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="middle_name" name="middle_name" value="{{ table_student.middle_name }}">
+                        <input class="form-control" type="text" id="middle_name" name="middle_name" value="{% if request.POST.middle_name %}{{ request.POST.middle_name }}{% else %}{{ table_student.middle_name }}{% endif %}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.middle_name %}
@@ -86,7 +86,7 @@
                         <label class="control-label pull-right" for="date">Дата народження</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="date" name="date" value="{{ table_student.date }}">
+                        <input class="form-control" type="text" id="date" name="date" value="{% if request.POST.date %}{{ request.POST.date }}{% else %}{{ table_student.date }}{% endif %}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.date %}
@@ -101,7 +101,7 @@
                         <label class="control-label pull-right" for="foto">Фото</label>
                     </div>
                     <div class="col-xs-2">
-                        <p>Наразі: <img src="http://127.0.0.1:8000/media/{{table_student.foto }}" style="width:30px"></p>
+                        <p>Наразі: <img src="http://127.0.0.1:8000/media/{{table_student.foto }}" style="width:30px; height:30px;"></p>
                         <p>Змінити: <input type="file" id="foto" name="new_foto" value="{{ table_student.foto }}"></p>
                     </div>
                     <div class="col-xs-6">
@@ -117,7 +117,7 @@
                         <label class="control-label pull-right" for="stud_bilet">No.студ-билета</label>
                     </div>
                     <div class="col-xs-2">
-                        <input class="form-control" type="text" id="stud_bilet" name="stud_bilet" value="{{ table_student.stud_bilet }}">
+                        <input class="form-control" type="text" id="stud_bilet" name="stud_bilet" value="{% if request.POST.stud_bilet %}{{ request.POST.stud_bilet }}{% else %}{{ table_student.stud_bilet }}{% endif %}">
                     </div>
                     <div class="col-xs-6">
                         {% if errors.stud_bilet %}
@@ -132,10 +132,13 @@
                         <label class="control-label pull-right" for="stud_group" >Група</label>
                     </div>
                     <div class="col-xs-2">
-                    {{ table_student.stud_group }}
                         <select id="stud_group_selector"  name="stud_group">
                             {% for group in table_group %}
-                                <option value="{{ group.id }}" {% ifequal request.POST.stud_group|add:"0" group.id %}selected="selected"{% endifequal %}>{{ group.name_group }}</option>
+                                {% if request.POST.stud_group %}
+                                    <option value="{{ group.id }}" {% ifequal request.POST.stud_group|add:"0" group.id %}selected="selected"{% endifequal %}>{{ group }}</option>
+                                {% else %}
+                                    <option value="{{ group.id }}" {% ifequal table_student.stud_group.id group.id %}selected="selected"{% endifequal %}>{{ group }}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     </div>
