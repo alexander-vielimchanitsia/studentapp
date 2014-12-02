@@ -29,7 +29,7 @@
             <thead>
             <tr>
                 <th>
-                    <a href="?order_by=id{% if request.GET.order_by == 'id' and request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
+                    <a href="{% url "home" %}?order_by=id{% if request.GET.order_by == 'id' and request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
                         № 
                         {% if request.GET.order_by == 'id' and request.GET.reverse != '1' %}
                             &darr; 
@@ -40,7 +40,7 @@
                 </th>
                 <th>Фото</th>
                 <th>
-                    <a href="?order_by=last_name{% if request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
+                    <a href="{% url "home" %}?order_by=last_name{% if request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
                         Прізвище 
                         {% if request.GET.order_by != 'last_name' or request.GET.reverse != '1' %}
                             &uarr; 
@@ -50,7 +50,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="?order_by=first_name{% if request.GET.order_by == 'first_name' and request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
+                    <a href="{% url "home" %}?order_by=first_name{% if request.GET.order_by == 'first_name' and request.GET.reverse != '1' %}&amp;reverse=1{% endif %}">
                         Ім’я 
                         {% if request.GET.order_by == 'first_name' and request.GET.reverse != '1' %}
                             &uarr; 
@@ -93,38 +93,66 @@
         </table>
         {% endif %}
         <!-- Start paginations -->
+        {% if table_student.has_other_pages %}
+        {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
         <nav class="pull-right">
             <ul class="pagination">
-                {% if table_student.has_previous %}
-                    <li><a href="/page/{{ table_student.previous_page_number }}/">&laquo</a></li>
-                {% else %}
-                    <li class="active"><a href="">&laquo</a></li>
-                {% endif %}
+                <li>
+                    <a href="{% url "home" %}?page=1&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&laquo</a>
+                </li>
                 {% for page in table_student.paginator.page_range %}
-                    {% if page == table_student.number %}
-                        <li class="active"><a href="/page/{{ page }}/">{{ page }}</a></li>
-                    {% else %}
-                        <li><a href="/page/{{ page }}/">{{ page }}</a></li>
-                    {% endif %}
+                    <li {% if table_student.number == page %}class="active"{% endif %}>
+                        <a href="{% url "home" %}?page={{ page }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">{{ page }}</a>
+                    </li>
                 {% endfor %}
-                {% if table_student.has_next %}
-                    <li><a href="/page/{{ table_student.next_page_number }}/">&raquo</a></li>
-                {% else %}
-                    <li class="active"><a href="">&raquo</a></li>
-                {% endif %}
+                <li>
+                    <a href="{% url "home" %}?page={{ table_student.paginator.num_pages }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&raquo;</a>
+                </li>
             </ul>
         </nav>
+        {% endwith %}
+        {% endif %}
     <!-- End paginations -->
     </div>
 </div>
 
+
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <!-- Start POP-UP-MENU -->
-<div class="ajax-fone" id="ajax-fone-addstudent"></div>
-<div class="popup-box" id="popup-box-addstudent">
-    <a href="#">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true" class="popup-box-close" id="popup-box-close-addstudent"></span>
-    </a>
+<div id="popup-menu">
+    <!-- HEADER -->
+    <button type="button" class="close" data-dismiss="modal" id="popup-box-close-addstudent"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <!-- HEADER -->
+    
+    <!-- body -->
+    <div class="popup-box" id="popup-box-addstudent"></div>
+    <!-- body -->
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
 </div>
+<!-- POPUP FONE -->
+<div class="ajax-fone" id="ajax-fone-addstudent"></div>
+
 <script type="text/javascript" src="../static/js/pop-up-addstudent.js" ></script>
 <!-- End POP-UP-MENU -->
 

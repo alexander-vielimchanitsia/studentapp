@@ -61,27 +61,23 @@
         </table>
         {% endif %}
         <!-- Start paginations -->
+        {% if table_group.has_other_pages %}
         <nav class="pull-right">
             <ul class="pagination">
-                {% if table_group.has_previous %}
-                    <li><a href="/groups/page/{{ table_group.previous_page_number }}/">&laquo</a></li>
-                {% else %}
-                    <li class="active"><a href="">&laquo</a></li>
-                {% endif %}
+                <li>
+                    <a href="/groups/?page=1">&laquo</a>
+                </li>
                 {% for page in table_group.paginator.page_range %}
-                    {% if page == table_group.number %}
-                        <li class="active"><a href="/groups/page/{{ page }}/">{{ page }}</a></li>
-                    {% else %}
-                        <li><a href="/groups/page/{{ page }}/">{{ page }}</a></li>
-                    {% endif %}
+                    <li {% if table_group.number == page %}class="active"{% endif %}>
+                        <a href="/groups/?page={{ page }}">{{ page }}</a>
+                    </li>
                 {% endfor %}
-                {% if table_group.has_next %}
-                    <li><a href="/groups/page/{{ table_group.next_page_number }}/">&raquo</a></li>
-                {% else %}
-                    <li class="active"><a href="">&raquo</a></li>
-                {% endif %}
+                <li>
+                    <a href="/groups/?page={{ table_group.paginator.num_pages }}">&raquo</a>
+                </li>
             </ul>
         </nav>
+        {% endif %}
         <!-- End paginations -->
     </div>
 </div>

@@ -5,7 +5,7 @@ from studentapp.models import Student, Group
 from forms import StudentForm, GroupForm
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -19,20 +19,32 @@ def index(request, page_number = 1):
         if request.GET.get('reverse', '') == '1':
             table_student = table_student.reverse()
 
-    student_page = Paginator(table_student, 3)
-    return render_to_response('index.html', {
-                            'table_student': student_page.page(page_number),
-    },
-    context_instance=RequestContext(request)
+    paginator = Paginator(table_student, 3)
+    page = request.GET.get('page')
+    try:
+        table_student = paginator.page(page)
+    except PageNotAnInteger:
+        table_student = paginator.page(1)
+    except EmptyPage:
+        table_student = paginator.page(paginator.num_pages)
+    return render_to_response('index.html',
+        {'table_student': table_student},
+        context_instance=RequestContext(request)
     )
 
 def groups(request, page_number = 1):
     table_group = Group.objects.all()
-    group_page = Paginator(table_group, 3)
-    return render_to_response('groups.html', {
-        'table_group': group_page.page(page_number)
-    },
-    context_instance=RequestContext(request)
+    paginator = Paginator(table_group, 3)
+    page = request.GET.get('page')
+    try:
+        table_group = paginator.page(page)
+    except PageNotAnInteger:
+        table_group = paginator.page(1)
+    except EmptyPage:
+        table_group = paginator.page(paginator.num_pages)
+    return render_to_response('groups.html',
+        {'table_group': table_group},
+        context_instance=RequestContext(request)
     )
 
 def addstudent(request):

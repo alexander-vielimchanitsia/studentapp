@@ -14,14 +14,12 @@ urlpatterns = patterns('',
 
     #STUDENT
     url(r'^$', 'studentapp.views.index', name='home'),
-    url(r'^page/(\d+)/$', 'studentapp.views.index'),
     url(r'^addstudent/$', 'studentapp.views.addstudent'),
     url(r'^edit_student/(?P<student_id>\d+)/$', 'studentapp.views.edit_student'),
     url(r'^stud_delete/(?P<student_id>\d+)/$', 'studentapp.views.stud_delete'),
     #GROUP
     url(r'^groups/$', 'studentapp.views.groups'),
     url(r'^groups/addgroup/$', 'studentapp.views.addgroup'),
-    url(r'^groups/page/(\d+)/$', 'studentapp.views.groups'),
     url(r'^groups/edit_group/(?P<group_id>\d+)/$', 'studentapp.views.edit_group'),
     url(r'^groups/group_delete/(?P<group_id>\d+)/$', 'studentapp.views.group_delete'),
 )
