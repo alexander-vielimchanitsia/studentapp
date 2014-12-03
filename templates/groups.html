@@ -16,7 +16,7 @@
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-column">
         <h2>Список груп</h2>
-        <a href="#" class="btn btn-primary" id="button-add-group">Додати Групу</a>
+        <a href="/groups/addgroup/" class="btn btn-primary" id="button-add-group" data-toggle="modal" data-target="#myModal">Додати Групу</a>
         {% if not table_group %}
         <div class="jumbotron" style="margin-top:10px;">
             <h1>Групи поки немає!</h1>
@@ -81,7 +81,28 @@
         <!-- End paginations -->
     </div>
 </div>
-<div class="ajax-fone" id="ajax-fone-addgroup"></div>
-<div class="popup-box" id="popup-box-addgroup"></div>
-<script type="text/javascript" src="../static/js/pop-up-addgroup.js" ></script>
+
+<!-- POP-UP -->
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- <script type="text/javascript" src="../static/js/pop-up-addgroup.js" ></script> -->
+<!-- POP-UP -->
 {% endblock %}
