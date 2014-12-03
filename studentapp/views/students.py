@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render, render_to_response, redirect
-from studentapp.models import Student, Group
-from forms import StudentForm, GroupForm
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from studentapp.models.students import Student
+from studentapp.forms import StudentForm
 
 # Create your views here.
 
@@ -29,23 +30,7 @@ def index(request, page_number = 1):
         table_student = paginator.page(paginator.num_pages)
     return render_to_response('index.html',
         {'table_student': table_student},
-        context_instance=RequestContext(request)
-    )
-
-def groups(request, page_number = 1):
-    table_group = Group.objects.all()
-    paginator = Paginator(table_group, 3)
-    page = request.GET.get('page')
-    try:
-        table_group = paginator.page(page)
-    except PageNotAnInteger:
-        table_group = paginator.page(1)
-    except EmptyPage:
-        table_group = paginator.page(paginator.num_pages)
-    return render_to_response('groups.html',
-        {'table_group': table_group},
-        context_instance=RequestContext(request)
-    )
+        context_instance=RequestContext(request))
 
 def addstudent(request):
     if request.POST:
@@ -55,21 +40,7 @@ def addstudent(request):
             return redirect(u'/?status_message=Студент успішно доданий!')
     else:
         form = StudentForm()
-    return render(request, 'add_student.html', {
-                                                'form': form,
-                                                })
-    
-def addgroup(request):
-    if request.POST:
-        form = GroupForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(u'/groups/?status_message=Група успішно додана!')
-    else:
-        form = GroupForm()
-    return render(request, 'add_group.html', {
-                                                'form': form,
-                                                })
+    return render(request, 'add_student.html', {'form': form})
 
 def edit_student(request, student_id):
     # table_student = Student.objects.get(id=student_id)
@@ -145,48 +116,7 @@ def edit_student(request, student_id):
     #                                                     context_instance=RequestContext(request)
     #     )
 
-
-def edit_group(request, group_id):
-    table_group = Group.objects.get(id=group_id)
-    table_student = Student.objects.all()
-    errors = {}
-    error = {}
-    if request.POST.get('name_group', '').strip() == '':
-        errors['name_group'] = 'Введіть будь ласка назву групи'
-        error['name_group'] = 'поле Назва групи обов’язкове'
-    if request.POST.get('submit'):
-        if errors:
-            return render_to_response('edit_group.html', {
-                                                          'errors': errors,
-                                                          'error': error,
-                                                          },
-                                                          context_instance=RequestContext(request)
-            )
-        else:
-            if request.POST.get('king_group', '').strip() == '':
-                group_object = Group(id = group_id,
-                                    name_group = request.POST['name_group'],
-                                    king_group = None
-                )
-            else:
-                group_object = Group(id = group_id,
-                                    name_group = request.POST['name_group'],
-                                    king_group = Student(pk=request.POST['king_group'])
-                )
-            group_object.save()
-            return redirect(u'/groups/?status_message=Група успішно відредагована!')
-    return render_to_response('edit_group.html', {
-                                                'table_student': table_student,
-                                                'table_group': table_group},
-                                                context_instance=RequestContext(request)
-    )
-
 def stud_delete(request, student_id):
     s = Student.objects.get(id=student_id)
     s.delete()
     return redirect(u'/?status_message=Студент успішно видалений!')
-
-def group_delete(request, group_id):
-    g = Group.objects.get(id=group_id)
-    g.delete()
-    return redirect('/groups/?status_message=Група успішно видалена!')

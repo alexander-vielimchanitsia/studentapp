@@ -13,15 +13,15 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     #STUDENT
-    url(r'^$', 'studentapp.views.index', name='home'),
-    url(r'^addstudent/$', 'studentapp.views.addstudent'),
-    url(r'^edit_student/(?P<student_id>\d+)/$', 'studentapp.views.edit_student'),
-    url(r'^stud_delete/(?P<student_id>\d+)/$', 'studentapp.views.stud_delete'),
+    url(r'^$', 'studentapp.views.students.index', name='home'),
+    url(r'^addstudent/$', 'studentapp.views.students.addstudent'),
+    url(r'^edit_student/(?P<student_id>\d+)/$', 'studentapp.views.students.edit_student'),
+    url(r'^stud_delete/(?P<student_id>\d+)/$', 'studentapp.views.students.stud_delete'),
     #GROUP
-    url(r'^groups/$', 'studentapp.views.groups'),
-    url(r'^groups/addgroup/$', 'studentapp.views.addgroup'),
-    url(r'^groups/edit_group/(?P<group_id>\d+)/$', 'studentapp.views.edit_group'),
-    url(r'^groups/group_delete/(?P<group_id>\d+)/$', 'studentapp.views.group_delete'),
+    url(r'^groups/$', 'studentapp.views.groups.groups'),
+    url(r'^groups/addgroup/$', 'studentapp.views.groups.addgroup'),
+    url(r'^groups/edit_group/(?P<group_id>\d+)/$', 'studentapp.views.groups.edit_group'),
+    url(r'^groups/group_delete/(?P<group_id>\d+)/$', 'studentapp.views.groups.group_delete'),
 )
 
 if settings.DEBUG:
