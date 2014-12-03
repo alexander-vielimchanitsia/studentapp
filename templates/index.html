@@ -98,15 +98,15 @@
         <nav class="pull-right">
             <ul class="pagination">
                 <li>
-                    <a href="{% url "home" %}?page=1&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&laquo</a>
+                    <a href="{% url "home" %}?page=1{% if order_by %}&amp;order_by={% endif %}{{ order_by }}{% if reverse %}&amp;reverse={% endif %}{{ reverse }}">&laquo</a>
                 </li>
                 {% for page in table_student.paginator.page_range %}
                     <li {% if table_student.number == page %}class="active"{% endif %}>
-                        <a href="{% url "home" %}?page={{ page }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">{{ page }}</a>
+                        <a href="{% url "home" %}?page={{ page }}{% if order_by %}&amp;order_by={% endif %}{{ order_by }}{% if reverse %}&amp;reverse={% endif %}{{ reverse }}">{{ page }}</a>
                     </li>
                 {% endfor %}
                 <li>
-                    <a href="{% url "home" %}?page={{ table_student.paginator.num_pages }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&raquo;</a>
+                    <a href="{% url "home" %}?page={{ table_student.paginator.num_pages }}{% if order_by %}&amp;order_by={% endif %}{{ order_by }}{% if reverse %}&amp;reverse={% endif %}{{ reverse }}">&raquo;</a>
                 </li>
             </ul>
         </nav>
