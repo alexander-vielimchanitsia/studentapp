@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render, render_to_response, redirect
+from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -45,16 +46,18 @@ def add_student(request):
         {'form': form})
 
 def edit_student(request, student_id):
-    if request.POST:
-        edit = Student.objects.get(id=student_id)
-        form = StudentForm(request.POST, request.FILES, instance=edit)
+    student = Student.objects.get(id=student_id)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
         if form.is_valid():
-            form.save()
+            student = form.save()
             return redirect(u'/?status_message=Студент успішно відредагований!')
     else:
-        form = StudentForm()
-    return render(request, '../templates/students/edit_student.html',
-        {'form': form})
+        form = StudentForm(instance=student)
+    return render_to_response('../templates/students/edit_student.html',
+        {'form': form,
+        'student': student},
+        context_instance=RequestContext(request))
 
 def stud_delete(request, student_id):
     s = Student.objects.get(id=student_id)

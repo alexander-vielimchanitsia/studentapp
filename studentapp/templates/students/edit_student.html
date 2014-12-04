@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block group-selector %}{% endblock %}
 {% block content %}
     <div class="tabbable">
@@ -10,12 +11,8 @@
             <div class="tab-pane active" id="tab1">
                 <h4>Редагування студента</h4>
             </div>
-            <form class="form-horizontal" id="student_form" action="/edit_student/{{ table_student.id }}/" method="post" enctype="multipart/form-data">{% csrf_token %}
-                {{ form.as_p }}
-                <div class="row field_retreat" style="margin-left:100px">
-                    <input type="submit" class="btn btn-primary" value="Зберегти" name="submit">
-                    <button type="reset" class="btn">Очистити</button>
-                </div>
+            <form class="form-horizontal" id="edit-student-form" action="/students/edit/{{ student.id }}/" method="post" enctype="multipart/form-data">{% csrf_token %}
+                {% crispy form %}
             </form>
         </div>
     </div>
