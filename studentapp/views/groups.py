@@ -6,11 +6,12 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from studentapp.models.groups import Group
+from studentapp.models.students import Student
 from studentapp.forms import GroupForm
 
 # Create your views here.
 
-def groups(request, page_number = 1):
+def groups_list(request, page_number = 1):
     table_group = Group.objects.all()
     paginator = Paginator(table_group, 3)
     page = request.GET.get('page')
@@ -20,11 +21,11 @@ def groups(request, page_number = 1):
         table_group = paginator.page(1)
     except EmptyPage:
         table_group = paginator.page(paginator.num_pages)
-    return render_to_response('groups.html',
+    return render_to_response('../templates/groups/groups_list.html',
         {'table_group': table_group},
         context_instance=RequestContext(request))
 
-def addgroup(request):
+def add_group(request):
     if request.POST:
         form = GroupForm(request.POST)
         if form.is_valid():
@@ -32,7 +33,7 @@ def addgroup(request):
             return redirect(u'/groups/?status_message=Група успішно додана!')
     else:
         form = GroupForm()
-    return render(request, 'add_group.html', {'form': form})
+    return render(request, '../templates/groups/add_group.html', {'form': form})
 
 
 
@@ -46,7 +47,7 @@ def edit_group(request, group_id):
         error['name_group'] = 'поле Назва групи обов’язкове'
     if request.POST.get('submit'):
         if errors:
-            return render_to_response('edit_group.html',
+            return render_to_response('../templates/groups/edit_group.html',
                 {'errors': errors,
                 'error': error},
                 context_instance=RequestContext(request))
@@ -61,7 +62,7 @@ def edit_group(request, group_id):
                                     king_group = Student(pk=request.POST['king_group']))
             group_object.save()
             return redirect(u'/groups/?status_message=Група успішно відредагована!')
-    return render_to_response('edit_group.html', {
+    return render_to_response('../templates/groups/edit_group.html', {
                                                 'table_student': table_student,
                                                 'table_group': table_group},
                                                 context_instance=RequestContext(request))
@@ -69,4 +70,4 @@ def edit_group(request, group_id):
 def group_delete(request, group_id):
     g = Group.objects.get(id=group_id)
     g.delete()
-    return redirect('/groups/?status_message=Група успішно видалена!')
+    return redirect(u'/groups/?status_message=Група успішно видалена!')

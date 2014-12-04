@@ -21,7 +21,7 @@
         {% if not table_student %}
         <div class="jumbotron" style="margin-top:10px;">
             <h1>Студентів поки немає!</h1>
-            <p>Натисніть <a href="/addstudent/" class="btn btn-success">Додати нового студента</a> щоб добавити нового студента.</p>
+            <p>Натисніть <a href="/students/add/" class="btn btn-success">Додати нового студента</a> щоб добавити нового студента.</p>
         </div>
         {% endif %}
         {% if table_student %}
@@ -79,10 +79,10 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/edit_student/{{ Student.id }}/">Редагувати</a>
+                                    <a role="menuitem" tabindex="-1" href="/students/edit/{{ Student.id }}/">Редагувати</a>
                                 </li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/stud_delete/{{ Student.id }}/">Видалити</a>
+                                    <a role="menuitem" tabindex="-1" href="/students/delete/{{ Student.id }}/">Видалити</a>
                                 </li>
                             </ul>
                         </div>

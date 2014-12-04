@@ -10,7 +10,7 @@ from studentapp.forms import StudentForm
 
 # Create your views here.
 
-def index(request, page_number = 1):
+def students_list(request, page_number = 1):
     table_student = Student.objects.all()
 
     # try ro order students list
@@ -28,11 +28,11 @@ def index(request, page_number = 1):
         table_student = paginator.page(1)
     except EmptyPage:
         table_student = paginator.page(paginator.num_pages)
-    return render_to_response('index.html',
+    return render_to_response('../templates/students/students_list.html',
         {'table_student': table_student},
         context_instance=RequestContext(request))
 
-def addstudent(request):
+def add_student(request):
     if request.POST:
         form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
@@ -40,82 +40,20 @@ def addstudent(request):
             return redirect(u'/?status_message=Студент успішно доданий!')
     else:
         form = StudentForm()
-    return render(request, 'add_student.html', {'form': form})
+    return render(request, '../templates/students/add_student.html',
+        {'form': form})
 
 def edit_student(request, student_id):
-    # table_student = Student.objects.get(id=student_id)
-    # student_form = StudentForm()
     if request.POST:
         edit = Student.objects.get(id=student_id)
         form = StudentForm(request.POST, request.FILES, instance=edit)
         if form.is_valid():
-            project = form.save()
+            form.save()
             return redirect(u'/?status_message=Студент успішно відредагований!')
     else:
         form = StudentForm()
-    return render(request, 'edit_student.html', {
-                                                'form': form,
-                                                })
-    # if request.POST.get('first_name', '').strip() == '':
-    #     errors['first_name'] = 'Введіть будь ласка ім’я студента'
-    #     error['first_name'] = 'поле Ім’я обов’язкоке'
-    # if request.POST.get('last_name', '').strip() == '':
-    #     errors['last_name'] = 'Введіть будь ласка прізвище студента'
-    #     error['last_name'] = 'поле Прізвище обов’язкове'
-    # if request.POST.get('middle_name', '').strip() == '':
-    #     errors['middle_name'] = 'Введіть будь ласка по батькові студента'
-    #     error['middle_name'] = 'поле По батькові обов’язкове'
-    # if request.POST.get('date', '').strip() == '':
-    #     errors['date'] = 'Введіть будь ласка дату народження студента'
-    #     error['date'] = 'поле Дата народження обов’язкове'
-    # if request.FILES.get('new_foto') > 0:
-    #     if not request.FILES.get('new_foto', None) or request.FILES['new_foto'].size == 0:
-    #         errors['foto'] = 'Виберіть будь ласка фото студента'
-    #         error['foto'] = 'поле Фото обов’язкове'
-    # if request.POST.get('stud_bilet', '').strip() == '':
-    #     errors['stud_bilet'] = 'Введіть будь ласка ім’я студента'
-    #     error['stud_bilet'] = 'поле No.студ-билета обов’язкове'
-    # if request.POST.get('stud_group', '').strip() == '':
-    #      errors['stud_group'] = 'Виберіть будь ласка групу студента'
-    #      error['stud_group'] = 'поле Група обов’язкове'
-    # if request.POST.get('submit'):
-    #     if errors:return render_to_response('edit_student.html', {
-    #                                                         'errors': errors,
-    #                                                         'error': error,
-    #                                                         'table_student': table_student,
-    #                                                         'table_group': Group.objects.all(),
-    #                                                         'student_form': student_form,},
-    #                                                         context_instance=RequestContext(request)
-    #         )
-    #     else:
-    #         if request.FILES.get('new_foto') > 0:
-    #             student_object = Student(id=student_id,
-    #                                     first_name = request.POST['first_name'],
-    #                                     last_name = request.POST['last_name'],
-    #                                     middle_name = request.POST['middle_name'],
-    #                                     date = request.POST['date'],
-    #                                     foto = request.FILES['new_foto'],
-    #                                     stud_bilet = request.POST['stud_bilet'],
-    #                                     stud_group = Group(pk=request.POST['stud_group'])
-    #             )
-    #         else:
-    #             student_object = Student(id=student_id,
-    #                                     first_name = request.POST['first_name'],
-    #                                     last_name = request.POST['last_name'],
-    #                                     middle_name = request.POST['middle_name'],
-    #                                     date = request.POST['date'],
-    #                                     foto = table_student.foto,
-    #                                     stud_bilet = request.POST['stud_bilet'],
-    #                                     stud_group = Group(pk=request.POST['stud_group'])
-    #             )
-    #         student_object.save()
-    #         return redirect(u'/?status_message=Студент успішно відредагований!/')
-    # return render_to_response('edit_student.html', {
-    #                                                     'table_student': table_student,
-    #                                                     'table_group': Group.objects.all(),
-    #                                                     'groups': groups},
-    #                                                     context_instance=RequestContext(request)
-    #     )
+    return render(request, '../templates/students/edit_student.html',
+        {'form': form})
 
 def stud_delete(request, student_id):
     s = Student.objects.get(id=student_id)
