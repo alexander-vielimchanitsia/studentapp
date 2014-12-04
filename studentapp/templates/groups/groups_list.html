@@ -35,27 +35,27 @@
             </thead>
             <tbody>
             {% for Group in table_group %}
-                <tr>
-                    <td>{{ Group.id }}</td>
-                    <td>{{ Group.name_group }}</td>
-                    <td>{{ Group.king_group }}</td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle"
-                                    type="button" data-toggle="dropdown">Дія
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/groups/edit/{{ Group.id }}/">Редагувати</a>
-                                </li>
-                                <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/groups/delete/{{ Group.id }}/">Видалити</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
+            <tr>
+                <td>{{ Group.id }}</td>
+                <td>{{ Group.name_group }}</td>
+                <td>{{ Group.king_group }}</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle"
+                                type="button" data-toggle="dropdown">Дія
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="/groups/edit/{{ Group.id }}/">Редагувати</a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="/groups/delete/{{ Group.id }}/">Видалити</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
             {% endfor %}
             </tbody>
         </table>
@@ -68,9 +68,9 @@
                     <a href="/groups/?page=1">&laquo</a>
                 </li>
                 {% for page in table_group.paginator.page_range %}
-                    <li {% if table_group.number == page %}class="active"{% endif %}>
-                        <a href="/groups/?page={{ page }}">{{ page }}</a>
-                    </li>
+                <li {% if table_group.number == page %}class="active"{% endif %}>
+                    <a href="/groups/?page={{ page }}">{{ page }}</a>
+                </li>
                 {% endfor %}
                 <li>
                     <a href="/groups/?page={{ table_group.paginator.num_pages }}">&raquo</a>

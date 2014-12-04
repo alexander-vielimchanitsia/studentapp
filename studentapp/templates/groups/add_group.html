@@ -12,9 +12,7 @@
                 <h4>Створення нової групи</h4>
             </div>
             <!-- Start Form -->
-            <form class="form-horizontal" id="group_form" action="/groups/addgroup/" method="post" enctype="multipart/form-data">{% csrf_token %}
                 {% crispy form %}
-            </form>
             <!-- End Form -->
         </div>
     </div>

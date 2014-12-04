@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from studentapp.models.groups import Group
 from studentapp.models.students import Student
 from studentapp.forms import StudentForm
 

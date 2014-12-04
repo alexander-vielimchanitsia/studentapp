@@ -33,7 +33,8 @@ def add_group(request):
             return redirect(u'/groups/?status_message=Група успішно додана!')
     else:
         form = GroupForm()
-    return render(request, '../templates/groups/add_group.html', {'form': form})
+    return render(request, '../templates/groups/add_group.html',
+        {'form': form})
 
 
 
