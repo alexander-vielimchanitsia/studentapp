@@ -8,7 +8,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from studentapp.models.groups import Group
 from studentapp.models.students import Student
 from studentapp.forms import GroupForm
-
 # Create your views here.
 
 def groups_list(request, page_number = 1):
@@ -36,37 +35,19 @@ def add_group(request):
     return render(request, '../templates/groups/add_group.html',
         {'form': form})
 
-
-
 def edit_group(request, group_id):
-    table_group = Group.objects.get(id=group_id)
-    table_student = Student.objects.all()
-    errors = {}
-    error = {}
-    if request.POST.get('name_group', '').strip() == '':
-        errors['name_group'] = 'Введіть будь ласка назву групи'
-        error['name_group'] = 'поле Назва групи обов’язкове'
-    if request.POST.get('submit'):
-        if errors:
-            return render_to_response('../templates/groups/edit_group.html',
-                {'errors': errors,
-                'error': error},
-                context_instance=RequestContext(request))
-        else:
-            if request.POST.get('king_group', '').strip() == '':
-                group_object = Group(id = group_id,
-                                    name_group = request.POST['name_group'],
-                                    king_group = None)
-            else:
-                group_object = Group(id = group_id,
-                                    name_group = request.POST['name_group'],
-                                    king_group = Student(pk=request.POST['king_group']))
-            group_object.save()
+    group = Group.objects.get(id=group_id)
+    if request.method == 'POST':
+        form = GroupForm(request.POST, instance=group)
+        if form.is_valid():
+            group = form.save()
             return redirect(u'/groups/?status_message=Група успішно відредагована!')
-    return render_to_response('../templates/groups/edit_group.html', {
-                                                'table_student': table_student,
-                                                'table_group': table_group},
-                                                context_instance=RequestContext(request))
+    else:
+        form = GroupForm(instance=group)
+    return render_to_response('../templates/groups/edit_group.html',
+        {'form': form,
+        'group': group},
+        context_instance=RequestContext(request))
 
 def group_delete(request, group_id):
     g = Group.objects.get(id=group_id)
