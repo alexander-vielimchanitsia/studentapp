@@ -2,20 +2,21 @@
 {% load crispy_forms_tags %}
 {% block group-selector %}{% endblock %}
 {% block content %}
-    <div class="tabbable"> 
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="">Додати студента</a></li>
-            <li><a href="http://127.0.0.1:8000/">Перейти на главну</a></li>
-        </ul>
-        <div class="tab-content" id="tab-content-addstudent">
-            <div class="row">
-                <div class="col-xs-4">
-                    <h4 class="pull-right">Заповнення нового студента</h4>
-                </div>
+<div class="tabbable"> 
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="">Додати студента</a></li>
+        <li><a href="http://127.0.0.1:8000/">Перейти на главну</a></li>
+    </ul>
+    <div class="tab-content" id="tab-content-addstudent">
+        <div class="row">
+            <div class="col-xs-4">
+                <h4 class="pull-right">Заповнення нового студента</h4>
             </div>
-        <!-- Start Form -->
-                {% crispy form %}
-        <!-- End Form -->
         </div>
+    <!-- Start Form -->
+            {% crispy form %}
+    <!-- End Form -->
     </div>
+</div>
+<script type="text/javascript" src="../../static/js/add_student_validation.js" ></script>
 {% endblock %}

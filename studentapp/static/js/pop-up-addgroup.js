@@ -1,17 +1,16 @@
 // POP-UP MENU ADD GROUP
-$.ajax({
-   type: "GET",
-   url: "/groups/addgroup/ #tab-content-addgroup",
-   dataType: "html",
-   success: function(addgroup){
-    // Open pop-up
-    $("#button-add-group").click(function() {
-        $("#tab-content-addgroup", addgroup).fadeIn(300).appendTo("#popup-box-addgroup").html();
-        $("#ajax-fone-addgroup").fadeIn(300);
-        });
-    // Close pop-up
-    $("#button-id-cancel, #ajax-fone-addgroup").click(function() {
-        $("#ajax-fone-addgroup, #popup-box-addgroup").fadeOut(300);
-    });
-    }
+// $.ajax({
+//    type: "GET",
+//    url: "/groups/add/ #div_id_name_group",
+//    dataType: "html",
+//    success: function(data){
+//     // Open pop-up
+//     $("#button-add-group").click(function() {
+//         $("#div_id_name_group", data).fadeIn(300).appendTo("#modal-body").html();
+//         });
+//     }
+// });
+$(document).ready(function(){
+  $('#myModal').modal()
 });
+

@@ -22,8 +22,9 @@ class StudentForm(ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-2'
+        self.helper.form_tag = 'data-toggle="validator"'
         self.helper.layout = Layout(
-            'first_name',
+            Field('first_name', pattern="^([_A-z0-9]){3,}$"),
             'last_name',
             'middle_name',
             'date',
