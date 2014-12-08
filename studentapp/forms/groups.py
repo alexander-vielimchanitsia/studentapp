@@ -21,7 +21,7 @@ class GroupForm(ModelForm):
         self.helper.form_action = '/groups/add/'
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
-        self.helper.field_class = 'col-lg-2'
+        self.helper.field_class = 'col-lg-2 field_retreat'
         self.helper.layout = Layout(
             'name_group',
             'king_group',

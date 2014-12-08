@@ -92,6 +92,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 180px;
 }
 
-#modal-body label {
+#modal-body label,
+#div_id_name_group div,
+#div_id_king_group div {
     width: 33.3333%;
 }
