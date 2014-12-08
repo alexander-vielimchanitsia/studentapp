@@ -47,7 +47,7 @@ def add_student(request):
 def edit_student(request, student_id):
     student = Student.objects.get(id=student_id)
     if request.method == 'POST':
-        form = StudentForm(request.POST, instance=student)
+        form = StudentForm(request.POST, request.FILES, instance=student)
         if form.is_valid():
             student = form.save()
             return redirect(u'/?status_message=Студент успішно відредагований!')
