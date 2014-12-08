@@ -3,20 +3,25 @@ $.ajax({
    type: "GET",
    url: "/groups/add/ #div_id_name_group",
    dataType: "html",
-   success: function(data){
+   success: function(){
         // Open pop-up
         $("#button-add-group").click(function() {
             $("#div_id_name_group_popup").load("/groups/add/ #div_id_name_group");
             $("#div_id_king_group_popup").load("/groups/add/ #div_id_king_group");
             });
 
-        var str = find('input, select');
-
-        $("#button-add-group").click(function() {
+        $("#send-popup-form").click(function(e) {
+            e.preventDefault()
+            var mForm = $("#id-group-form-popup").serialize();
             $.ajax({
-                url: '/groups/add/',
                 type: 'POST',
-                data: str
+                data: mForm,
+                success: function(data){
+                    console.log(data)
+                },
+                error: function(data){
+                    console.log(data)
+                }
             })
         });
     }
