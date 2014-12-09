@@ -15,6 +15,8 @@ $("#send-popup-form").click(function(e) {
         success: function(data){
             console.log(data)
             $("#myModal").modal('hide');
+            $("#status-message-popup").show();
+            $("#status-message-text").text("Група успішно додана!");
         },
         error: function(data){
             console.log('error')
