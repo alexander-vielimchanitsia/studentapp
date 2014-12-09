@@ -26,7 +26,7 @@
                     {% endif %}
                     <label class="control-label" for="name_group">Назва групи</label>
                     <div class="controls">
-                        <input class="input-medium" type="text" id="name_group" name="name_group" value="{% if request.POST.name_group %}{{ request.POST.name_group }}{% else %}{{ table_group.name_group }}{% endif %}">
+                        <input class="input-medium" type="text" id="name_group" name="name_group" value="{% if request.POST.name_group or request.POST.name_group == '' %}{{ request.POST.name_group }}{% else %}{{ table_group.name_group }}{% endif %}">
                     </div>
                 </div>
                 <div class="control-group">
