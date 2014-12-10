@@ -33,7 +33,7 @@ class StudentForm(ModelForm):
             'stud_group',
             FormActions(
                 Submit('save', u'Зберегти'),
-                Button('cancel', u'Назад'),
+                HTML(u'<a class="btn" href={% url "home" %}>Назад</a>'),
                 css_class="buttons-form-submit"
             ),
         )
