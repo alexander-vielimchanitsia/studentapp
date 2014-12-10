@@ -27,6 +27,6 @@ class GroupForm(ModelForm):
             'king_group',
             FormActions(
                 Submit('save', u'Зберегти'),
-                Button('cancel', u'Назад'),
+                HTML(u'<a class="btn" href={% url "group_list" %}>Назад</a>'),
                 css_class="buttons-form-submit"
             ))

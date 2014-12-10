@@ -23,7 +23,7 @@ urlpatterns = patterns('',
         'studentapp.views.students.stud_delete'),
     #GROUP
     url(r'^groups/$',
-        'studentapp.views.groups.groups_list'),
+        'studentapp.views.groups.groups_list', name='group_list'),
     url(r'^groups/add/$',
         'studentapp.views.groups.add_group'),
     url(r'^groups/edit/(?P<group_id>\d+)/$',
