@@ -13,11 +13,10 @@ $("#send-popup-form").click(function(e) {
         type: 'POST',
         data: mForm,
         success: function(data){
-            console.log(data)
-            $("#myModal").modal('hide');
-            $("#status-message-popup").show();
-            $("#status-message-text").text("Група успішно додана!");
-            $("#content-columns").load("/groups/ #content-groups-list");
+            $("#myModal").modal('hide'); // Ховаємо попап меню.
+            $("#status-message-popup").show(); // Показуємо статус месседж.
+            $("#status-message-text").text("Група успішно додана!"); // Додаємо текст в статус месседж.
+            $("#content-columns").load("/groups/ #content-groups-list"); // Оновлюємо список груп.
         },
         error: function(data){
             console.log('error')
