@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block group-selector %}{% endblock %}
+{% block extra_css %}
+    <link href="http://127.0.0.1:8000/static/bootstrap/css/datepicker.css" rel="stylesheet">
+{% endblock extra_css %}
 {% block content %}
     <div class="tabbable">
         <ul class="nav nav-tabs">
@@ -17,3 +20,8 @@
         </div>
     </div>
 {% endblock %}
+
+{% block extra_js %}
+    <script src="http://127.0.0.1:8000/static/bootstrap/js/bootstrap-datepicker.js"></script>
+    <script src="http://127.0.0.1:8000/static/js/datepicker.js"></script>
+{% endblock extra_js %}
