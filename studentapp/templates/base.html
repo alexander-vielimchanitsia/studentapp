@@ -12,6 +12,7 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <!-- End AJAX -->
+    {% block extra_css %}{% endblock extra_css %}
 </head>
 <body>
 <!-- Start container -->
@@ -75,6 +76,6 @@
 <!-- Bootstrap -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://127.0.0.1:8000/static/bootstrap/js/bootstrap.min.js"></script>
-
+{% block extra_js %}{% endblock extra_js %}
 </body>
 </html>

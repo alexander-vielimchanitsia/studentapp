@@ -27,7 +27,7 @@ class StudentForm(ModelForm):
             Field('first_name', pattern="^([_A-zА-я0-9]){3,}$"),
             'last_name',
             'middle_name',
-            'date',
+            Field('date', data_date_format="yyyy-mm-dd", placeholder='рррр-мм-дд'),
             'foto',
             'stud_bilet',
             'stud_group',
