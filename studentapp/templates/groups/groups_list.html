@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block extra_css %}
+    <link href="http://127.0.0.1:8000/static/bootstrap/css/bootstrapValidator.min.css" rel="stylesheet">
+{% endblock extra_css %}
 {% block tablist %}
 <!-- Start Sub-header -->
 <div class="row" id="sub-header">
@@ -14,7 +17,7 @@
 {% block content %}
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-groups-list">
-        <h2>Список груп</h2>
+        <h2>Список груп {{ success }}</h2>
         <a href="#" class="btn btn-primary" id="button-add-group" data-toggle="modal" data-target="#myModal">Додати Групу</a>
         {% if not table_group %}
         <div class="jumbotron" style="margin-top:10px;">
@@ -83,34 +86,46 @@
 
 <!-- POP-UP -->
 <div class="modal fade" id="myModal">
-    <form action="/groups/add/" id="id-group-form-popup" method="post">{% csrf_token %}
+    <form action="/groups/add/" id="id-group-form-popup" method="post" data-toggle="validator" role="form">{% csrf_token %}
         <div class="modal-dialog">
             <div class="modal-content">
+                <!-- Start Modal Header -->
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">Додавання нової групи</h4>
                 </div>
-                    <div class="modal-body" id="modal-body">
-                        <div class="row">
-                            <div class="col-xs-12" id="div_id_name_group_popup">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12" id="div_id_king_group_popup">
-                            </div>
+                <!-- End Modal Header -->
+                <!-- Start Modal Body -->
+                <div class="modal-body" id="modal-body">
+                    <!-- Start field name group -->
+                    <div class="row">
+                        <div class="col-xs-12" id="div_id_name_group_popup">
                         </div>
                     </div>
-                
+                    <!-- End field name group -->
+                    <!-- Start field king group -->
+                    <div class="row">
+                        <div class="col-xs-12" id="div_id_king_group_popup">
+                        </div>
+                    </div>
+                    <!-- End field king group -->
+                </div>
+                <!-- End Modal Body -->
+                <!-- Start Modal Footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Назад</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Скасувати</button>
                     <button type="button" class="btn btn-primary" id="send-popup-form">Зберегти</button>
                 </div>
+                <!-- End Modal Footer -->
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </form>
 </div><!-- /.modal -->
 
-<script type="text/javascript" src="../static/js/pop-up-addgroup.js" ></script>
 
 <!-- POP-UP -->
 {% endblock %}
+{% block extra_js %}
+    <script src="../static/bootstrap/js/validator.js"></script>
+    <script src="../static/js/pop-up-addgroup.js" ></script>
+{% endblock extra_js %}
