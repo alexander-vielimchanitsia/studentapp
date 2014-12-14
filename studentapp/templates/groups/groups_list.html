@@ -18,11 +18,11 @@
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-groups-list">
         <h2>Список груп {{ success }}</h2>
-        <a href="#" class="btn btn-primary" id="button-add-group" data-toggle="modal" data-target="#myModal">Додати Групу</a>
+        <a href="/groups/add/" class="btn btn-primary" id="button-add-group" data-remote="false" data-toggle="modal" data-target="#myModal">Додати Групу</a>
         {% if not table_group %}
         <div class="jumbotron" style="margin-top:10px;">
             <h1>Групи поки немає!</h1>
-            <p>Натисніть <a href="/groups/add/" class="btn btn-success">Додати нову групу</a> щоб добавити нову групу.</p>
+            <p>Натисніть <a href="/groups/add/" class="btn btn-success" data-remote="false">Додати нову групу</a> щоб добавити нову групу.</p>
         </div>
         {% endif %}
         {% if table_group %}
