@@ -21,7 +21,7 @@ class StudentForm(ModelForm):
         self.helper.form_action = '/students/add/'
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
-        self.helper.field_class = 'col-lg-2'
+        self.helper.field_class = 'col-lg-2 field_retreat'
         self.helper.form_tag = 'data-toggle="validator"'
         self.helper.layout = Layout(
             Field('first_name', pattern="^([_A-zА-я0-9]){3,}$"),

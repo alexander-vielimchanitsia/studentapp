@@ -92,8 +92,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 180px;
 }
 
+/* pop-up-menu*/
 #myModal #modal-body label,
-#myModal #div_id_name_group .col-lg-2,
-#myModal #div_id_king_group .col-lg-2 {
+#myModal .col-lg-2 {
     width: 33.3333%;
 }

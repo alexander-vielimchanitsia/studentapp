@@ -1,18 +1,56 @@
-// POP-UP MENU ADD STUDENT
-$.ajax({
-   type: "GET",
-   url: "/students/add/ #tab-content-addstudent",
-   dataType: "html",
-   success: function(addstudent){
+// POP-UP MENU ADD GROUP
+(function($) {
     // Open pop-up
     $("#button-add-student").click(function() {
-        $("#tab-content-addstudent", addstudent).fadeIn(300).appendTo("#popup-box-addstudent").html();
-        $("#ajax-fone-addstudent").fadeIn(300);
-        $("#popup-menu").fadeIn(300);
-        });
-    // Close pop-up
-    $("#popup-box-close-addstudent, #ajax-fone-addstudent").click(function() {
-        $("#ajax-fone-addstudent, #popup-menu").fadeOut(300);
+        $("#div_id_first_name_popup").load("/students/add/ #div_id_first_name");
+        $("#div_id_last_name_popup").load("/students/add/ #div_id_last_name");
+        $("#div_id_middle_name_popup").load("/students/add/ #div_id_middle_name");
+        $("#div_id_date_popup").load("/students/add/ #div_id_date");
+        $("#div_id_foto_popup").load("/students/add/ #div_id_foto");
+        $("#div_id_stud_bilet_popup").load("/students/add/ #div_id_stud_bilet");
+        $("#div_id_stud_group_popup").load("/students/add/ #div_id_stud_group");
     });
-    }
-});
+
+    $("#send-popup-form").click(function(e) {
+        e.preventDefault()
+        var inputs = document.getElementsByName('input, select'),
+            input = $(this);
+            mForm = $("#id-student-form-popup").serialize(),
+            textError = 'Поле обов’язкове';
+        $.ajax({
+            url: '/students/add/',
+            type: 'POST',
+            data: mForm,
+            success: function(data){
+                inputs.onfocus = function() {
+                        $("inputs").tooltip({
+                            trigger: 'manual',
+                            placement: 'right',
+                            title: textError
+                        }).tooltip('show');
+                };
+                inputs.onblur = function() {
+                    if ($('inputs').val()!=="") {
+                        $("inputs").tooltip('destroy');
+                    }
+                };
+                if ($('inputs').val()!=="") {
+                    $("#myModal").modal('hide'); // Ховаємо попап меню.
+                    $("#status-message-popup").show(); // Показуємо статус месседж.
+                    $("#status-message-text").text("Студент успішно доданий!"); // Додаємо текст в статус месседж.
+                    $("#content-columns").load("127.0.0.1:8000/ #content-students_list"); // Оновлюємо список груп.
+                }
+                else {
+                    $("inputs").tooltip({
+                        trigger: 'manual',
+                        placement: 'right',
+                        title: textError
+                    }).tooltip('show');
+                }
+            },
+            error: function(data){
+                console.log('error')
+            }
+        })
+    });
+})(jQuery);
