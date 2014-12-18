@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load my_filters %}
 {% block group-selector %}{% endblock %}
 {% block content %}
     <div class="tabbable">
@@ -40,7 +41,7 @@
                         <select id="king_group_selector"  name="king_group">
                             <option value="" selected="selected">---------</option>
                             {% for student in table_student %}
-                                <option value="{{ student.id }}" {% ifequal request.POST.king_group|add:"0" student.id %}selected="selected"{% endifequal %}>{{ student }}</option>
+                                <option value="{{ student.id }}" {% ifequal request.POST.king_group|str2int:"0" student.id %}selected="selected"{% endifequal %}>{{ student }}</option>
                             {% endfor %}
                         </select>
                     </div>

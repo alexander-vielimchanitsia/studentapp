@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load my_filters %}
 {% block group-selector %}{% endblock %}
 {% block content %}
     <div class="tabbable"> <!-- Only required for left/right tabs -->
@@ -152,7 +153,7 @@
                         <select id="stud_group_selector" name="stud_group">
                             <option value="" selected="selected">---------</option>
                             {% for group in table_group %}
-                                <option value="{{ group.id }}" {% ifequal request.POST.stud_group|add:"0" group.id %}selected="selected"{% endifequal %}>{{ group.name_group }}</option>
+                                <option value="{{ group.id }}" {% ifequal request.POST.stud_group|str2int:"0" group.id %}selected="selected"{% endifequal %}>{{ group.name_group }}</option>
                             {% endfor %}
                         </select>
                     </div>
