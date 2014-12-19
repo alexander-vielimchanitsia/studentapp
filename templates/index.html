@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load my_tags %}
 {% block content %}
 <!-- Start Sub-header -->
 <div class="row" id="sub-header">
@@ -45,7 +46,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for Student in table_student %}
+            {% while Student in table_student %}
                 <tr>
                     <td>{{ Student.id }}</td>
                     <td><img src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width:30px"></td>
@@ -69,7 +70,7 @@
                         </div>
                     </td>
                 </tr>
-            {% endfor %}
+            {% endwhile %}
             </tbody>
         </table>
         {% endif %}

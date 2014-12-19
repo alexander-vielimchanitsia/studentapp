@@ -1,15 +1,14 @@
 from django import template
 
-
 register = template.Library()
 
 
 @register.filter()
-def str2int(value, arg):
+def str2int(val, arg):
     try:
-        return int(value) + int(arg)
-    except (ValueError, TypeError):
+        return int(val) + int(arg)
+    except (TypeError, ValueError):
         try:
-            return value + arg
+            return val + arg
         except Exception:
             return ''
