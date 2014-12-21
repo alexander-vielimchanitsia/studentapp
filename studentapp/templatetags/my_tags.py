@@ -9,7 +9,7 @@ from django.utils.encoding import force_text
 register = template.Library()
 
 
-class ForNode(Node):
+class WhileNode(Node):
     child_nodelists = ('nodelist_loop', 'nodelist_empty')
 
     def __init__(self, loopvars, sequence, is_reversed, nodelist_loop, nodelist_empty=None):
@@ -193,4 +193,4 @@ def do_while(parser, token):
         parser.delete_first_token()
     else:
         nodelist_empty = None
-    return ForNode(loopvars, sequence, is_reversed, nodelist_loop, nodelist_empty)
+    return WhileNode(loopvars, sequence, is_reversed, nodelist_loop, nodelist_empty)
