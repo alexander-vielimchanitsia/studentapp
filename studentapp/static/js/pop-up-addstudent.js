@@ -13,10 +13,11 @@
 
     $("#send-popup-form").click(function(e) {
         e.preventDefault()
-        var inputs = document.getElementsByName('input, select'),
-            input = $(this);
+        var input = document.getElementsByName('input, select'),
+            inputs = $(this).input,
             mForm = $("#id-student-form-popup").serialize(),
             textError = 'Поле обов’язкове';
+        console.log(input);
         $.ajax({
             url: '/students/add/',
             type: 'POST',
