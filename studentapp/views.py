@@ -76,7 +76,7 @@ def add_student(request):
                         )
             s.save()
             return redirect(
-                u'/index/?status_message=Студент успішно доданий!/'
+                u'/index/?status_message=Студент успішно доданий!'
                 )
     return render_to_response('add_student.html',
         {'table_student': table_student,
@@ -116,7 +116,7 @@ def add_group(request):
                 )
             g.save()
             return redirect(
-                u'/groups/?status_message=Група успішно додана!/'
+                u'/groups/?status_message=Група успішно додана!'
                 )
     return render_to_response('add_group.html',
         {'table_student': table_student},
@@ -185,7 +185,9 @@ def edit_student(request, student_id):
                     stud_group = Group(pk=data['stud_group'])
                 )
             student_object.save()
-            return redirect('/')
+            return redirect(
+                u'/index/?status_message=Студент успішно відредагований!'
+                )
 
     return render_to_response('edit_student.html',
         {'table_student': table_student,
@@ -226,7 +228,9 @@ def edit_group(request, group_id):
                     king_group = Student(pk=data['king_group'])
                 )
             group_object.save()
-            return redirect('/groups/')
+            return redirect(
+                u'/groups/?status_message=Група успішно відредагована!'
+                )
     return render_to_response('edit_group.html',
         {'table_student': table_student,
         'table_group': table_group},
@@ -236,9 +240,13 @@ def edit_group(request, group_id):
 def stud_delete(request, student_id):
     s = Student.objects.get(id=student_id)
     s.delete()
-    return redirect('/')
+    return redirect(
+                u'/index/?status_message=Студент успішно видалений!'
+                )
 
 def group_delete(request, group_id):
     g = Group.objects.get(id=group_id)
     g.delete()
-    return redirect('/groups/')
+    return redirect(
+                u'/groups/?status_message=Група успішно видалена!'
+                )

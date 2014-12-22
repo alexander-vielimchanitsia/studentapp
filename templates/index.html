@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load my_tags %}
-{% block content %}
+{% block tablist %}
 <!-- Start Sub-header -->
 <div class="row" id="sub-header">
     <div class="col-xs-12">
@@ -11,18 +11,9 @@
     </div>
 </div>
 <!-- End Sub-header -->
-<!-- Start Status Message -->
-<div class="row" id="status-message">
-    <div class="col-xs-12">
-        {% if request.GET.status_message %}
-            <div class="alert alert-success" role="alert" name="addstudent_message">Студент успішно доданий!</div>
-        {% endif %}
-        <div class="alert alert-warning" role="alert" name="">Студент успішно відредагований!</div>
-        <div class="alert alert-danger" role="alert">Студент успішно видалений!</div>
-    </div>
-</div>
-<!-- End Status Message -->
+{% endblock %}
 <!-- Start Content -->
+{% block content %}
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-column">
         <h2>База Студентів</h2>

@@ -30,6 +30,19 @@
         {% endblock %}
     </div>
     <!-- End header -->
+    {% block tablist %}{% endblock %}
+    <!-- Start Status Message -->
+    {% if request.GET.status_message %}
+    <div class="row" id="status-message">
+        <div class="col-xs-12">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <p>{{ request.GET.status_message }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- End Status Message -->
 <!-- Content -->
 {% block content %}
 {% endblock %}
