@@ -13,40 +13,40 @@
 
     $("#send-popup-form").click(function(e) {
         e.preventDefault()
-        var input = document.getElementsByName('input, select'),
-            inputs = $(this).input,
-            mForm = $("#id-student-form-popup").serialize(),
-            textError = 'Поле обов’язкове';
-        console.log(input);
+        var mForm = $("#id-student-form-popup").serialize(),
+            inputs = $('input,select'),
+            valid = true;
         $.ajax({
             url: '/students/add/',
             type: 'POST',
             data: mForm,
             success: function(data){
-                inputs.onfocus = function() {
-                        $("inputs").tooltip({
+                inputs.tooltip('destroy');
+
+                $.each(inputs, function(index, val) {
+                    var input = $(val),
+                        val = input.val(),
+                        formGroup = input.parents('.form-group');
+                        label = formGroup.find('label').text().toLowerCase(),
+                        textError = 'Заповніть поле ' + label;
+
+                    if (val.length === 0){
+                        formGroup.addClass('has-error').removeClass('has-success');
+                        input.tooltip({
                             trigger: 'manual',
                             placement: 'right',
                             title: textError
                         }).tooltip('show');
-                };
-                inputs.onblur = function() {
-                    if ($('inputs').val()!=="") {
-                        $("inputs").tooltip('destroy');
+                        valid = false
+                    }else {
+                        formGroup.addClass('has-success').removeClass('has-error');
                     }
-                };
-                if ($('inputs').val()!=="") {
+
+                });
+                if ( valid == true) {
                     $("#myModal").modal('hide'); // Ховаємо попап меню.
-                    $("#status-message-popup").show(); // Показуємо статус месседж.
                     $("#status-message-text").text("Студент успішно доданий!"); // Додаємо текст в статус месседж.
-                    $("#content-columns").load("127.0.0.1:8000/ #content-students_list"); // Оновлюємо список груп.
-                }
-                else {
-                    $("inputs").tooltip({
-                        trigger: 'manual',
-                        placement: 'right',
-                        title: textError
-                    }).tooltip('show');
+                    $("#content-columns").load("/ #content-students_list"); // Оновлюємо список груп.
                 }
             },
             error: function(data){

@@ -40,7 +40,7 @@
     {% block tablist %}{% endblock %}
 
     <!-- Start Status Message -->
-    {% if request.GET.status_message_text != '' %}
+    {% if request.GET.status_message %}
     <div class="row" id="status-message">
         <div class="col-xs-12">
             <div class="alert alert-success">
