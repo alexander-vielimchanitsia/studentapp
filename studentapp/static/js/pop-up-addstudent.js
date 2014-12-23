@@ -1,5 +1,6 @@
 // POP-UP MENU ADD GROUP
 (function($) {
+
     // Open pop-up
     $("#button-add-student").click(function() {
         $("#div_id_first_name_popup").load("/students/add/ #div_id_first_name");
@@ -14,13 +15,13 @@
     $("#send-popup-form").click(function(e) {
         e.preventDefault()
         var mForm = $("#id-student-form-popup").serialize(),
-            inputs = $('input,select'),
             valid = true;
         $.ajax({
             url: '/students/add/',
             type: 'POST',
             data: mForm,
             success: function(data){
+                var inputs = $('input,select');
                 inputs.tooltip('destroy');
 
                 $.each(inputs, function(index, val) {
@@ -54,4 +55,5 @@
             }
         })
     });
+
 })(jQuery);

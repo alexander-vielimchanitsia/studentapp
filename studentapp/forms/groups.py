@@ -23,7 +23,7 @@ class GroupForm(ModelForm):
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-2 field_retreat'
         self.helper.layout = Layout(
-            Field('name_group', required=''),
+            Field('name_group'),
             'king_group',
             FormActions(
                 Submit('save', u'Зберегти'),

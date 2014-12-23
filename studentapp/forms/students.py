@@ -24,7 +24,7 @@ class StudentForm(ModelForm):
         self.helper.field_class = 'col-lg-2 field_retreat'
         self.helper.form_tag = 'data-toggle="validator"'
         self.helper.layout = Layout(
-            Field('first_name', pattern="^([_A-zА-я0-9]){3,}$"),
+            'first_name',
             'last_name',
             'middle_name',
             Field('date', data_date_format="yyyy-mm-dd", placeholder='рррр-мм-дд'),
