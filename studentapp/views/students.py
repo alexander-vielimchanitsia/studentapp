@@ -4,6 +4,7 @@ from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.gis.geoip import GeoIP
 
 from studentapp.models.groups import Group
 from studentapp.models.students import Student
@@ -12,6 +13,10 @@ from studentapp.forms import StudentForm
 # Create your views here.
 
 def students_list(request, page_number = 1):
+    g = GeoIP()
+    g.city(request.META['REMOTE_ADDR'])
+    geo = g.city('74.125.79.147')
+
     table_student = Student.objects.all()
 
     # try ro order students list
@@ -30,7 +35,7 @@ def students_list(request, page_number = 1):
     except EmptyPage:
         table_student = paginator.page(paginator.num_pages)
     return render_to_response('../templates/students/students_list.html',
-        {'table_student': table_student},
+        {'table_student': table_student, 'geo': geo},
         context_instance=RequestContext(request))
 
 def add_student(request):

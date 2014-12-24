@@ -16,7 +16,7 @@
 {% block content %}
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-students_list">
-        <h2>База Студентів</h2>
+        <h2>База Студентів {{ geo }}</h2>
         <a href="/students/add/" class="btn btn-primary" id="button-add-student" data-remote="false" data-toggle="modal" data-target="#myModal">Додати Студента</a>
         {% if not table_student %}
         <div class="jumbotron" style="margin-top:10px;">

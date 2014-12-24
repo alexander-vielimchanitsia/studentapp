@@ -119,3 +119,5 @@ STATICFILES_FINDERS = (
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 CRISPY_TEMPLATE_PACK  = 'bootstrap3'
+
+GEOIP_PATH = os.path.join(BASE_DIR, 'GeoIP')
