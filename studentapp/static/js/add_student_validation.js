@@ -11,7 +11,7 @@
             $('form').on('keydown', 'input', app.removeError);
         },
 
-        submitForm: function  (e) {
+        submitForm : function  (e) {
             e.preventDefault();
             var form = $(this);
 
@@ -34,7 +34,7 @@
             });
         },
 
-        validateForm: function (form){
+        validateForm : function (form) {
             var inputs = form.find('input, select'),
                 valid = true;
 
@@ -47,7 +47,7 @@
                     label = formGroup.find('label').text().toLowerCase(),
                     textError = 'Заповніть поле ' + label;
 
-                if (val.length === 0){
+                if (val.length === 0) {
                     formGroup.addClass('has-error').removeClass('has-success');
                     input.tooltip({
                         trigger: 'manual',
@@ -65,7 +65,7 @@
 
         },
 
-        removeError: function() {
+        removeError : function() {
             $(this).tooltip('destroy').parents('.form-group').removeClass('has-error');
         }
 
