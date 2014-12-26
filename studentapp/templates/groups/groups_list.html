@@ -20,7 +20,7 @@
         <h2>Список груп</h2>
         <a href="/groups/add/" class="btn btn-primary" id="button-add-group" data-remote="false" data-toggle="modal" data-target="#myModal">Додати Групу</a>
         {% if not table_group %}
-        <div class="jumbotron" style="margin-top:10px;">
+        <div class="jumbotron text-if-not-object">
             <h1>Групи поки немає!</h1>
             <p>Натисніть <a href="/groups/add/" class="btn btn-success" data-remote="false" data-remote="false" data-toggle="modal" data-target="#myModal">Додати нову групу</a> щоб добавити нову групу.</p>
         </div>

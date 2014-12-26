@@ -19,7 +19,7 @@
         <h2>База Студентів</h2>
         <a href="/students/add/" class="btn btn-primary" id="button-add-student" data-remote="false" data-toggle="modal" data-target="#myModal">Додати Студента</a>
         {% if not table_student %}
-        <div class="jumbotron" style="margin-top:10px;">
+        <div class="jumbotron text-if-not-object">
             <h1>Студентів поки немає!</h1>
             <p>Натисніть <a href="/students/add/" class="btn btn-success" data-remote="false" data-toggle="modal" data-target="#myModal">Додати нового студента</a> щоб добавити нового студента.</p>
         </div>
@@ -67,7 +67,7 @@
                     {% for Student in table_student %}
                 <tr>
                     <td>{{ Student.id }}</td>
-                    <td><img class="img-circle" src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width: 30px; height: 30px;"></td>
+                    <td><img class="img-circle" src="http://127.0.0.1:8000/media/{{ Student.foto }}" id="img-in-table"></td>
                     <td><a href="#">{{ Student.last_name }}</a></td>
                     <td><a href="#">{{ Student.first_name }}</a></td>
                     <td>{{ Student.stud_bilet }}</td>

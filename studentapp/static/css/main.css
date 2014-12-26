@@ -97,3 +97,12 @@ h1, h2, h3, h4, h5, h6 {
 #myModal .col-lg-2 {
     width: 33.3333%;
 }
+
+.text-if-not-object {
+    margin-top: 10px;
+}
+
+#img-in-table {
+    width: 30px;
+    height: 30px;
+}
