@@ -3,18 +3,12 @@
 
     // Open pop-up
     $("#button-add-student").click(function() {
-        $("#div_id_first_name_popup").load("/students/add/ #div_id_first_name");
-        $("#div_id_last_name_popup").load("/students/add/ #div_id_last_name");
-        $("#div_id_middle_name_popup").load("/students/add/ #div_id_middle_name");
-        $("#div_id_date_popup").load("/students/add/ #div_id_date");
-        $("#div_id_foto_popup").load("/students/add/ #div_id_foto");
-        $("#div_id_stud_bilet_popup").load("/students/add/ #div_id_stud_bilet");
-        $("#div_id_stud_group_popup").load("/students/add/ #div_id_stud_group");
+        $("#modal-body").load("/students/add/ #id-student-form");
     });
 
-    $("#send-popup-form").click(function(e) {
+    $("#submit-id-save").click(function(e) {
         e.preventDefault()
-        var mForm = $("#id-student-form-popup").serialize(),
+        var mForm = $("#id-student-form").serialize(),
             valid = true;
         $.ajax({
             url: '/students/add/',
