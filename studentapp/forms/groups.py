@@ -27,6 +27,6 @@ class GroupForm(ModelForm):
             'king_group',
             FormActions(
                 Submit('save', u'Зберегти'),
-                HTML(u'<a class="btn" href={% url "group_list" %}>Скасувати</a>'),
+                HTML(u'<a class="btn btn-default" href={% url "group_list" %}>Скасувати</a>'),
                 css_class="buttons-form-submit"
             ))
