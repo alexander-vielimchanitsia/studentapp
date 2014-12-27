@@ -7,7 +7,7 @@
     });
 
     $("#submit-id-save").click(function(e) {
-        e.preventDefault()
+        e.preventDefault();
         var mForm = $("#id-student-form").serialize(),
             valid = true;
         $.ajax({
