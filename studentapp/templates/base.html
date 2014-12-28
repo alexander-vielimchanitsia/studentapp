@@ -38,30 +38,33 @@
     <!-- End header -->
     <!-- Sub-header -->
     {% block tablist %}{% endblock %}
-
     <!-- Start Status Message -->
     {% if request.GET.status_message %}
     <div class="row" id="status-message">
         <div class="col-xs-12">
             <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <p id="status-message-text" name="status_message_text">{{ request.GET.status_message }}</p>
+                <button type="button" class="close" data-dismiss="alert">
+                    &times;
+                </button>
+                <p id="status-message-text" name="status_message_text">
+                    {{ request.GET.status_message }}
+                </p>
             </div>
         </div>
     </div>
     {% endif %}
     <!-- End Status Message -->
-
     <!-- Content -->
     {% block content %}{% endblock %}
-
     <!-- Start Footer -->
     <div class="row" id="footer">
         <div class="col-xs-10">
             &copy; 2014 Сервіс Обліку Студентів
         </div>
         <div class="col-xs-2">
-            <span class="label label-primary pull-right">Ваше місто <i>{{ client_city }}</i></span>
+            <span class="label label-primary pull-right">Ваше місто 
+                <i>{{ client_city }}</i>
+            </span>
         </div>
     </div>
     <!-- End Footer -->
