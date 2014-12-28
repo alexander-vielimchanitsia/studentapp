@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block tablist %}
 <!-- Start Sub-header -->
 <div class="row" id="sub-header">
@@ -64,13 +63,13 @@
             </tr>
             </thead>
             <tbody>
-                    {% for Student in table_student %}
+            {% for student in table_student %}
                 <tr>
-                    <td>{{ Student.id }}</td>
-                    <td><img class="img-circle" src="http://127.0.0.1:8000/media/{{ Student.foto }}" id="img-in-table"></td>
-                    <td><a href="#">{{ Student.last_name }}</a></td>
-                    <td><a href="#">{{ Student.first_name }}</a></td>
-                    <td>{{ Student.stud_bilet }}</td>
+                    <td>{{ student.id }}</td>
+                    <td><img class="img-circle" src="http://127.0.0.1:8000/media/{{ student.foto }}" id="img-in-table"></td>
+                    <td><a href="#">{{ student.last_name }}</a></td>
+                    <td><a href="#">{{ student.first_name }}</a></td>
+                    <td>{{ student.stud_bilet }}</td>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle"
@@ -79,10 +78,10 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/students/edit/{{ Student.id }}/">Редагувати</a>
+                                    <a role="menuitem" tabindex="-1" href="/students/edit/{{ student.id }}/">Редагувати</a>
                                 </li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/students/delete/{{ Student.id }}/">Видалити</a>
+                                    <a role="menuitem" tabindex="-1" href="/students/delete/{{ student.id }}/">Видалити</a>
                                 </li>
                             </ul>
                         </div>
@@ -115,7 +114,6 @@
     <!-- End paginations -->
     </div>
 </div>
-
 <!-- POP-UP -->
 <div class="modal fade" id="myModal">
     <form action="/students/add/" id="id-student-form-popup" method="post" data-toggle="validator" role="form">{% csrf_token %}
@@ -135,11 +133,9 @@
         </div><!-- /.modal-dialog -->
     </form>
 </div><!-- /.modal -->
-
 <!-- POP-UP -->
-
 <!-- End Content -->
 {% endblock %}
 {% block extra_js %}
-    <script src="../static/js/pop-up-addstudent.js" ></script>
+<script src="../static/js/pop-up-addstudent.js" ></script>
 {% endblock extra_js %}

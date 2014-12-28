@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block extra_css %}
-    <link href="http://127.0.0.1:8000/static/bootstrap/css/bootstrapValidator.min.css" rel="stylesheet">
+<link href="http://127.0.0.1:8000/static/bootstrap/css/bootstrapValidator.min.css" rel="stylesheet">
 {% endblock extra_css %}
 {% block tablist %}
 <!-- Start Sub-header -->
@@ -36,11 +36,11 @@
             </tr>
             </thead>
             <tbody>
-            {% for Group in table_group %}
+            {% for group in table_group %}
             <tr>
-                <td>{{ Group.id }}</td>
-                <td>{{ Group.name_group }}</td>
-                <td>{{ Group.king_group }}</td>
+                <td>{{ group.id }}</td>
+                <td>{{ group.name_group }}</td>
+                <td>{{ group.king_group }}</td>
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle"
@@ -49,10 +49,10 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="/groups/edit/{{ Group.id }}/">Редагувати</a>
+                                <a role="menuitem" tabindex="-1" href="/groups/edit/{{ group.id }}/">Редагувати</a>
                             </li>
                             <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="/groups/delete/{{ Group.id }}/">Видалити</a>
+                                <a role="menuitem" tabindex="-1" href="/groups/delete/{{ group.id }}/">Видалити</a>
                             </li>
                         </ul>
                     </div>
@@ -83,7 +83,6 @@
         <!-- End paginations -->
     </div>
 </div>
-
 <!-- POP-UP -->
 <div class="modal fade" id="myModal">
     <form action="/groups/add/" id="id-group-form-popup" method="post" data-toggle="validator" role="form">{% csrf_token %}
@@ -121,8 +120,6 @@
         </div><!-- /.modal-dialog -->
     </form>
 </div><!-- /.modal -->
-
-
 <!-- POP-UP -->
 {% endblock %}
 {% block extra_js %}
