@@ -20,7 +20,7 @@
     <!-- Start header -->
     <div class="row" id="header">
         <div class="col-xs-8">
-            <h1>Сервіс Обліку Студентів {{ client_ip }}</h1>
+            <h1>Сервіс Обліку Студентів</h1>
         </div>
         {% block group-selector %}
         <div class="col-xs-4" id="group-selector">
@@ -61,7 +61,7 @@
             &copy; 2014 Сервіс Обліку Студентів
         </div>
         <div class="col-xs-2">
-            <span class="label label-primary pull-right">Ваше місто <i>Україна</i></span>
+            <span class="label label-primary pull-right">Ваше місто <i>{{ client_city }}</i></span>
         </div>
     </div>
     <!-- End Footer -->
