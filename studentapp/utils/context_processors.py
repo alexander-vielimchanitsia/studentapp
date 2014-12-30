@@ -9,6 +9,6 @@ def geoip(request):
         ip = request.META.get('REMOTE_ADDR')
 
     g = GeoIP()
-    client_ip = ip
-    client_city = g.country_name('46.118.0.0')
-    return {'client_city': client_city}
+    client_ip = x_forwarded_for
+    client_city = g.country_name('37.54.61.136')
+    return {'client_city': client_city, 'client_ip': client_ip}
