@@ -16,7 +16,19 @@
             data: mForm,
             success: function(data){
                 var inputs = $('input,select');
-                inputs.tooltip('destroy');
+
+                inputs.onfocus = function() {
+                    inputs.tooltip({
+                        trigger: 'manual',
+                        placement: 'right',
+                        title: textError
+                    }).tooltip('show');
+                };
+                inputs.onblur = function() {
+                    if (inputs.val() !== "") {
+                        inputs.tooltip('destroy');
+                    }
+                };
 
                 $.each(inputs, function(index, val) {
                     var input = $(val),
