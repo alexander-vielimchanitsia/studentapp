@@ -2,7 +2,8 @@
 
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
-from django.http import HttpResponse
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from studentapp.models.groups import Group
@@ -34,10 +35,16 @@ def students_list(request, page_number = 1):
 
 def add_student(request):
     if request.POST:
-        form = StudentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect(u'/?status_message=Студент успішно доданий!')
+        if request.POST.get('save_button') is not None:
+            form = StudentForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect(u'/?status_message=Студент успішно доданий!')
+        elif request.POST.get('cancel_button') is not None:
+            # redirect to home page on cancel button
+            return HttpResponseRedirect(
+                u'%s?status_message=Додавання студента скасовано!' %
+                reverse('home'))
     else:
         form = StudentForm()
     return render(request, '../templates/students/add_student.html',
@@ -46,10 +53,16 @@ def add_student(request):
 def edit_student(request, student_id):
     student = Student.objects.get(id=student_id)
     if request.method == 'POST':
-        form = StudentForm(request.POST, request.FILES, instance=student)
-        if form.is_valid():
-            student = form.save()
-            return redirect(u'/?status_message=Студент успішно відредагований!')
+        if request.POST.get('save_button') is not None:
+            form = StudentForm(request.POST, request.FILES, instance=student)
+            if form.is_valid():
+                student = form.save()
+                return redirect(u'/?status_message=Студент успішно відредагований!')
+        elif request.POST.get('cancel_button') is not None:
+            # redirect to home page on cancel button
+            return HttpResponseRedirect(
+                u'%s?status_message=Редагування студента скасовано!' %
+                reverse('home'))
     else:
         form = StudentForm(instance=student)
     return render_to_response('../templates/students/edit_student.html',

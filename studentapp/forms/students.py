@@ -32,8 +32,8 @@ class StudentForm(ModelForm):
             'stud_bilet',
             'stud_group',
             FormActions(
-                Submit('save', u'Зберегти'),
-                HTML(u'<a class="btn btn-default" href={% url "home" %}>Скасувати</a>'),
+                Submit('save_button', u'Зберегти', css_class="btn btn-primary"),
+                Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
                 css_class="buttons-form-submit"
             ),
         )
