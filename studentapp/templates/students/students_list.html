@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block extra_css %}
+    <link href="http://127.0.0.1:8000/static/bootstrap/css/datepicker.css" rel="stylesheet">
+{% endblock extra_css %}
 {% block tablist %}
 <!-- Start Sub-header -->
 <div class="row" id="sub-header">
@@ -137,5 +140,7 @@
 <!-- End Content -->
 {% endblock %}
 {% block extra_js %}
+<script src="http://127.0.0.1:8000/static/bootstrap/js/bootstrap-datepicker.js"></script>
+<script src="http://127.0.0.1:8000/static/js/datepicker.js"></script>
 <script src="../static/js/pop-up-addstudent.js" ></script>
 {% endblock extra_js %}

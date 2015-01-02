@@ -6,7 +6,7 @@
         $("#modal-body").load("/students/add/ #id-student-form");
     });
 
-    $("#submit-id-save").click(function(e) {
+    $("#submit-id-save_button").click(function(e) {
         e.preventDefault();
         var mForm = $("#id-student-form").serialize(),
             valid = true;
