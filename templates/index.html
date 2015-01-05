@@ -37,7 +37,7 @@
             </tr>
             </thead>
             <tbody>
-            {% while Student in table_student %}
+            {% for Student in table_student %}
                 <tr>
                     <td>{{ Student.id }}</td>
                     <td><img src="http://127.0.0.1:8000/media/{{ Student.foto }}" style="width:30px"></td>
@@ -61,7 +61,7 @@
                         </div>
                     </td>
                 </tr>
-            {% endwhile %}
+            {% endfor %}
             </tbody>
         </table>
         {% endif %}
