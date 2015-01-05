@@ -10,7 +10,7 @@ from studentapp.models.students import Student
 from studentapp.forms import GroupForm
 # Create your views here.
 
-def groups_list(request, page_number = 1):
+def groups_list(request, page_number=1):
     table_group = Group.objects.all()
     paginator = Paginator(table_group, 3)
     page = request.GET.get('page')

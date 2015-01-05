@@ -10,8 +10,10 @@ from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from studentapp.models import Student
 
 class StudentForm(ModelForm):
+
     class Meta:
         model = Student
+
     def __init__(self, *args, **kwargs):
         super(StudentForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()

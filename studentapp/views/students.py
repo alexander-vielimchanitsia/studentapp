@@ -11,7 +11,7 @@ from studentapp.models.students import Student
 from studentapp.forms import StudentForm
 
 
-def students_list(request, page_number = 1):
+def students_list(request, page_number=1):
     table_student = Student.objects.all()
 
     # try ro order students list
@@ -35,11 +35,14 @@ def students_list(request, page_number = 1):
 
 def add_student(request):
     if request.POST:
+        # activity if click on save button
         if request.POST.get('save_button') is not None:
             form = StudentForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
                 return redirect(u'/?status_message=Студент успішно доданий!')
+
+        # activity if click on save button
         elif request.POST.get('cancel_button') is not None:
             # redirect to home page on cancel button
             return HttpResponseRedirect(
@@ -53,11 +56,13 @@ def add_student(request):
 def edit_student(request, student_id):
     student = Student.objects.get(id=student_id)
     if request.method == 'POST':
+        # activity if click on save button
         if request.POST.get('save_button') is not None:
             form = StudentForm(request.POST, request.FILES, instance=student)
             if form.is_valid():
                 student = form.save()
                 return redirect(u'/?status_message=Студент успішно відредагований!')
+
         elif request.POST.get('cancel_button') is not None:
             # redirect to home page on cancel button
             return HttpResponseRedirect(
