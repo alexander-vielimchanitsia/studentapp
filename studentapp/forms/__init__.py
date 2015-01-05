@@ -1,2 +1,2 @@
-from .students import StudentForm
+from .students import StudentFormAdd, StudentFormEdit
 from .groups import GroupForm

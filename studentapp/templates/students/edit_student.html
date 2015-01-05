@@ -14,9 +14,7 @@
             <div class="tab-pane active" id="tab1">
                 <h4>Редагування студента</h4>
             </div>
-            <form class="form-horizontal" id="edit-student-form" action="/students/edit/{{ student.id }}/" method="post" enctype="multipart/form-data">{% csrf_token %}
                 {% crispy form %}
-            </form>
         </div>
     </div>
 {% endblock %}
