@@ -35,15 +35,13 @@ def students_list(request, page_number=1):
 
 def add_student(request):
     if request.POST:
-        # activity if click on save button
-        if request.POST.get('save_button_add') is not None:
-            form = StudentFormAdd(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
-                return redirect(u'/?status_message=Студент успішно доданий!')
+        form = StudentFormAdd(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(u'/?status_message=Студент успішно доданий!')
 
         # activity if click on save button
-        elif request.POST.get('cancel_button_add') is not None:
+        if request.POST.get('cancel_button_add') is not None:
             # redirect to home page on cancel button
             return HttpResponseRedirect(
                 u'%s?status_message=Додавання студента скасовано!' %
