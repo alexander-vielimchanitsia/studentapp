@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% block extra_css %}
-    <link href="http://127.0.0.1:8000/static/bootstrap/css/datepicker.css" rel="stylesheet">
+    <link href="http://127.0.0.1:8000/static/bootstrap/css/datepicker.css"
+    rel="stylesheet">
 {% endblock extra_css %}
 {% block tablist %}
 <!-- Start Sub-header -->
 <div class="row" id="sub-header">
     <div class="col-xs-12">
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="/">Студенти</a></li>
-            <li role="presentation"><a href="/groups/">Групи</a></li>
+            <li role="presentation" class="active">
+                <a href="/">Студенти</a>
+            </li>
+            <li role="presentation">
+                <a href="/groups/">Групи</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -19,11 +24,23 @@
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-students_list">
         <h2>База Студентів</h2>
-        <a href="/students/add/" class="btn btn-primary" id="button-add-student" data-remote="false" data-toggle="modal" data-target="#myModal">Додати Студента</a>
+        <a href="/students/add/" class="btn btn-primary"
+        id="button-add-student" data-remote="false" data-toggle="modal"
+        data-target="#myModal">
+            Додати Студента
+        </a>
         {% if not table_student %}
         <div class="jumbotron text-if-not-object">
             <h1>Студентів поки немає!</h1>
-            <p>Натисніть <a href="/students/add/" class="btn btn-success" data-remote="false" data-toggle="modal" data-target="#myModal">Додати нового студента</a> щоб добавити нового студента.</p>
+            <p>
+                Натисніть
+                <a href="/students/add/"
+                class="btn btn-success" data-remote="false"
+                data-toggle="modal" data-target="#myModal">
+                    Додати нового студента
+                </a>
+                щоб добавити нового студента.
+            </p>
         </div>
         {% endif %}
         {% if table_student %}
@@ -69,7 +86,11 @@
             {% for student in table_student %}
                 <tr>
                     <td>{{ student.id }}</td>
-                    <td><img class="img-circle" src="http://127.0.0.1:8000/media/{{ student.foto }}" id="img-in-table"></td>
+                    <td>
+                        <img class="img-circle"
+                        src="http://127.0.0.1:8000/media/{{ student.foto }}"
+                        id="img-in-table">
+                    </td>
                     <td><a href="#">{{ student.last_name }}</a></td>
                     <td><a href="#">{{ student.first_name }}</a></td>
                     <td>{{ student.stud_bilet }}</td>
@@ -81,10 +102,12 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/students/edit/{{ student.id }}/">Редагувати</a>
+                                    <a role="menuitem" tabindex="-1"
+                                    href="/students/edit/{{ student.id }}/">Редагувати</a>
                                 </li>
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/students/delete/{{ student.id }}/">Видалити</a>
+                                    <a role="menuitem" tabindex="-1"
+                                    href="/students/delete/{{ student.id }}/">Видалити</a>
                                 </li>
                             </ul>
                         </div>
@@ -123,7 +146,10 @@
             <div class="modal-content">
                 <!-- Start Modal Header -->
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
                     <h4 class="modal-title">Додавання нового студента</h4>
                 </div>
                 <!-- End Modal Header -->
