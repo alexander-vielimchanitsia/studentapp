@@ -14,7 +14,8 @@ def index(request, page_number=1):
     table_student = Student.objects.all()
     student_page = Paginator(table_student, 10)
     return render_to_response('index.html',
-        {'table_student': student_page.page(page_number)},
+        {'table_student': student_page.page(page_number),
+        'a': 2},
         context_instance=RequestContext(request)
     )
 
