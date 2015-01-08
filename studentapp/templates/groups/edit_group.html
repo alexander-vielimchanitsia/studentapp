@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+
 {% load crispy_forms_tags %}
+
 {% block group-selector %}{% endblock %}
+
 {% block content %}
     <div class="tabbable">
         <ul class="nav nav-tabs">
-            <li class="active disabled"><a href="">Редагувати групу</a></li>
-            <li><a href="http://127.0.0.1:8000/">Перейти на главну</a></li>
+            <li class="active disabled"><a>Редагувати групу</a></li>
+            <li><a href="{% url 'home' %}">Перейти на главну</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab1">
