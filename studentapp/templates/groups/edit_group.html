@@ -17,7 +17,9 @@
             <form class="form-horizontal" id="group_form"
             action="/groups/edit/{{ group.id }}/" method="post"
             enctype="multipart/form-data">{% csrf_token %}
-                {% crispy form %}
+            <!-- Start Form -->
+            {% crispy form %}
+            <!-- End Form -->
             </form>
         </div>
     </div>
