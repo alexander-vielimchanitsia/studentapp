@@ -14,13 +14,9 @@
             <div class="tab-pane active" id="tab1">
                 <h4>Редагування групи</h4>
             </div>
-            <form class="form-horizontal" id="group_form"
-            action="/groups/edit/{{ group.id }}/" method="post"
-            enctype="multipart/form-data">{% csrf_token %}
             <!-- Start Form -->
             {% crispy form %}
             <!-- End Form -->
-            </form>
         </div>
     </div>
 {% endblock %}

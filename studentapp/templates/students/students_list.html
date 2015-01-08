@@ -16,7 +16,7 @@
                 <a>Студенти</a>
             </li>
             <li role="presentation">
-                <a href="{ url 'group_list'}">Групи</a>
+                <a href="{% url 'group_list' %}">Групи</a>
             </li>
         </ul>
     </div>
@@ -107,11 +107,11 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation">
                                     <a role="menuitem" tabindex="-1"
-                                    href="/students/edit/{{ student.id }}/">Редагувати</a>
+                                    href="{% url 'edit_student' student.id %}">Редагувати</a>
                                 </li>
                                 <li role="presentation">
                                     <a role="menuitem" tabindex="-1"
-                                    href="/students/delete/{{ student.id }}/">Видалити</a>
+                                    href="{% url 'delete_student' student.id %}">Видалити</a>
                                 </li>
                             </ul>
                         </div>
