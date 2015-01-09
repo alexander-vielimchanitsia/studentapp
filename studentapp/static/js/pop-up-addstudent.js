@@ -32,8 +32,6 @@
                     mForm = $("#id-student-form").serializefiles(),
                     valid = true;
 
-
-
                 $.ajax({
                     url: '/students/add/',
                     type: 'POST',
