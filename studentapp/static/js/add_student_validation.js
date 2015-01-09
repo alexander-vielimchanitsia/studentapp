@@ -6,7 +6,7 @@
             this.setUpListeners();
         },
 
-        setUpListeners: function () {
+        setUpListeners : function () {
             $('form').on('submit', app.submitForm);
             $('form').on('keydown', 'input', app.removeError);
         },

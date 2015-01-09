@@ -31,6 +31,9 @@
                 var inputs = $('input,select'),
                     mForm = $("#id-student-form").serializefiles(),
                     valid = true;
+
+
+
                 $.ajax({
                     url: '/students/add/',
                     type: 'POST',
@@ -38,19 +41,6 @@
                     contentType: false,
                     processData: false,
                     success: function(data){
-
-                        inputs.onfocus = function() {
-                            inputs.tooltip({
-                                trigger: 'manual',
-                                placement: 'right',
-                                title: textError
-                            }).tooltip('show');
-                        };
-                        inputs.onblur = function() {
-                            if (inputs.val() !== "") {
-                                inputs.tooltip('destroy');
-                            };
-                        };
 
                         $.each(inputs, function(index, val) {
                             var input = $(val),
@@ -69,6 +59,7 @@
                                 valid = false
                             }else {
                                 formGroup.addClass('has-success').removeClass('has-error');
+                                input.tooltip('destroy');
                             };
 
                         });
