@@ -51,6 +51,7 @@ def add_student(request):
     return render(request, '../templates/students/add_student.html',
         {'form': form})
 
+
 def edit_student(request, student_id):
     student = Student.objects.get(id=student_id)
     if request.method == 'POST':

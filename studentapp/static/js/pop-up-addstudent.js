@@ -10,13 +10,33 @@
             // Pop-up submit button
             $("#submit-id-save_button_add").click(function(e) {
                 e.preventDefault();
+
+                // SERIALIZE FILES AND DATE FORM
+                $.fn.serializefiles = function() {
+                    var obj = $(this);
+                    /* ADD FILE TO PARAM AJAX */
+                    var formData = new FormData();
+                    $.each($(obj).find("input[type='file']"), function(i, tag) {
+                        $.each($(tag)[0].files, function(i, file) {
+                            formData.append(tag.name, file);
+                        });
+                    });
+                    var params = $(obj).serializeArray();
+                    $.each(params, function (i, val) {
+                        formData.append(val.name, val.value);
+                    });
+                    return formData;
+                };
+
                 var inputs = $('input,select'),
-                    mForm = $("#id-student-form").serialize(),
+                    mForm = $("#id-student-form").serializefiles(),
                     valid = true;
                 $.ajax({
                     url: '/students/add/',
                     type: 'POST',
                     data: mForm,
+                    contentType: false,
+                    processData: false,
                     success: function(data){
 
                         inputs.onfocus = function() {
