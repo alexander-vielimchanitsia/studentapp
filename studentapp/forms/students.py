@@ -22,7 +22,7 @@ class StudentFormAdd(ModelForm):
         self.helper.form_id = 'id-student-form'
         self.helper.form_class = 'form-horizontal'
         self.helper.form_method = 'post'
-        self.helper.form_action = '/students/add/'
+        self.helper.form_action = reverse('add_student')
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-2 field_retreat'
