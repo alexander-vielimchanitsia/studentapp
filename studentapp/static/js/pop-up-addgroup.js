@@ -30,9 +30,21 @@
                 };
                 if ($('#id_name_group').val()!=="") {
                     $("#myModal").modal('hide'); // Ховаємо попап меню.
-                    $("#status-message-popup").show(); // Показуємо статус месседж.
-                    $("#status-message-text").text("Група успішно додана!"); // Додаємо текст в статус месседж.
-                    $("#content-columns").load("/groups/ #content-groups-list"); // Оновлюємо список груп.
+                    $("#content-columns").load("/groups/ #content-groups-list");
+                    // Оновлюємо список груп.
+                    document.getElementById("status-message-popup").innerHTML=
+                        '<div class="row" id="status-message">'+
+                            '<div class="col-xs-12">'+
+                                '<div class="alert alert-success">'+
+                                    '<button type="button" class="close" data-dismiss="alert">'+
+                                        '&times;'+
+                                    '</button>'+
+                                    '<p id="status-message-text" name="status_message_text">'+
+                                        'Група успішно додана!'+
+                                    '</p>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
                 }
                 else {
                     $("#id_name_group").tooltip({
