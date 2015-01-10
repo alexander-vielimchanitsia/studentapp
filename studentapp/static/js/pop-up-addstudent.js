@@ -65,6 +65,19 @@
                             $("#myModal").modal('hide'); // Ховаємо попап меню.
                             $("#status-message-text").text("Студент успішно доданий!"); // Додаємо текст в статус месседж.
                             $("#content-columns").load("/ #content-students_list"); // Оновлюємо список груп.
+                            document.getElementById("status-message-popup").innerHTML=
+                                '<div class="row" id="status-message">'+
+                                    '<div class="col-xs-12">'+
+                                        '<div class="alert alert-success">'+
+                                            '<button type="button" class="close" data-dismiss="alert">'+
+                                                '&times;'+
+                                            '</button>'+
+                                            '<p id="status-message-text" name="status_message_text">'+
+                                                'Студент успішно доданий!'+
+                                            '</p>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>';
                         };
                     },
                     error: function(data){
