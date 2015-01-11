@@ -199,14 +199,16 @@ class WhileNode(template.Node):
 # SetVar
 class MinusOneNode(template.Node):
     def __init__(self, format_string):
-        self.format_string = format_string
+        self.format_string = template.Variable(format_string)
 
     def render(self, context):
+        var = self.format_string.resolve(context)
+
         try:
-            return int(self.format_string) - int(1)
+            return int(var) - int(1)
         except (TypeError, ValueError):
             try:
-                return self.format_string - 1
+                return var - 1
             except Exception:
                 return ''
 
@@ -217,6 +219,4 @@ def minusone(parser,token):
         tag_name, format_string = token.split_contents()
     except ValueError:
         raise template.TemplateSyntaxError("%r tag requires a single argument" % token.contents.split()[0])
-    if not (format_string[0] == format_string[-1] and format_string[0] in ('"', "'")):
-        raise template.TemplateSyntaxError("%r tag's argument should be in quotes" % tag_name)
-    return MinusOneNode(format_string[1:-1])
+    return MinusOneNode(format_string)
