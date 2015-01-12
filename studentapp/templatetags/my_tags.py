@@ -196,7 +196,7 @@ class WhileNode(template.Node):
         return loop.render(close=True)
 
 
-# SetVar
+# MinusOne - віднімає одиничку від змінної і зберігає нові дані в шаблоні
 class MinusOneNode(template.Node):
     def __init__(self, format_string):
         self.format_string = template.Variable(format_string)
@@ -205,12 +205,18 @@ class MinusOneNode(template.Node):
         var = self.format_string.resolve(context)
 
         try:
-            return int(var) - int(1)
+            result = int(var) - int(1)
         except (TypeError, ValueError):
             try:
-                return var - 1
+                result = var - 1
             except Exception:
-                return ''
+                result = 0
+
+        context[self.format_string.var] = result
+
+        return ''
+
+
 
 @register.tag
 def minusone(parser,token):
