@@ -10,19 +10,6 @@ urlpatterns = patterns('',
 
     #ADMIN
     url(r'^admin/', include(admin.site.urls)),
-<<<<<<< HEAD
-    url(r'^$', include('studentapp.urls')),
-    url(r'^index/', include('studentapp.urls')),
-    url(r'^page/(\d+)/$', 'studentapp.views.index'),
-    url(r'^groups/$', 'studentapp.views.groups'),
-    url(r'^groups/addgroup/$', 'studentapp.views.add_group'),
-    url(r'^groups/page/(\d+)/$', 'studentapp.views.groups'),
-    url(r'^edit_student/(?P<student_id>\d+)/$', 'studentapp.views.edit_student'),
-    url(r'^groups/edit_group/(?P<group_id>\d+)/$', 'studentapp.views.edit_group'),
-    url(r'^stud_delete/(?P<student_id>\d+)/$', 'studentapp.views.stud_delete'),
-    url(r'^groups/group_delete/(?P<group_id>\d+)/$', 'studentapp.views.group_delete'),
-=======
-
     #STUDENT
     url(r'^$',
         'studentapp.views.students.students_list', name='home'),
@@ -41,7 +28,6 @@ urlpatterns = patterns('',
         'studentapp.views.groups.edit_group', name='edit_group'),
     url(r'^groups/delete/(?P<group_id>\d+)/$',
         'studentapp.views.groups.group_delete', name='delete_group'),
->>>>>>> django_forms
 )
 
 if settings.DEBUG:
