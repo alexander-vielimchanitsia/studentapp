@@ -10,6 +10,11 @@ urlpatterns = patterns('',
 
     #ADMIN
     url(r'^admin/', include(admin.site.urls)),
+    #ACCOUNTS
+    url(r'^accounts/logout/$',
+        'studentapp.views.accounts.logout_view', name='auth_logout'),
+    url(r'^accounts/login/$',
+        'studentapp.views.accounts.login_view', name='auth_login'),
     #STUDENT
     url(r'^$',
         'studentapp.views.students.students_list', name='home'),

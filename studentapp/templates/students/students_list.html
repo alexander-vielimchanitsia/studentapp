@@ -19,7 +19,21 @@
             </li>
             <li role="presentation">
                 <a href="{% url 'group_list' %}">Групи</a>
+            {% if user.is_authenticated %}
+            <li class="pull-right">
+                <a href="{% url 'auth_logout' %}">Вийти</a>
             </li>
+            <li class="pull-right">
+                <a href="#">Користувач</a>
+            </li>
+            {% else %}
+            <li class="pull-right">
+                <a href="{% url 'auth_login' %}">Увійти</a>
+            </li>
+            <li class="pull-right">
+                <a href="#">Реєстрація</a>
+            </li>
+            {% endif %}
         </ul>
     </div>
 </div>
