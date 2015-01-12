@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static from staticfiles %}
+
+{% load crispy_forms_tags %}
+
+{% block group-selector %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+    href="{% static "bootstrap/css/datepicker.css" %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="tabbable"> 
+    <ul class="nav nav-tabs">
+        <li class="active"><a>Додати студента</a></li>
+        <li><a href="{% url 'home' %}">Перейти на главну</a></li>
+    </ul>
+    <div class="tab-content" id="tab-content-addstudent">
+        <div class="row">
+            <div class="col-xs-4">
+                <h4 class="pull-right">Заповнення нового студента</h4>
+            </div>
+        </div>
+        <!-- Start Form -->
+        {% crispy form %}
+        <!-- End Form -->
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static "bootstrap/js/bootstrap-datepicker.js" %}">
+</script>
+<script src="{% static "js/datepicker.js" %}">
+</script>
+{% endblock extra_js %}

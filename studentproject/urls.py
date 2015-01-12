@@ -8,7 +8,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'studentproject.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
+    #ADMIN
     url(r'^admin/', include(admin.site.urls)),
+<<<<<<< HEAD
     url(r'^$', include('studentapp.urls')),
     url(r'^index/', include('studentapp.urls')),
     url(r'^page/(\d+)/$', 'studentapp.views.index'),
@@ -19,9 +21,30 @@ urlpatterns = patterns('',
     url(r'^groups/edit_group/(?P<group_id>\d+)/$', 'studentapp.views.edit_group'),
     url(r'^stud_delete/(?P<student_id>\d+)/$', 'studentapp.views.stud_delete'),
     url(r'^groups/group_delete/(?P<group_id>\d+)/$', 'studentapp.views.group_delete'),
+=======
+
+    #STUDENT
+    url(r'^$',
+        'studentapp.views.students.students_list', name='home'),
+    url(r'^students/add/$',
+        'studentapp.views.students.add_student', name='add_student'),
+    url(r'^students/edit/(?P<student_id>\d+)/$',
+        'studentapp.views.students.edit_student', name='edit_student'),
+    url(r'^students/delete/(?P<student_id>\d+)/$',
+        'studentapp.views.students.stud_delete', name='delete_student'),
+    #GROUP
+    url(r'^groups/$',
+        'studentapp.views.groups.groups_list', name='group_list'),
+    url(r'^groups/add/$',
+        'studentapp.views.groups.add_group', name='add_group'),
+    url(r'^groups/edit/(?P<group_id>\d+)/$',
+        'studentapp.views.groups.edit_group', name='edit_group'),
+    url(r'^groups/delete/(?P<group_id>\d+)/$',
+        'studentapp.views.groups.group_delete', name='delete_group'),
+>>>>>>> django_forms
 )
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-                            (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-                            'document_root': settings.MEDIA_ROOT}))
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT}))

@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% load static from staticfiles %}
+
+{% block extra_css %}
+<!-- There should be me css -->
+{% endblock extra_css %}
+
+{% block tablist %}
+<!-- Start Sub-header -->
+<div class="row" id="sub-header">
+    <div class="col-xs-12">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation">
+                <a href="{% url 'home' %}">Студенти</a>
+            </li>
+            <li role="presentation" class="active">
+                <a>Групи</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- End Sub-header -->
+{% endblock %}
+
+{% block content %}
+<div class="row" id="content-columns">
+    <div class="col-xs-12" id="content-groups-list">
+        <h2>Список груп</h2>
+        <a href="{% url 'add_group' %}" class="btn btn-primary"
+        id="button-add-group" data-remote="false" data-toggle="modal"
+        data-target="#myModal">
+            Додати Групу
+        </a>
+        {% if not table_group %}
+        <div class="jumbotron text-if-not-object">
+            <h1>Групи поки немає!</h1>
+            <p>
+                Натисніть
+                <a href="{% url 'add_group' %}"class="btn btn-success"
+                data-remote="false" data-remote="false" data-toggle="modal"
+                data-target="#myModal">
+                    Додати нову групу
+                </a>
+                щоб добавити нову групу.
+            </p>
+        </div>
+        {% endif %}
+
+        {% if table_group %}
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Назва групи</th>
+                <th>Староста</th>
+                <th>Дії</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for group in table_group %}
+            <tr>
+                <td>{{ group.id }}</td>
+                <td>{{ group.name_group }}</td>
+                <td>{{ group.king_group }}</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle"
+                                type="button" data-toggle="dropdown">Дія
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1"
+                                href="{% url 'edit_group' group.id %}">Редагувати</a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1"
+                                href="{% url 'delete_group' group.id %}">Видалити</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        <!-- Start paginations -->
+        {% if table_group.has_other_pages %}
+        <nav class="pull-right">
+            <ul class="pagination">
+                <li>
+                    <a href="{% url 'group_list' %}?page=1">&laquo</a>
+                </li>
+                {% for page in table_group.paginator.page_range %}
+                <li {% if table_group.number == page %}
+                        class="active"
+                    {% endif %}>
+                    <a href="{% url 'group_list' %}?page={{ page }}">{{ page }}</a>
+                </li>
+                {% endfor %}
+                <li>
+                    <a href="{% url 'group_list' %}?page={{ table_group.paginator.num_pages }}">
+                        &raquo
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endif %}
+        <!-- End paginations -->
+    </div>
+</div>
+<!-- POP-UP -->
+<div class="modal fade" id="myModal">
+    <form action="/groups/add/" id="id-group-form-popup"
+    method="post" data-toggle="validator"
+    role="form">{% csrf_token %}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Start Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title">Додавання нової групи</h4>
+                </div>
+                <!-- End Modal Header -->
+                <!-- Start Modal Body -->
+                <div class="modal-body" id="modal-body">
+                    <!-- Start field name group -->
+                    <div class="row">
+                        <div class="col-xs-12" id="div_id_name_group_popup">
+                        </div>
+                    </div>
+                    <!-- End field name group -->
+                    <!-- Start field king group -->
+                    <div class="row">
+                        <div class="col-xs-12" id="div_id_king_group_popup">
+                        </div>
+                    </div>
+                    <!-- End field king group -->
+                </div>
+                <!-- End Modal Body -->
+                <!-- Start Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                    data-dismiss="modal">
+                        Скасувати
+                    </button>
+                    <button type="button" class="btn btn-primary"
+                    id="send-popup-form">
+                        Зберегти
+                    </button>
+                </div>
+                <!-- End Modal Footer -->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </form>
+</div><!-- /.modal -->
+<!-- POP-UP -->
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static "js/pop-up-addgroup.js" %}"></script>
+{% endblock extra_js %}

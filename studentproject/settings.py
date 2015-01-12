@@ -48,6 +48,7 @@ INSTALLED_APPS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
+    'studentapp.utils.context_processors.geoip',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -68,17 +69,13 @@ WSGI_APPLICATION = 'studentproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# Database from db.py
+from .db import DATABASES
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'RU-ru'
+LANGUAGE_CODE = 'UK-uk'
 
 TIME_ZONE = 'UTC'
 
@@ -93,7 +90,6 @@ DATE_FORMAT = 'Y-m-d'
 # Media files
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 MEDIA_URL = '/media/'
 
 
@@ -102,11 +98,9 @@ MEDIA_URL = '/media/'
 
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
@@ -114,4 +108,6 @@ STATICFILES_FINDERS = (
 
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
-CRISPY_TEMPLATE_PACK  =  'bootstrap2.3.2'
+CRISPY_TEMPLATE_PACK  = 'bootstrap3'
+
+GEOIP_PATH = os.path.join(BASE_DIR, 'GeoIP')
