@@ -36,15 +36,6 @@
         {% if not table_student %}
         <div class="jumbotron text-if-not-object">
             <h1>Студентів поки немає!</h1>
-            <p>
-                Натисніть
-                <a href="{% url 'add_student' %}"
-                class="btn btn-success" data-remote="false"
-                data-toggle="modal" data-target="#myModal">
-                    Додати нового студента
-                </a>
-                щоб добавити нового студента.
-            </p>
         </div>
         {% endif %}
         {% if table_student %}
