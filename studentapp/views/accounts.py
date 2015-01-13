@@ -18,6 +18,7 @@ def login_view(request):
         password = form.cleaned_data['password']
         user = authenticate(username=username, password=password)
         login(request, user)
+        return redirect(u'/?status_message=Авторизація пройшла успішно!')
 
     context = {
         'form': form
