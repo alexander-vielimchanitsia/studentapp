@@ -17,9 +17,11 @@
             <li role="presentation" class="active">
                 <a>Студенти</a>
             </li>
+            {% if user.is_authenticated %}
             <li role="presentation">
                 <a href="{% url 'group_list' %}">Групи</a>
             </li>
+            {% endif %}
         </ul>
     </div>
 </div>
