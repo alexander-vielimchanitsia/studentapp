@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% load static from staticfiles %}
 
 {% block extra_css %}
@@ -21,36 +23,9 @@
 <div class="row">
     <div class="col-lg-9 col-md-offset-3">
         <h2 id="header-text">Авторизація</h2>
-        <form method="POST" action="" class="form-horizontal">{% csrf_token %}
-            <!-- username -->
-            <div id="div_id_username" class="form-group">
-                <label for="id_username"
-                        class="control-label col-lg-3 requiredField">
-                    Ім’я користувача<span class="asteriskField">*</span>
-                </label>
-                <div class="controls col-lg-3 field_retreat">
-                    <input class="textinput textInput form-control"
-                            id="id_username" maxlength="15" name="username"
-                            type="text">
-                </div>
-            </div>
-            <!-- password -->
-            <div id="div_id_password" class="form-group">
-                <label for="id_password"
-                        class="control-label col-lg-3 requiredField">
-                    Пароль<span class="asteriskField">*</span>
-                </label>
-                <div class="controls col-lg-3 field_retreat">
-                    <input class="textinput textInput form-control"
-                            id="id_password" maxlength="15" name="password"
-                            type="password">
-                </div>
-            </div>
-            <div id="accounts-buttons" class="form-group">
-                <input class="btn btn-primary" type="submit" value="Увійти">
-                <input class="btn btn-default" type="submit" value="Скасувати">
-            </div>
-        </form>
+        <!-- Login Form -->
+        {% crispy form %}
+        <!-- Login Form -->
     </div>
 </div>
 
