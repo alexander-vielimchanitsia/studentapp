@@ -15,6 +15,8 @@ urlpatterns = patterns('',
         'studentapp.views.accounts.logout_view', name='auth_logout'),
     url(r'^accounts/login/$',
         'studentapp.views.accounts.login_view', name='auth_login'),
+    url(r'^accounts/register/$',
+        'studentapp.views.accounts.registration_view', name='auth_register'),
     #STUDENT
     url(r'^$',
         'studentapp.views.students.students_list', name='home'),

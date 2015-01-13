@@ -1,7 +1,9 @@
-from django.shortcuts import render, HttpResponseRedirect
+# -*- coding: utf-8 -*-
+
+from django.shortcuts import render, HttpResponseRedirect, render_to_response, redirect
 from django.contrib.auth import logout, login, authenticate
 
-from studentapp.forms.accounts import LoginForm
+from studentapp.forms.accounts import LoginForm, RegistrationForm
 
 
 def logout_view(request):
@@ -21,3 +23,15 @@ def login_view(request):
         'form': form
     }
     return render(request, '../templates/accounts/login.html', context)
+
+def registration_view(request):
+    form = RegistrationForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect(u'/?status_message=Користувач успішно зареєстрований!')
+
+    context = {
+        'form': form
+    }
+    return render(request, '../templates/accounts/register.html', context)

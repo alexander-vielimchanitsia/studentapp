@@ -1,12 +1,33 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% load static from staticfiles %}
 
 {% block extra_css %}
 <!-- There should be me css -->
 {% endblock extra_css %}
 
+{% block group-selector %}{% endblock %}
+
 {% block content %}
+
+<!-- border -->
+<div class="row">
+    <div class="col-lg-12">
+    <span class="border-top"></span>
+    </div>
+</div>
+<!-- border -->
+
+<div class="row">
+    <div class="col-lg-9 col-md-offset-3">
+        <h2 id="header-text">Реєстрація</h2>
+        <!-- Login Form -->
+        {% crispy form %}
+        <!-- Login Form -->
+    </div>
+</div>
 
 {% endblock %}
 
