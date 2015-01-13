@@ -30,11 +30,13 @@
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-students_list">
         <h2>База Студентів</h2>
+        {% if user.is_authenticated %}
         <a href="{% url 'add_student' %}" class="btn btn-primary"
         id="button-add-student" data-remote="false" data-toggle="modal"
         data-target="#myModal">
             Додати Студента
         </a>
+        {% endif %}
         {% if not table_student %}
         <div class="jumbotron text-if-not-object">
             <h1>Студентів поки немає!</h1>
