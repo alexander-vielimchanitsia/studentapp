@@ -4,6 +4,7 @@ from studentapp.models import Group, Student
 
 
 class Command(LabelCommand):
+    args = '<name_group>'
     help = 'takes the name of the group and gives a list of students'
 
     requires_model_validation = False
