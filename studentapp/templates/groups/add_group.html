@@ -15,7 +15,15 @@
                 <h4>Створення нової групи</h4>
             </div>
             <!-- Start Form -->
+            {% if user.is_authenticated %}
+
             {% crispy form %}
+
+            {% else %}
+            <div class="jumbotron text-if-not-object">
+                <h1>Вам потрібно авторизуватись, щоб бачити цю сторінку!</h1>
+            </div>
+            {% endif %}
             <!-- End Form -->
         </div>
     </div>
