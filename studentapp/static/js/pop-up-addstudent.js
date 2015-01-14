@@ -63,6 +63,7 @@
                         });
                         if ( valid == true) {
                             $("#myModal").modal('hide'); // Ховаємо попап меню.
+                            document.getElementById("id-student-form").reset(); // Чистка полів після успішного збереження данных.
                             $("#content-columns").load("/ #content-students_list"); // Оновлюємо список груп.
                             // Додаємо статус месседж.
                             document.getElementById("status-message-popup").innerHTML=

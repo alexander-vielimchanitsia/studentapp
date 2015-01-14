@@ -30,8 +30,9 @@
                 };
                 if ($('#id_name_group').val()!=="") {
                     $("#myModal").modal('hide'); // Ховаємо попап меню.
-                    $("#content-columns").load("/groups/ #content-groups-list");
-                    // Оновлюємо список груп.
+                    document.getElementById("id-group-form-popup").reset(); // Чистка полів після успішного збереження данных.
+                    $("#content-columns").load("/groups/ #content-groups-list"); // Оновлюємо список груп.
+                    // Додаємо статус месседж.
                     document.getElementById("status-message-popup").innerHTML=
                         '<div class="row" id="status-message">'+
                             '<div class="col-xs-12">'+
