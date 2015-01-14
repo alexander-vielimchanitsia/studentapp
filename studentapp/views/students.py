@@ -77,6 +77,8 @@ def edit_student(request, student_id):
 
 def stud_delete(request, student_id):
     s = Student.objects.get(id=student_id)
+
     s.delete()
+
     return redirect(u'%s?status_message=Студент успішно видалений!' %
                     reverse('home'))
