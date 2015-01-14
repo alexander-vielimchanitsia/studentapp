@@ -4,6 +4,7 @@ from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.urlresolvers import reverse
 
 from studentapp.models.groups import Group
 from studentapp.models.students import Student
@@ -20,7 +21,7 @@ def groups_list(request, page_number=1):
         table_group = paginator.page(1)
     except EmptyPage:
         table_group = paginator.page(paginator.num_pages)
-    return render_to_response('../templates/groups/groups_list.html',
+    return render_to_response('groups/groups_list.html',
         {'table_group': table_group},
         context_instance=RequestContext(request))
 
@@ -29,10 +30,11 @@ def add_group(request):
         form = GroupFormAdd(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(u'/groups/?status_message=Група успішно додана!')
+            return redirect(u'%s?status_message=Група успішно додана!' %
+                            reverse('group_list'))
     else:
         form = GroupFormAdd()
-    return render(request, '../templates/groups/add_group.html',
+    return render(request, 'groups/add_group.html',
         {'form': form})
 
 def edit_group(request, group_id):
@@ -41,10 +43,11 @@ def edit_group(request, group_id):
         form = GroupFormEdit(request.POST, instance=group)
         if form.is_valid():
             group = form.save()
-            return redirect(u'/groups/?status_message=Група успішно відредагована!')
+            return redirect(u'%s?status_message=Група успішно відредагована!' %
+                            reverse('group_list'))
     else:
         form = GroupFormEdit(instance=group)
-    return render_to_response('../templates/groups/edit_group.html',
+    return render_to_response('groups/edit_group.html',
         {'form': form,
         'group': group},
         context_instance=RequestContext(request))
@@ -52,4 +55,5 @@ def edit_group(request, group_id):
 def group_delete(request, group_id):
     g = Group.objects.get(id=group_id)
     g.delete()
-    return redirect(u'/groups/?status_message=Група успішно видалена!')
+    return redirect(u'%s?status_message=Група успішно видалена!' %
+                    reverse('group_list'))
