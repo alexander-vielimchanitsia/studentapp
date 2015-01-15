@@ -89,7 +89,7 @@
                     <td>{{ student.id }}</td>
                     <td>
                         <img class="img-circle"
-                        src="/media/{{ student.foto }}"
+                        src="{{ student.foto.url }}"
                         id="img-in-table">
                     </td>
                     <td><a href="#">{{ student.last_name }}</a></td>
