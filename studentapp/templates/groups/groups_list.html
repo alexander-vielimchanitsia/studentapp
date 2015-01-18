@@ -85,7 +85,7 @@
         </div>
         {% endif %}
         <!-- Start paginations -->
-        {% if table_group.has_other_pages %}
+        {% if table_group.has_other_pages and user.is_authenticated %}
         <nav class="pull-right">
             <ul class="pagination">
                 <li>
