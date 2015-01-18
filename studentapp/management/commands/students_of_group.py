@@ -17,6 +17,6 @@ class Command(LabelCommand):
             raise CommandError('This is group DoesNotExist')
         students = Student.objects.filter(stud_group=group.id)
 
-        # print students[0].first_name + students[0].last_name
-
-        self.stdout.write('All students in group "%s"' % students)
+        print 'All students in the group %s:' % name_group
+        for student in students:
+            self.stdout.write('%s,' % student)
