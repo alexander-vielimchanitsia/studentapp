@@ -2,7 +2,12 @@
 
 from django.core.urlresolvers import reverse
 from django.db import models
-# Create your models here.
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+import logging
+logr = logging.getLogger(__name__)
+
 
 class Student(models.Model):
 
@@ -39,3 +44,10 @@ class Student(models.Model):
 
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)
+
+# @receiver(post_save, sender=Student)
+def student_save_handler(sender, **kwargs):
+    logr.debug('Зміни в таблиці студентів: %s, %s' % (sender, kwargs))
+    # print 'Зміни в таблиці студентів: ', sender, kwargs
+
+post_save.connect(student_save_handler)

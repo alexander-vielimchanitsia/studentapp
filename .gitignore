@@ -8,3 +8,4 @@ media
 .idea
 studentproject.iml
 db.py
+*.log

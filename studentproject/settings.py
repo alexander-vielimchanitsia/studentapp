@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'crispy_forms',
     'studentapp',
 )
@@ -112,3 +113,23 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 CRISPY_TEMPLATE_PACK  = 'bootstrap3'
 
 GEOIP_PATH = os.path.join(BASE_DIR, 'GeoIP')
+
+#python logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
