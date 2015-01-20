@@ -23,23 +23,25 @@
 <div class="container" id="container">
     <!-- Start header -->
     <div class="row" id="header">
-        <ol class="breadcrumb">
-            {% if user.is_authenticated %}
-            <li>
-                <a href="#">{{ user.username }}</a>
-            </li>
-            <li>
-                <a href="{% url 'auth_logout' %}">Вийти</a>
-            </li>
-            {% else %}
-            <li>
-                <a href="{% url 'auth_login' %}">Увійти</a>
-            </li>
-            <li>
-                <a href="{% url 'auth_register' %}">Реєстрація</a>
-            </li>
-            {% endif %}
-        </ol>
+        <div class="col-xs-12">
+            <ol class="breadcrumb">
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="#">{{ user.username }}</a>
+                </li>
+                <li>
+                    <a href="{% url 'auth_logout' %}">Вийти</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'auth_login' %}">Увійти</a>
+                </li>
+                <li>
+                    <a href="{% url 'auth_register' %}">Реєстрація</a>
+                </li>
+                {% endif %}
+            </ol>
+        </div>
         <div class="col-xs-8">
             <h1>Сервіс Обліку Студентів</h1>
         </div>

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.core.urlresolvers import reverse
-
 from django import forms
 from django.forms import ModelForm
 
@@ -12,9 +11,9 @@ from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from studentapp.models import Group
 
 class GroupFormAdd(ModelForm):
-
     class Meta:
         model = Group
+        exclude = []
 
     def __init__(self, *args, **kwargs):
         super(GroupFormAdd, self).__init__(*args, **kwargs)
@@ -36,9 +35,9 @@ class GroupFormAdd(ModelForm):
             ))
 
 class GroupFormEdit(ModelForm):
-
     class Meta:
         model = Group
+        exclude = []
 
     def __init__(self, *args, **kwargs):
         super(GroupFormEdit, self).__init__(*args, **kwargs)

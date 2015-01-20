@@ -6,7 +6,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 import logging
-logr = logging.getLogger(__name__)
+logging.basicConfig(format = u'[%(asctime)s]  %(message)s',
+    level = logging.INFO, filename = u'students.log')
 
 
 class Student(models.Model):
@@ -47,7 +48,17 @@ class Student(models.Model):
 
 # @receiver(post_save, sender=Student)
 def student_save_handler(sender, **kwargs):
-    logr.debug('Зміни в таблиці студентів: %s, %s' % (sender, kwargs))
-    # print 'Зміни в таблиці студентів: ', sender, kwargs
+    # logr.debug('Зміни в таблиці студентів: %s, %s' % (sender, kwargs))
+
+    if kwargs['created']:
+        details_text = u'Студент був створений'
+    else:
+        details_text = u'Студент був відредагований'
+
+    s_id = u'id студента: %s' % kwargs['instance'].id
+    s_name = u'Повне ім’я студента: %s %s' % (kwargs['instance'].first_name,
+        kwargs['instance'].last_name)
+
+    logging.info( '%s, %s, %s' % (details_text, s_id, s_name))
 
 post_save.connect(student_save_handler)

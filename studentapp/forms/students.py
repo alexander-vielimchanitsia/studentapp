@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.core.urlresolvers import reverse
-
 from django import forms
 from django.forms import ModelForm
 
@@ -12,9 +11,9 @@ from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from studentapp.models import Student
 
 class StudentFormAdd(ModelForm):
-
     class Meta:
         model = Student
+        exclude = []
 
     def __init__(self, *args, **kwargs):
         super(StudentFormAdd, self).__init__(*args, **kwargs)
@@ -42,9 +41,9 @@ class StudentFormAdd(ModelForm):
         )
 
 class StudentFormEdit(ModelForm):
-
     class Meta:
         model = Student
+        exclude = []
 
     def __init__(self, *args, **kwargs):
         super(StudentFormEdit, self).__init__(*args, **kwargs)
