@@ -46,10 +46,7 @@ class Student(models.Model):
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)
 
-# @receiver(post_save, sender=Student)
 def student_save_handler(sender, **kwargs):
-    # logr.debug('Зміни в таблиці студентів: %s, %s' % (sender, kwargs))
-
     if kwargs['created']:
         details_text = u'Студент був створений'
     else:
