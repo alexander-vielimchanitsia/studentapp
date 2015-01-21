@@ -5,10 +5,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-import logging
-logging.basicConfig(format = u'[%(asctime)s]  %(message)s',
-    level = logging.INFO, filename = u'students.log')
-
+from studentapp.students_signal import student_save_handler
 
 class Student(models.Model):
 
@@ -45,17 +42,5 @@ class Student(models.Model):
 
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)
-
-def student_save_handler(sender, **kwargs):
-    if kwargs['created']:
-        details_text = u'Студент був створений'
-    else:
-        details_text = u'Студент був відредагований'
-
-    s_id = u'id студента: %s' % kwargs['instance'].id
-    s_name = u'Повне ім’я студента: %s %s' % (kwargs['instance'].first_name,
-        kwargs['instance'].last_name)
-
-    logging.info( '%s, %s, %s' % (details_text, s_id, s_name))
 
 post_save.connect(student_save_handler)
