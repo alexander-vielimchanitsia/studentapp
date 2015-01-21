@@ -60,7 +60,24 @@
     </div>
     <!-- End header -->
     <!-- Sub-header -->
-    {% block tablist %}{% endblock %}
+
+    <!-- Start Sub-header -->
+    <div class="row" id="sub-header">
+        <div class="col-xs-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" {% if request.path == '/' %}class="active"{% endif %}>
+                    <a href="{% url 'home' %}">Студенти</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li role="presentation" {% if '/groups' in request.path %}class="active"{% endif %}>
+                    <a href="{% url 'group_list' %}">Групи</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <!-- End Sub-header -->
+
     <!-- statu message for popup-->
     <div id="status-message-popup"></div>
     <!-- Start Status Message -->

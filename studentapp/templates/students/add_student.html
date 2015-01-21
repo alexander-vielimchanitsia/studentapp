@@ -12,29 +12,19 @@
 {% endblock extra_css %}
 
 {% block content %}
-<div class="tabbable"> 
-    <ul class="nav nav-tabs">
-        <li class="active"><a>Додати студента</a></li>
-        <li><a href="{% url 'home' %}">Перейти на главну</a></li>
-    </ul>
-    <div class="tab-content" id="tab-content-addstudent">
-        <div class="row">
-            <div class="col-xs-4">
-                <h4 class="pull-right">Заповнення нового студента</h4>
-            </div>
-        </div>
-        <!-- Start Form -->
-            {% if user.is_authenticated %}
+<div id="content-add-student">
+    <h4 id="header-text-in-form">Заповнення нового студента</h4>
+    <!-- Start Form -->
+    {% if user.is_authenticated %}
 
-            {% crispy form %}
+    {% crispy form %}
 
-            {% else %}
-            <div class="jumbotron text-if-not-object">
-                <h1>Вам потрібно авторизуватись, щоб бачити цю сторінку!</h1>
-            </div>
-            {% endif %}
-        <!-- End Form -->
+    {% else %}
+    <div class="jumbotron text-if-not-object">
+        <h1>Вам потрібно авторизуватись, щоб бачити цю сторінку!</h1>
     </div>
+    {% endif %}
+    <!-- End Form -->
 </div>
 {% endblock %}
 

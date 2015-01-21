@@ -6,23 +6,6 @@
 <!-- There should be me css -->
 {% endblock extra_css %}
 
-{% block tablist %}
-<!-- Start Sub-header -->
-<div class="row" id="sub-header">
-    <div class="col-xs-12">
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation">
-                <a href="{% url 'home' %}">Студенти</a>
-            </li>
-            <li role="presentation" class="active">
-                <a>Групи</a>
-            </li>
-        </ul>
-    </div>
-</div>
-<!-- End Sub-header -->
-{% endblock %}
-
 {% block content %}
 <div class="row" id="content-columns">
     <div class="col-xs-12" id="content-groups-list">

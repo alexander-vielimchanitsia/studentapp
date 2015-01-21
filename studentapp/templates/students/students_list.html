@@ -9,24 +9,6 @@
     href="{% static "bootstrap/css/datepicker.css" %}">
 {% endblock extra_css %}
 
-{% block tablist %}
-<!-- Start Sub-header -->
-<div class="row" id="sub-header">
-    <div class="col-xs-12">
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a>Студенти</a>
-            </li>
-            {% if user.is_authenticated %}
-            <li role="presentation">
-                <a href="{% url 'group_list' %}">Групи</a>
-            </li>
-            {% endif %}
-        </ul>
-    </div>
-</div>
-<!-- End Sub-header -->
-{% endblock %}
 <!-- Start Content -->
 {% block content %}
 <div class="row" id="content-columns">

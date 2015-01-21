@@ -5,26 +5,18 @@
 {% block group-selector %}{% endblock %}
 
 {% block content %}
-    <div class="tabbable">
-        <ul class="nav nav-tabs">
-            <li class="active"><a>Додати групу</a></li>
-            <li><a href="{% url 'home' %}">Перейти на главну</a></li>
-        </ul>
-        <div class="tab-content" id="tab-content-addgroup">
-            <div class="tab-pane active" id="tab1">
-                <h4>Створення нової групи</h4>
-            </div>
-            <!-- Start Form -->
-            {% if user.is_authenticated %}
+<div id="content-add-group">
+    <h4 id="header-text-in-form">Створення нової групи</h4>
+    <!-- Start Form -->
+    {% if user.is_authenticated %}
 
-            {% crispy form %}
+    {% crispy form %}
 
-            {% else %}
-            <div class="jumbotron text-if-not-object">
-                <h1>Вам потрібно авторизуватись, щоб бачити цю сторінку!</h1>
-            </div>
-            {% endif %}
-            <!-- End Form -->
-        </div>
+    {% else %}
+    <div class="jumbotron text-if-not-object">
+        <h1>Вам потрібно авторизуватись, щоб бачити цю сторінку!</h1>
     </div>
+    {% endif %}
+    <!-- End Form -->
+</div>
 {% endblock %}

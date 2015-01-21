@@ -12,24 +12,12 @@
 {% endblock extra_css %}
 
 {% block content %}
-    <div class="tabbable">
-        <ul class="nav nav-tabs">
-            <li class="active disabled">
-                <a>Редагувати студента</a>
-            </li>
-            <li>
-                <a href="{% url 'home' %}">Перейти на главну</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
-                <h4>Редагування студента</h4>
-            </div>
-            <!-- Start Form -->
-            {% crispy form %}
-            <!-- End Form -->
-        </div>
-    </div>
+<div id="content-edit-student">
+    <h4 id="header-text-in-form">Редагування студента</h4>
+    <!-- Start Form -->
+    {% crispy form %}
+    <!-- End Form -->
+</div>
 {% endblock %}
 
 {% block extra_js %}
