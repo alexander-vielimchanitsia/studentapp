@@ -15,7 +15,9 @@ class StatsMiddleware(object):
         start = time()
         response = view_func(request, *view_args, **view_kwargs)
         tot_time = time() - start
+
         db_queries = len(connection.queries) - n
+
         if db_queries:
             db_time = reduce(add, [float(q['time'])
                                    for q in connection.queries[n:]])
@@ -29,4 +31,5 @@ class StatsMiddleware(object):
             '<body>Весь час генерації сторінки: %.2f, '
             'Python: %.2f, DB: %.2f, Всього запитів: %.d'
             % (tot_time, tot_time, db_time, db_queries))
+
         return response
