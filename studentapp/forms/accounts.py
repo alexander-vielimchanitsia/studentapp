@@ -56,7 +56,7 @@ class LoginForm(forms.Form):
             'username',
             'password',
             FormActions(
-                Submit('save', u'Зберегти'),
+                Submit('save', u'Увійти'),
                 HTML(u'<a class="btn btn-default" href={% url "home" %}>Скасувати</a>'),
                 css_class="buttons-form-submit",
                 id="accounts-buttons",
