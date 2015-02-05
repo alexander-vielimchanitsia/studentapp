@@ -9,10 +9,16 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from studentapp.models.groups import Group
 from studentapp.models.students import Student
 from studentapp.forms import StudentFormAdd, StudentFormEdit
+from studentapp.util import get_groups, get_current_group
 
 
 def students_list(request, page_number=1):
-    table_student = Student.objects.all()
+    current_group = get_current_group(request)
+    if current_group:
+        table_student = Student.objects.filter(stud_group=current_group)
+    else:
+        # otherwise show all students
+        table_student = Student.objects.all()
 
     # try ro order students list
     order_by = request.GET.get('order_by', 'last_name')
@@ -30,7 +36,8 @@ def students_list(request, page_number=1):
     except EmptyPage:
         table_student = paginator.page(paginator.num_pages)
     return render_to_response('students/students_list.html',
-        {'table_student': table_student},
+        {'table_student': table_student,
+        'groups': get_groups(request)},
         context_instance=RequestContext(request))
 
 def add_student(request):
