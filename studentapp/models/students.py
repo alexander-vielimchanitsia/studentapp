@@ -43,4 +43,4 @@ class Student(models.Model):
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)
 
-post_save.connect(student_save_handler)
+post_save.connect(student_save_handler, sender=Student)

@@ -11,8 +11,8 @@ def student_save_handler(sender, **kwargs):
     else:
         details_text = u'Студент був відредагований'
 
-    s_id = u'id студента: %s' % kwargs['instance'].id
-    s_name = u'Повне ім’я студента: %s %s' % (kwargs['instance'].first_name,
-        kwargs['instance'].last_name)
+    s_id = u'id студента: %s' % (kwargs['instance'].id or None)
+    s_name = u'Повне ім’я студента: %s %s' % ((kwargs['instance'].first_name or None),
+        (kwargs['instance'].last_name or None))
 
     logging.info( '%s, %s, %s' % (details_text, s_id, s_name))
