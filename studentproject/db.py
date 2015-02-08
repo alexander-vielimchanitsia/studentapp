@@ -10,6 +10,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'students_db',
+        'TEST_NAME': 'test_students_db',
         'USER': 'students_db_user',
         'PASSWORD': 'admin',
         'HOST': '127.0.0.1',

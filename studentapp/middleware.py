@@ -31,5 +31,6 @@ class StatsMiddleware(object):
             '<body>Весь час генерації сторінки: %.2f, '
             'Python: %.2f, DB: %.2f, Всього запитів: %.d'
             % (tot_time, python_time, db_time, db_queries))
+        print type(response.content)
 
         return response
