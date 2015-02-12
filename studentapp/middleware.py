@@ -10,7 +10,7 @@ class StatsMiddleware(object):
 
     def process_view(self, request, view_func, view_args, view_kwargs):
 
-        n = len(connection.queries)
+        n = len(connection.queries) # number queries database
 
         start = time()
 
