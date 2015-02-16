@@ -32,8 +32,8 @@ class StatsMiddleware(object):
             python_time = tot_time - db_time
 
             response.content = response.content.replace('<body>',
-                '<body>Весь час генерації сторінки: %.2f, '
-                'Python: %.2f, DB: %.2f, Всього запитів: %.d'
+                '<body><div id="rendering_page_text">Весь час генерації сторінки: %.2f, '
+                'Python: %.2f, DB: %.2f, Всього запитів: %.d</div>'
                 % (tot_time, python_time, db_time, db_queries))
 
             return response

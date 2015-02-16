@@ -118,3 +118,10 @@ h1, h2, h3, h4, h5, h6 {
 #header-text-in-form {
     margin-left: 15%;
 }
+
+#rendering_page_text {
+    position: relative;
+    left: 55%;
+    top: 27px;
+    z-index: 999;
+}

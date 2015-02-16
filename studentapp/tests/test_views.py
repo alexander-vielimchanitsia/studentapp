@@ -8,3 +8,6 @@ class HomePageTest(TestCase):
         c = Client()
         response = c.get('/')
         self.assertEquals(response.status_code, 200)
+
+    def test_view_student_func(self):
+        pass
