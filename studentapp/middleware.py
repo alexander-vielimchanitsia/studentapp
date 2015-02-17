@@ -33,6 +33,7 @@ class StatsMiddleware(object):
                     '<body><div id="rendering_page_text">Весь час генерації сторінки: %.2f, '
                     'Python: %.2f, DB: %.2f, Всього запитів: %.d</div>'
                     % (tot_time, python_time, db_time, db_queries))
+
             except Exception:
                 return None
 

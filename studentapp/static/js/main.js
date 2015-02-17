@@ -3,9 +3,9 @@ function initGroupSelector() {
         var group = $(this).val();
 
         if (group) {
-            $.cookie('current_group', group, {'path': '/', 'expires': 365});
+            $.cookie('current_group', group, {path: '/', expires: 365});
         } else {
-        $.removeCookie('current_group', {'path': '/'});
+        $.removeCookie('current_group', {path: '/'});
         }
 
         location.reload(true);
