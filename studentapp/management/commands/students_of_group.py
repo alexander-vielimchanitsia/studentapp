@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError, LabelCommand
+from django.core.management.base import CommandError, LabelCommand
 
 from studentapp.models import Group, Student
 
@@ -19,4 +19,4 @@ class Command(LabelCommand):
 
         print 'All students in the group %s:' % name_group
         for student in students:
-            self.stdout.write('%s,' % student)
+            self.stdout.write('%s' % student)
