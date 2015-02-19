@@ -25,6 +25,8 @@ class StudentModelTest(TestCase):
         self.assertEqual(student.__unicode__(), '%s %s' %
             (student.first_name, student.last_name))
 
+        student.foto.delete()
+
     def test_student_update(self):
         student = self.create_student()
 
@@ -43,6 +45,8 @@ class StudentModelTest(TestCase):
         self.assertEqual(student.__unicode__(), '%s %s' %
             (student.first_name, student.last_name))
 
+        student.foto.delete()
+
     def test_student_all_fields(self):
         student = self.create_student()
 
@@ -55,6 +59,8 @@ class StudentModelTest(TestCase):
         self.assertEqual(student.stud_group,
             Group.objects.get(name_group='Name group'))
 
+        student.foto.delete()
+
     def test_student_delete(self):
         student = self.create_student()
 
@@ -63,3 +69,5 @@ class StudentModelTest(TestCase):
         student.delete()
 
         self.assertNotIn(student, Student.objects.all())
+
+        student.foto.delete()

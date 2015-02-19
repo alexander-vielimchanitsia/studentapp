@@ -19,3 +19,5 @@ class StudentFormTest(TestCase):
 
         response = c.post('/students/add/', data)
         self.assertEquals(response.status_code, 302)
+
+        Student.objects.get(first_name='Alexander').foto.delete()

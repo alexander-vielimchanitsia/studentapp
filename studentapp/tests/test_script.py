@@ -1,5 +1,6 @@
 from django.core.files import File
 from django.core.management import call_command
+from django.core.management.base import CommandError
 from django.test import TestCase
 
 from studentapp.models import Student, Group
@@ -20,6 +21,10 @@ class CommandsTestCase(TestCase):
     def test_students_of_group(self):
         student = self.create_student()
 
-        args = ['Group']
-        opts = {}
-        call_command('students_of_group', *args, **opts)
+
+        call_command('students_of_group', 'Group')
+
+        student.foto.delete()
+
+        # self.assertIn('Luc Besson',
+        #     call_command('students_of_group', 'Group'))
