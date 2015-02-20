@@ -14,8 +14,10 @@ class StatsMiddleware(object):
 
         response = view_func(request, *view_args, **view_kwargs)
 
-        if response['content-type'] == 'text/html; charset=utf-8':
-            try:
+        if hasattr(response, 'content'):
+
+            if response.get('Content-Type', '') == 'text/html; charset=utf-8':
+
                 tot_time = time() - start
 
                 db_queries = len(connection.queries) - n
@@ -34,10 +36,7 @@ class StatsMiddleware(object):
                     'Python: %.2f, DB: %.2f, Всього запитів: %.d</div>'
                     % (tot_time, python_time, db_time, db_queries))
 
-            except Exception:
-                return None
-
-            return response
+                return response
 
         else:
             return None

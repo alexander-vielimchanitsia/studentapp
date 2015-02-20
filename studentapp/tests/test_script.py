@@ -22,9 +22,11 @@ class CommandsTestCase(TestCase):
         student = self.create_student()
 
 
-        call_command('students_of_group', 'Group')
-
-        student.foto.delete()
+        # call_command('students_of_group', 'Group')
 
         # self.assertIn('Luc Besson',
         #     call_command('students_of_group', 'Group'))
+        # import pdb;pdb.set_trace()
+        # self.assertRaises(CommandError, call_command('students_of_group', 'zick'))
+
+        student.foto.delete()
