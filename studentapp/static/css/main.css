@@ -120,9 +120,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #rendering_page_text {
-    position: relative;
-    left: 55%;
-    top: 27px;
-    z-index: 999;
+    margin-right: 7%;
     font-size: 0.9em;
 }
