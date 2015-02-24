@@ -1,5 +1,4 @@
 from django.core.files import File
-
 from django.test import TestCase, Client
 
 from studentapp.models import Student, Group

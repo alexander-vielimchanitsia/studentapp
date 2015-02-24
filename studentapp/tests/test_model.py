@@ -29,6 +29,7 @@ class StudentModelTest(TestCase):
 
     def test_student_update(self):
         student = self.create_student()
+        student.foto.delete()
 
         f = open('studentapp/static/img/foto.png')
 

@@ -2,6 +2,7 @@ from django.core.files import File
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.test import TestCase
+from django.utils.six import StringIO
 
 from studentapp.models import Student, Group
 
@@ -20,13 +21,9 @@ class CommandsTestCase(TestCase):
 
     def test_students_of_group(self):
         student = self.create_student()
+        out = StringIO()
 
-
-        # call_command('students_of_group', 'Group')
-
-        # self.assertIn('Luc Besson',
-        #     call_command('students_of_group', 'Group'))
-        # import pdb;pdb.set_trace()
-        # self.assertRaises(CommandError, call_command('students_of_group', 'zick'))
+        call_command('students_of_group', 'Group', stdout=out)
+        self.assertIn('Luc Besson', out.getvalue())
 
         student.foto.delete()
