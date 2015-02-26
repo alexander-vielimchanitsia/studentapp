@@ -11,15 +11,15 @@
 
 {% block content %}
 <div id="content-add-student">
+    {% if user.is_authenticated %}
     <h4 id="header-text-in-form">Заповнення нового студента</h4>
     <!-- Start Form -->
-    {% if user.is_authenticated %}
 
     {% crispy form %}
 
     {% else %}
     <div class="jumbotron text-if-not-object">
-        <h1>Вам потрібно авторизуватись, щоб бачити цю сторінку!</h1>
+        <h1 id="text-in-jumbotron">Вам потрібно авторизуватись, щоб бачити цю сторінку!</h1>
     </div>
     {% endif %}
     <!-- End Form -->
