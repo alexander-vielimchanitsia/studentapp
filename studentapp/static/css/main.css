@@ -16,17 +16,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 10px;
 }
 
-/* Start Forms Error Style */
-.errorlist {
-    color: #ff0000;
-    float: right;
-}
-
-.errorlist_global {
-    color: #ff0000;
-}
-/* End Forms Error Style */
-
+/*margin for field in form*/
 .field_retreat {
     margin-bottom: 10px;
 }
@@ -61,33 +51,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 10px;
 }
 
-.popup-box {
-    width: 500px;
-    position: fixed;
-    top: 15%;
-    left: 25%;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-}
-
-.ajax-fone {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.5;
-    z-index: 999;
-    display: none;
-}
-
-#popup-menu {
-    display: none;
-}
-
 .tooltip-inner {
     width: 180px;
 }
@@ -119,6 +82,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 15%;
 }
 
+/*for middleware*/
 #rendering_page_text {
     margin-right: 7%;
     font-size: 0.9em;

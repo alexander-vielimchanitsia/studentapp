@@ -28,7 +28,7 @@
                     return formData;
                 };
 
-                var inputs = $('input,select'),
+                var inputs = $('#id-student-form select, input'), // all input fields in the form
                     mForm = $("#id-student-form").serializefiles(),
                     valid = true;
 
@@ -82,7 +82,7 @@
                         };
                     },
                     error: function(data){
-                        console.log('error')
+                        alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
                     },
                 });
 

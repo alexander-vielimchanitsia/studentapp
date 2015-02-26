@@ -56,7 +56,7 @@
                 }
             },
             error: function(data){
-                console.log('error')
+                alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
             }
         })
     });
