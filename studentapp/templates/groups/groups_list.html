@@ -40,7 +40,7 @@
             {% for group in table_group %}
             <tr>
                 <td>{{ table_group.start_index|str2int:forloop.counter0 }}</td>
-                <td>{{ group.name_group }}</td>
+                <td><a href="{% url 'edit_group' group.id %}">{{ group.name_group }}</a></td>
                 <td>{{ group.king_group }}</td>
                 <td>
                     <div class="dropdown">
