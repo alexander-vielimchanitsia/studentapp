@@ -2,6 +2,8 @@
 
 {% load static from staticfiles %}
 
+{% load str2int %}
+
 {% block extra_css %}
 <!-- There should be me css -->
 {% endblock extra_css %}
@@ -37,7 +39,7 @@
             <tbody>
             {% for group in table_group %}
             <tr>
-                <td>{{ group.id }}</td>
+                <td>{{ table_group.start_index|str2int:forloop.counter0 }}</td>
                 <td>{{ group.name_group }}</td>
                 <td>{{ group.king_group }}</td>
                 <td>

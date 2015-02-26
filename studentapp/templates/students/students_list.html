@@ -4,6 +4,8 @@
 
 {% load static from staticfiles %}
 
+{% load str2int %}
+
 {% block extra_css %}
 <link rel="stylesheet"
     href="{% static "bootstrap/css/datepicker.css" %}">
@@ -81,7 +83,7 @@
             <tbody>
             {% for student in table_student %}
                 <tr>
-                    <td>{{ student.id }}</td>
+                    <td>{{ table_student.start_index|str2int:forloop.counter0 }}</td>
                     <td>
                         <img class="img-circle"
                         src="{{ student.foto.url }}"
