@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic.edit import DeleteView
 
 from studentapp.models.groups import Group
 from studentapp.models.students import Student
@@ -82,10 +83,10 @@ def edit_student(request, student_id):
         'student': student},
         context_instance=RequestContext(request))
 
-def stud_delete(request, student_id):
-    s = Student.objects.get(id=student_id)
+class StudentDeleteView(DeleteView):
+    model = Student
+    template_name = 'students/students_confirm_delete.html'
 
-    s.delete()
-
-    return redirect(u'%s?status_message=Студент успішно видалений!' %
-                    reverse('home'))
+    def get_success_url(self):
+        return u'%s?status_message=Студента успішно видалено!' \
+            % reverse('home')

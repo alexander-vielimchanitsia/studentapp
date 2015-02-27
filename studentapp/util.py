@@ -1,4 +1,3 @@
-
 def get_groups(request):
     """Returns list of existing groups"""
     # deferred import of Group model to avoid cycled imports

@@ -13,6 +13,7 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 1px solid #ddd;
     width: 100%;
     margin-left: 0;
+    margin-top: 10px;
     padding-top: 10px;
 }
 
@@ -88,6 +89,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9em;
 }
 
-#text-in-jumbotron{
+#text-in-jumbotron {
     font-size: 40px;
 }

@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.generic import TemplateView
 
+from studentapp.views.students import StudentDeleteView
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'studentproject.views.home', name='home'),
@@ -24,8 +26,8 @@ urlpatterns = patterns('',
         'studentapp.views.students.add_student', name='add_student'),
     url(r'^students/edit/(?P<student_id>\d+)/$',
         'studentapp.views.students.edit_student', name='edit_student'),
-    url(r'^students/delete/(?P<student_id>\d+)/$',
-        'studentapp.views.students.stud_delete', name='delete_student'),
+    url(r'^students/delete/(?P<pk>\d+)/$',
+        StudentDeleteView.as_view(), name='delete_student'),
     #GROUP
     url(r'^groups/$',
         'studentapp.views.groups.groups_list', name='group_list'),
@@ -37,7 +39,7 @@ urlpatterns = patterns('',
         'studentapp.views.groups.group_delete', name='delete_group'),
 )
 
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-            {'document_root': settings.MEDIA_ROOT}))
+# if settings.DEBUG:
+urlpatterns += patterns('',
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': settings.MEDIA_ROOT}))
