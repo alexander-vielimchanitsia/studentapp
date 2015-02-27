@@ -48,7 +48,6 @@
                                 textError = 'Заповніть поле ' + label;
 
                             if (val.length === 0){
-                                formGroup.addClass('has-error').removeClass('has-success');
                                 input.tooltip({
                                     trigger: 'manual',
                                     placement: 'right',
@@ -56,7 +55,6 @@
                                 }).tooltip('show');
                                 valid = false
                             }else {
-                                formGroup.addClass('has-success').removeClass('has-error');
                                 input.tooltip('destroy');
                             };
 
