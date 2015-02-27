@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
+from django.views.generic.edit import DeleteView
 
 from studentapp.models.groups import Group
 from studentapp.models.students import Student
@@ -52,12 +53,20 @@ def edit_group(request, group_id):
         'group': group},
         context_instance=RequestContext(request))
 
-def group_delete(request, group_id):
-    g = Group.objects.get(id=group_id)
-    try:
-        g.delete()
-    except:
-        return redirect(u'%s?status_message=Неможливо видалити, можливо в цій групі є студенти, спочатку видаліть їх!' %
-                    reverse('group_list'))
-    return redirect(u'%s?status_message=Група успішно видалена!' %
-                    reverse('group_list'))
+class GroupDeleteView(DeleteView):
+    model = Group
+    template_name = 'groups/groups_confirm_delete.html'
+
+    def get_success_url(self):
+        return u'%s?status_message=Групу успішно видалено!' \
+            % reverse('group_list')
+
+# def group_delete(request, group_id):
+#     g = Group.objects.get(id=group_id)
+#     try:
+#         g.delete()
+#     except:
+#         return redirect(u'%s?status_message=Неможливо видалити, можливо в цій групі є студенти, спочатку видаліть їх!' %
+#                     reverse('group_list'))
+#     return redirect(u'%s?status_message=Група успішно видалена!' %
+#                     reverse('group_list'))

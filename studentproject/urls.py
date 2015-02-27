@@ -4,6 +4,8 @@ from django.conf import settings
 from django.views.generic import TemplateView
 
 from studentapp.views.students import StudentDeleteView
+from studentapp.views.groups import GroupDeleteView
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -35,8 +37,8 @@ urlpatterns = patterns('',
         'studentapp.views.groups.add_group', name='add_group'),
     url(r'^groups/edit/(?P<group_id>\d+)/$',
         'studentapp.views.groups.edit_group', name='edit_group'),
-    url(r'^groups/delete/(?P<group_id>\d+)/$',
-        'studentapp.views.groups.group_delete', name='delete_group'),
+    url(r'^groups/delete/(?P<pk>\d+)/$',
+        GroupDeleteView.as_view(), name='delete_group'),
 )
 
 # if settings.DEBUG:
