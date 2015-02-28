@@ -14,6 +14,14 @@ from studentapp.forms import GroupFormAdd, GroupFormEdit
 
 def groups_list(request, page_number=1):
     table_group = Group.objects.all()
+
+    # try ro order groups list
+    order_by = request.GET.get('order_by')
+    if order_by in ('id', 'name_group'):
+        table_group = table_group.order_by(order_by)
+        if request.GET.get('reverse', '') == '1':
+            table_group = table_group.reverse()
+
     paginator = Paginator(table_group, 3)
     page = request.GET.get('page')
     try:
