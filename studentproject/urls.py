@@ -41,7 +41,7 @@ urlpatterns = patterns('',
         GroupDeleteView.as_view(), name='delete_group'),
 )
 
-# if settings.DEBUG:
-urlpatterns += patterns('',
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': settings.MEDIA_ROOT}))
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT}))

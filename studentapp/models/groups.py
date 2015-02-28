@@ -9,14 +9,14 @@ from students import Student
 class Group(models.Model):
 
     class Meta:
-        verbose_name = u'Груп'
+        verbose_name = u'Група'
         verbose_name_plural = u'Групи'
 
     name_group = models.CharField(
         max_length=50,
         verbose_name=u'Назва групи')
 
-    king_group = models.ForeignKey(Student,
+    king_group = models.OneToOneField(Student,
         verbose_name=u'Староста групи',
         blank=True,
         null=True,

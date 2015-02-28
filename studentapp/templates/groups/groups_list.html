@@ -20,7 +20,7 @@
         </a>
         {% endif %}
 
-        {% if not table_group %}
+        {% if not table_group and user.is_authenticated %}
         <div class="jumbotron text-if-not-object">
             <h1 id="text-in-jumbotron">Груп поки немає!</h1>
         </div>
@@ -40,8 +40,16 @@
             {% for group in table_group %}
             <tr>
                 <td>{{ table_group.start_index|str2int:forloop.counter0 }}</td>
-                <td><a href="{% url 'edit_group' group.id %}">{{ group.name_group }}</a></td>
-                <td>{{ group.king_group }}</td>
+                <td><a href="{% url 'edit_group' group.id %}">
+                    {{ group.name_group }}
+                </a></td>
+                <td>
+                    {% if not group.king_group %}
+                        Немає
+                    {% else %}
+                        {{ group.king_group }}
+                    {% endif %}
+                </td>
                 <td>
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle"
@@ -64,9 +72,11 @@
             {% endfor %}
             </tbody>
         </table>
-        {% else %}
+        {% endif %}
+
+        {% if not user.is_authenticated %}
         <div class="jumbotron text-if-not-object">
-            <h1>Вам потрібно авторизуватись, щоб бачити цю сторінку!</h1>
+            <h1 id="text-in-jumbotron">Вам потрібно авторизуватись, щоб бачити цю сторінку!</h1>
         </div>
         {% endif %}
         <!-- Start paginations -->
