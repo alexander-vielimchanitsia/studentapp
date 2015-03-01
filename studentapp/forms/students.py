@@ -52,7 +52,7 @@ class StudentFormEdit(ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.form_method = 'post'
         self.helper.form_action = reverse('edit_student',
-            kwargs={'student_id': kwargs['instance'].id})
+            kwargs={'pk': kwargs['instance'].id})
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-2 field_retreat'

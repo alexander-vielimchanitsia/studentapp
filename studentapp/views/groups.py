@@ -46,8 +46,8 @@ def add_group(request):
     return render(request, 'groups/add_group.html',
         {'form': form})
 
-def edit_group(request, group_id):
-    group = Group.objects.get(id=group_id)
+def edit_group(request, pk):
+    group = Group.objects.get(id=pk)
     if request.method == 'POST':
         form = GroupFormEdit(request.POST, instance=group)
         if form.is_valid():

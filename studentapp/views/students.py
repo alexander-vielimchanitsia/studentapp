@@ -60,8 +60,8 @@ def add_student(request):
     return render(request, 'students/add_student.html',
         {'form': form})
 
-def edit_student(request, student_id):
-    student = Student.objects.get(id=student_id)
+def edit_student(request, pk):
+    student = Student.objects.get(id=pk)
     if request.method == 'POST':
         # activity if click on save button
         if request.POST.get('save_button_edit') is not None:
