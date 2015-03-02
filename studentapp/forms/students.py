@@ -8,7 +8,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, ButtonHolder
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 
-from studentapp.models import Student
+from studentapp.models import Student, Group
 
 class StudentFormAdd(ModelForm):
     class Meta:
@@ -44,6 +44,19 @@ class StudentFormEdit(ModelForm):
     class Meta:
         model = Student
         exclude = []
+
+    def clean_stud_group(self):
+        """Check if student is king_group in any group.
+
+        If yes, then ensure it's the same as selected group."""
+        # get group where current student is a leader
+        groups = Group.objects.filter(king_group=self.instance)
+        if len(groups) > 0 and \
+            self.cleaned_data['stud_group'] != groups[0]:
+            raise forms.ValidationError(u'Студент є старостою іншої групи.',
+                code='invalid')
+
+        return self.cleaned_data['stud_group']
 
     def __init__(self, *args, **kwargs):
         super(StudentFormEdit, self).__init__(*args, **kwargs)
