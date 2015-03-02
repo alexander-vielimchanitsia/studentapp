@@ -33,7 +33,6 @@ class StudentAdmin(admin.ModelAdmin):
     def view_on_site(self, obj):
         return reverse('edit_student', kwargs={'pk': obj.id})
 
-
 class GroupFormAdmin(ModelForm):
 
     def clean_king_group(self):
