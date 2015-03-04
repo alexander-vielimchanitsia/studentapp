@@ -55,7 +55,6 @@ class StudentFormEdit(ModelForm):
             self.cleaned_data['stud_group'] != groups[0]:
             raise forms.ValidationError(u'Студент є старостою іншої групи.',
                 code='invalid')
-
         return self.cleaned_data['stud_group']
 
     def __init__(self, *args, **kwargs):

@@ -21,4 +21,4 @@ class Command(LabelCommand):
                 self.stdout.write('%s' % student)
 
         except:
-            print 'Group "%s" does not exist' % name_group
+            self.stdout.write('Group "%s" does not exist' % name_group)

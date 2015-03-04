@@ -68,13 +68,3 @@ class GroupDeleteView(DeleteView):
     def get_success_url(self):
         return u'%s?status_message=Групу успішно видалено!' \
             % reverse('group_list')
-
-# def group_delete(request, group_id):
-#     g = Group.objects.get(id=group_id)
-#     try:
-#         g.delete()
-#     except:
-#         return redirect(u'%s?status_message=Неможливо видалити, можливо в цій групі є студенти, спочатку видаліть їх!' %
-#                     reverse('group_list'))
-#     return redirect(u'%s?status_message=Група успішно видалена!' %
-#                     reverse('group_list'))

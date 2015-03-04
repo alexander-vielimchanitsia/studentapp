@@ -37,9 +37,10 @@ class GroupFormAdmin(ModelForm):
 
     def clean_king_group(self):
         #Check if student in the group.
-        student = Student.objects.filter(stud_group=self.instance)
+        students = Student.objects.filter(stud_group=self.instance)
+
         if not self.cleaned_data['king_group'] == None and \
-            self.cleaned_data['king_group'] != student:
+            self.cleaned_data['king_group'] != students[0]:
             raise ValidationError(u'Студент не є учасником цієї групи.',
                 code='invalid')
 

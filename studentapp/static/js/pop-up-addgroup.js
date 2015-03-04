@@ -3,7 +3,6 @@
     // Open pop-up
     $("#button-add-group").click(function() {
         $("#div_id_name_group_popup").load("/groups/add/ #div_id_name_group");
-        $("#div_id_king_group_popup").load("/groups/add/ #div_id_king_group");
     });
 
     $("#send-popup-form").click(function(e) {

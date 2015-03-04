@@ -20,9 +20,13 @@ class CommandsTestCase(TestCase):
 
     def test_students_of_group(self):
         student = self.create_student()
-        out = StringIO()
 
+        out = StringIO()
         call_command('students_of_group', 'Group', stdout=out)
         self.assertIn('Luc Besson', out.getvalue())
+
+        out_not_group = StringIO()
+        call_command('students_of_group', 'Test', stdout=out_not_group)
+        self.assertIn('Group "Test" does not exist', out_not_group.getvalue())
 
         student.foto.delete()
