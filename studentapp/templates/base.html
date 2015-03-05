@@ -25,7 +25,7 @@
             <ol class="breadcrumb">
                 {% if user.is_authenticated %}
                 <li>
-                    <a href=".">{{ user.username }}</a>
+                    {{ user.username }}
                 </li>
                 <li>
                     <a href="{% url 'auth_logout' %}">Вийти</a>

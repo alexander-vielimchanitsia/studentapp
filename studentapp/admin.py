@@ -36,13 +36,24 @@ class StudentAdmin(admin.ModelAdmin):
 class GroupFormAdmin(ModelForm):
 
     def clean_king_group(self):
-        #Check if student in the group.
+        #order students with this group
         students = Student.objects.filter(stud_group=self.instance)
 
-        if not self.cleaned_data['king_group'] == None and \
-            self.cleaned_data['king_group'] != students[0]:
+        #if no students in group
+        if len(students) == 0 and \
+            not self.cleaned_data['king_group'] == None:
+
             raise ValidationError(u'Студент не є учасником цієї групи.',
                 code='invalid')
+
+        else:
+            #check or coincide with students in the group
+            if len(students) > 0 and \
+                not self.cleaned_data['king_group'] == None and \
+                self.cleaned_data['king_group'] != students[0]:
+
+                raise ValidationError(u'Студент не є учасником цієї групи.',
+                    code='invalid')
 
         return self.cleaned_data['king_group']
 

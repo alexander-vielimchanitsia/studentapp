@@ -1,4 +1,5 @@
 django==1.7
+MySQL-python
 django_crispy_forms==1.4.0
 setuptools==2.2
 pip==1.5.4
