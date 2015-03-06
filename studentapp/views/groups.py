@@ -65,6 +65,15 @@ class GroupDeleteView(DeleteView):
     model = Group
     template_name = 'groups/groups_confirm_delete.html'
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(GroupDeleteView, self).get_context_data(**kwargs)
+
+        #adds students of group in context
+        context['students'] = Student.objects.filter(stud_group=context['object'].id)
+
+        return context
+
     def get_success_url(self):
         return u'%s?status_message=Групу успішно видалено!' \
             % reverse('group_list')

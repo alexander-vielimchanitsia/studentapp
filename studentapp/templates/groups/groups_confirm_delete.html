@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% if not object.king_group %}
+{% if not students %}
     <form action="{% url "delete_group" object.id %}" method="post">{% csrf_token %}
         <p>Ви впевнені, що хочете видалити групу "{{ object }}"?</p>
         <input type="submit" value="Так" name="delete_button"
