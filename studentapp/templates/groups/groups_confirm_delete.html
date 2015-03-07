@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{% if not students %}
+<div id="content-student-delete">
+    <h4>Видалити Групу</h4>
+    {% if not students %}
     <form action="{% url "delete_group" object.id %}" method="post">{% csrf_token %}
         <p>Ви впевнені, що хочете видалити групу "{{ object }}"?</p>
         <input type="submit" value="Так" name="delete_button"
         class="btn btn-danger"/>
         <a href="{% url "group_list" %}?status_message=Видалення групи було скасовано!" class="btn btn-default">Ні</a>
     </form>
-{% else%}
-
+    {% else%}
     <p>Групу неможливо видалити тому, що в групі є студенти.</p>
-
-{% endif %}
+    {% endif %}
+</div>
 
 {% endblock %}
