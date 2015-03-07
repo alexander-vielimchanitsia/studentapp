@@ -5,8 +5,8 @@ from django import forms
 from django.forms import ModelForm
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, ButtonHolder
-from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from crispy_forms.layout import Layout, Submit, Field
+from crispy_forms.bootstrap import FormActions
 
 from studentapp.models import Student, Group
 
@@ -29,13 +29,17 @@ class StudentFormAdd(ModelForm):
             'first_name',
             'last_name',
             'middle_name',
-            Field('date', data_date_format="yyyy-mm-dd", placeholder='рррр-мм-дд'),
+            Field('date',
+                data_date_format="yyyy-mm-dd",
+                placeholder='рррр-мм-дд'),
             'foto',
             'stud_bilet',
             'stud_group',
             FormActions(
-                Submit('save_button_add', u'Зберегти', css_class="btn btn-primary"),
-                Submit('cancel_button_add', u'Скасувати', css_class="btn btn-link"),
+                Submit('save_button_add', u'Зберегти',
+                    css_class="btn btn-primary"),
+                Submit('cancel_button_add', u'Скасувати',
+                    css_class="btn btn-link"),
                 css_class="buttons-form-submit"
             ),
         )
@@ -72,13 +76,17 @@ class StudentFormEdit(ModelForm):
             'first_name',
             'last_name',
             'middle_name',
-            Field('date', data_date_format="yyyy-mm-dd", placeholder='рррр-мм-дд'),
+            Field('date',
+                data_date_format="yyyy-mm-dd",
+                placeholder='рррр-мм-дд'),
             'foto',
             'stud_bilet',
             'stud_group',
             FormActions(
-                Submit('save_button_edit', u'Зберегти', css_class="btn btn-primary"),
-                Submit('cancel_button_edit', u'Скасувати', css_class="btn btn-link"),
+                Submit('save_button_edit', u'Зберегти',
+                    css_class="btn btn-primary"),
+                Submit('cancel_button_edit', u'Скасувати',
+                    css_class="btn btn-link"),
                 css_class="buttons-form-submit"
             ),
         )

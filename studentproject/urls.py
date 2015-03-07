@@ -12,16 +12,18 @@ urlpatterns = patterns('',
     # url(r'^$', 'studentproject.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    #ADMIN
+    # admin
     url(r'^admin/', include(admin.site.urls)),
-    #ACCOUNTS
+
+    # accounts
     url(r'^accounts/logout/$',
         'studentapp.views.accounts.logout_view', name='auth_logout'),
     url(r'^accounts/login/$',
         'studentapp.views.accounts.login_view', name='auth_login'),
     url(r'^accounts/register/$',
         'studentapp.views.accounts.registration_view', name='auth_register'),
-    #STUDENT
+
+    # students
     url(r'^$',
         'studentapp.views.students.students_list', name='home'),
     url(r'^students/add/$',
@@ -30,7 +32,8 @@ urlpatterns = patterns('',
         'studentapp.views.students.edit_student', name='edit_student'),
     url(r'^students/delete/(?P<pk>\d+)/$',
         StudentDeleteView.as_view(), name='delete_student'),
-    #GROUP
+
+    # groups
     url(r'^groups/$',
         'studentapp.views.groups.groups_list', name='group_list'),
     url(r'^groups/add/$',
