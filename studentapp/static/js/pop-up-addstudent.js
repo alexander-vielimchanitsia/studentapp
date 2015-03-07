@@ -1,13 +1,13 @@
 // POP-UP MENU ADD GROUP
 (function($) {
 
-    // Open pop-up
+    // open pop-up
     $("#button-add-student").click(function() {
 
-        // Download form in pop-up
+        // download form in pop-up
         $("#modal-body").load("/students/add/ #id-student-form",function(){
 
-            // Pop-up submit button
+            // pop-up submit button
             $("#submit-id-save_button_add").click(function(e) {
                 e.preventDefault();
 
@@ -47,7 +47,7 @@
                                 label = formGroup.find('label').text().toLowerCase(),
                                 textError = 'Заповніть поле ' + label;
 
-                            if (val.length === 0){
+                            if (val.length == 0){
                                 input.tooltip({
                                     trigger: 'manual',
                                     placement: 'right',
@@ -59,11 +59,12 @@
                             };
 
                         });
-                        if ( valid == true) {
-                            $("#myModal").modal('hide'); // Ховаємо попап меню.
-                            document.getElementById("id-student-form").reset(); // Чистка полів після успішного збереження данных.
-                            $("#content-columns").load("/ #content-students_list"); // Оновлюємо список груп.
-                            // Додаємо статус месседж.
+                        if (valid == true) {
+                            $("#myModal").modal('hide'); // hiding popup menu
+                            document.getElementById("id-student-form").reset(); // cleaning fields after successfully saved data
+                            $("#content-columns").load("/ #content-students_list"); // updating the list of students
+
+                            // add the status messages
                             document.getElementById("status-message-popup").innerHTML=
                                 '<div class="row" id="status-message">'+
                                     '<div class="col-xs-12">'+
@@ -79,9 +80,11 @@
                                 '</div>';
                         };
                     },
+
                     error: function(data){
                         alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
                     },
+
                 });
 
             });

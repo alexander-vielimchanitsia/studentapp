@@ -1,6 +1,6 @@
 (function($) {
     // POP-UP MENU ADD GROUP
-    // Open pop-up
+    // open pop-up
     $("#button-add-group").click(function() {
         $("#div_id_name_group_popup").load("/groups/add/ #div_id_name_group");
     });
@@ -10,6 +10,7 @@
         var input = document.getElementsByName('name_group')[0],
             mForm = $("#id-group-form-popup").serialize(),
             textError = 'Поле обов’язкове';
+
         $.ajax({
             url: '/groups/add/',
             type: 'POST',
@@ -27,11 +28,13 @@
                         $("#id_name_group").tooltip('destroy');
                     }
                 };
+
                 if ($('#id_name_group').val()!=="") {
-                    $("#myModal").modal('hide'); // Ховаємо попап меню.
-                    document.getElementById("id-group-form-popup").reset(); // Чистка полів після успішного збереження данных.
-                    $("#content-columns").load("/groups/ #content-groups-list"); // Оновлюємо список груп.
-                    // Додаємо статус месседж.
+                    $("#myModal").modal('hide'); // hiding popup menu
+                    document.getElementById("id-group-form-popup").reset(); // cleaning fields after successfully saved data
+                    $("#content-columns").load("/groups/ #content-groups-list"); // updating the list of groups
+
+                    // add the status messages
                     document.getElementById("status-message-popup").innerHTML=
                         '<div class="row" id="status-message">'+
                             '<div class="col-xs-12">'+
@@ -45,6 +48,7 @@
                                 '</div>'+
                             '</div>'+
                         '</div>';
+
                 }
                 else {
                     $("#id_name_group").tooltip({
@@ -54,10 +58,13 @@
                     }).tooltip('show');
                 }
             },
+
             error: function(data){
                 alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
             }
+
         })
+
     });
 
 })(jQuery);
