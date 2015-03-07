@@ -4,13 +4,6 @@
 
 {% load str2int_filter %}
 
-{% load while_tag %}
-
-{% block extra_css %}
-<link rel="stylesheet"
-    href="{% static "bootstrap/css/datepicker.css" %}">
-{% endblock extra_css %}
-
 {% block group-selector %}
 <div class="col-xs-4" id="group-selector">
     <strong>Група:</strong>
@@ -181,8 +174,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static "bootstrap/js/bootstrap-datepicker.js" %}">
-</script>
-<script src="{% static "js/datepicker.js" %}"></script>
 <script src="{% static "js/pop-up-addstudent.js" %}"></script>
 {% endblock extra_js %}
