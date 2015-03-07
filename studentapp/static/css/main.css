@@ -1,4 +1,4 @@
-/* Global Styles */
+/* global styles */
 .alert {
     margin-top: 10px;
     margin-bottom: 0;
@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 10px;
 }
 
-/*margin for field in form*/
+/* margin for field in form */
 .field_retreat {
     margin-bottom: 10px;
     padding: 0;
@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 180px;
 }
 
-/* pop-up-menu*/
+/* pop-up-menu */
 #myModal #modal-body label,
 #myModal .col-lg-2 {
     width: 33.3333%;
@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 15%;
 }
 
-/*for middleware*/
+/* for middleware */
 #rendering_page_text {
     margin-right: 7%;
     font-size: 0.9em;
