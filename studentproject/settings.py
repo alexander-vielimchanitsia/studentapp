@@ -42,13 +42,16 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'crispy_forms',
-    'studentapp',
+    'crispy_forms', # let you control the rendering behavior of your Django forms
+
+    'studentapp', # application of students database
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
+
+    # geolocation by ip
     'studentapp.context_processors.geoip',
 )
 
@@ -60,6 +63,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # display performance metrics measured during the generation of a page
     'studentapp.middleware.StatsMiddleware',
 )
 
@@ -110,6 +115,8 @@ STATICFILES_FINDERS = (
 
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
+# set your default template pack for your project
 CRISPY_TEMPLATE_PACK  = 'bootstrap3'
 
+# a string specifying the directory where the GeoIP data files are located
 GEOIP_PATH = os.path.join(BASE_DIR, 'GeoIP')
