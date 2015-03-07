@@ -118,6 +118,12 @@
                                     href="{% url 'delete_student' student.id %}">Видалити</a>
                                 </li>
                             </ul>
+                            {% else %}
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation">
+                                    <p id="action-students-hide">Залогуйтесь для виконання дій</p>
+                                </li>
+                            </ul>
                             {% endif %}
                         </div>
                     </td>

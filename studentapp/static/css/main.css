@@ -98,3 +98,10 @@ h1, h2, h3, h4, h5, h6 {
     width: 200px;
     font-size: 12px;
 }
+
+#action-students-hide {
+    font-size: 12px;
+    height: 8px;
+    width: 190px;
+    text-align: center;
+}
