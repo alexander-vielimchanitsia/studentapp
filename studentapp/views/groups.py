@@ -30,6 +30,7 @@ def groups_list(request, page_number=1):
         table_group = paginator.page(1)
     except EmptyPage:
         table_group = paginator.page(paginator.num_pages)
+
     return render_to_response('groups/groups_list.html',
         {'table_group': table_group},
         context_instance=RequestContext(request))
@@ -43,19 +44,24 @@ def add_group(request):
                             reverse('group_list'))
     else:
         form = GroupFormAdd()
+
     return render(request, 'groups/add_group.html',
         {'form': form})
 
 def edit_group(request, pk):
     group = Group.objects.get(id=pk)
+
     if request.method == 'POST':
         form = GroupFormEdit(request.POST, instance=group)
+
         if form.is_valid():
             group = form.save()
             return redirect(u'%s?status_message=Група успішно відредагована!' %
                             reverse('group_list'))
+
     else:
         form = GroupFormEdit(instance=group)
+
     return render_to_response('groups/edit_group.html',
         {'form': form,
         'group': group},

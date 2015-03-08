@@ -3,6 +3,7 @@
 {% block content %}
 <div id="content-student-delete">
     <h4>Видалити Групу</h4>
+    <!-- if no students in this group -->
     {% if not students %}
     <form action="{% url "delete_group" object.id %}" method="post">{% csrf_token %}
         <p>Ви впевнені, що хочете видалити групу "{{ object }}"?</p>
@@ -10,6 +11,7 @@
         class="btn btn-danger"/>
         <a href="{% url "group_list" %}?status_message=Видалення групи було скасовано!" class="btn btn-default">Ні</a>
     </form>
+    <!-- if the students in this group, then you can not remove-->
     {% else%}
     <p>Групу неможливо видалити тому, що в групі є студенти.</p>
     {% endif %}

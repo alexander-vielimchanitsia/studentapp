@@ -9,6 +9,7 @@ from studentapp.forms.accounts import LoginForm, RegistrationForm
 
 def logout_view(request):
     logout(request)
+
     return HttpResponseRedirect(reverse('home'))
 
 def login_view(request):
@@ -19,12 +20,14 @@ def login_view(request):
         password = form.cleaned_data['password']
         user = authenticate(username=username, password=password)
         login(request, user)
+
         return redirect(u'%s?status_message=Авторизація пройшла успішно!' %
                         reverse('home'))
 
     context = {
         'form': form
     }
+
     return render(request, 'accounts/login.html', context)
 
 def registration_view(request):
@@ -32,10 +35,12 @@ def registration_view(request):
 
     if form.is_valid():
         form.save()
+
         return redirect(u'%s?status_message=Користувач успішно зареєстрований!' %
                         reverse('home'))
 
     context = {
         'form': form
     }
+
     return render(request, 'accounts/register.html', context)

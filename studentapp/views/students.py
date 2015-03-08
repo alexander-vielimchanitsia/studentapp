@@ -15,6 +15,8 @@ from studentapp.util import get_groups, get_current_group
 
 def students_list(request, page_number=1):
     current_group = get_current_group(request)
+
+    # filters students in current group
     if current_group:
         table_student = Student.objects.filter(stud_group=current_group)
     else:
@@ -36,6 +38,7 @@ def students_list(request, page_number=1):
         table_student = paginator.page(1)
     except EmptyPage:
         table_student = paginator.page(paginator.num_pages)
+
     return render_to_response('students/students_list.html',
         {'table_student': table_student,
         'groups': get_groups(request)},
@@ -44,6 +47,7 @@ def students_list(request, page_number=1):
 def add_student(request):
     if request.POST:
         form = StudentFormAdd(request.POST, request.FILES)
+
         if form.is_valid():
             form.save()
             return redirect(u'%s?status_message=Студент успішно доданий!' %
@@ -57,15 +61,18 @@ def add_student(request):
                 reverse('home'))
     else:
         form = StudentFormAdd()
+
     return render(request, 'students/add_student.html',
         {'form': form})
 
 def edit_student(request, pk):
     student = Student.objects.get(id=pk)
+
     if request.method == 'POST':
         # activity if click on save button
         if request.POST.get('save_button_edit') is not None:
             form = StudentFormEdit(request.POST, request.FILES, instance=student)
+
             if form.is_valid():
                 student = form.save()
                 return redirect(u'%s?status_message=Студент успішно відредагований!' %
@@ -78,6 +85,7 @@ def edit_student(request, pk):
                 reverse('home'))
     else:
         form = StudentFormEdit(instance=student)
+
     return render_to_response('students/edit_student.html',
         {'form': form,
         'student': student},

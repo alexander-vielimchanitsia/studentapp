@@ -49,18 +49,6 @@ class StudentFormEdit(ModelForm):
         model = Student
         exclude = []
 
-    def clean_stud_group(self):
-        """Check if student is king_group in any group.
-
-        If yes, then ensure it's the same as selected group."""
-        # get group where current student is a leader
-        groups = Group.objects.filter(king_group=self.instance)
-        if len(groups) > 0 and \
-            self.cleaned_data['stud_group'] != groups[0]:
-            raise forms.ValidationError(u'Студент є старостою іншої групи.',
-                code='invalid')
-        return self.cleaned_data['stud_group']
-
     def __init__(self, *args, **kwargs):
         super(StudentFormEdit, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -90,3 +78,16 @@ class StudentFormEdit(ModelForm):
                 css_class="buttons-form-submit"
             ),
         )
+
+    def clean_stud_group(self):
+        """Check if student is king_group in any group.
+
+        If yes, then ensure it's the same as selected group."""
+        # get group where current student is a leader
+        groups = Group.objects.filter(king_group=self.instance)
+        if len(groups) > 0 and \
+            self.cleaned_data['stud_group'] != groups[0]:
+            raise forms.ValidationError(u'Студент є старостою іншої групи.',
+                code='invalid')
+
+        return self.cleaned_data['stud_group']
