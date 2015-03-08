@@ -27,4 +27,5 @@ class HomePageTest(TestCase):
         self.assertIn(student.first_name, response.content)
         self.assertIn('</html>', response.content)
 
+        # purge files after successful tests
         student.foto.delete()

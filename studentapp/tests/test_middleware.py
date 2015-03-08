@@ -43,4 +43,5 @@ class StatsMiddlewareTest(TestCase):
         response = c.get(photo_url)
         self.assertEquals(response.status_code, 200)
 
+        # purge files after successful tests
         student.foto.delete()
