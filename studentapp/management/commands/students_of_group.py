@@ -5,7 +5,7 @@ from studentapp.models import Group, Student
 
 class Command(LabelCommand):
     args = '"<name_group>"'
-    help = 'takes the name of the group and gives a list of students'
+    help = 'Takes the name of the group and gives a list of students'
 
     requires_model_validation = False
     can_import_settings = True
@@ -26,5 +26,5 @@ class Command(LabelCommand):
             else:
                 self.stdout.write('No students in group "%s"' % name_group)
 
-        except:
+        except Group.DoesNotExist:
             self.stdout.write('Group "%s" does not exist' % name_group)
