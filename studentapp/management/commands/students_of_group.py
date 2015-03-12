@@ -15,9 +15,15 @@ class Command(LabelCommand):
     def handle_label(self, name_group, **options):
         # argument is decoding in unicode
         name_group = name_group.decode('utf8')
+        # var for group name
+        group = []
 
         try:
             group = Group.objects.get(name_group=name_group)
+        except Group.DoesNotExist:
+            self.stdout.write('Group "%s" does not exist' % name_group)
+
+        if group:
             # order by the group
             students = Student.objects.filter(stud_group=group.id)
 
@@ -30,6 +36,3 @@ class Command(LabelCommand):
             # if no students in this group
             else:
                 self.stdout.write('No students in group "%s"' % name_group)
-
-        except Group.DoesNotExist:
-            self.stdout.write('Group "%s" does not exist' % name_group)
