@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.auth.forms import UserCreationForm
 from django.conf import settings
+from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView
 
 from studentapp.views.students import StudentDeleteView
@@ -17,13 +19,20 @@ urlpatterns = patterns('',
 
     # accounts
     url(r'^accounts/logout/$',
-        'studentapp.views.accounts.logout_view', name='auth_logout'),
+        'django.contrib.auth.views.logout',
+        {'next_page': '/'},
+        name='auth_logout'),
     url(r'^accounts/login/$',
         'django.contrib.auth.views.login',
         {'template_name': 'accounts/login.html'},
         name='auth_login'),
     url(r'^accounts/register/$',
-        'studentapp.views.accounts.registration_view', name='auth_register'),
+        CreateView.as_view(
+            template_name='accounts/register.html',
+            form_class=UserCreationForm,
+            success_url='/',
+        ),
+        name='auth_register'),
 
     # students
     url(r'^$',

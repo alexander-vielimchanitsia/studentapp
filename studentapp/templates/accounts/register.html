@@ -1,14 +1,67 @@
 {% extends 'base.html' %}
 
-{% load crispy_forms_tags %}
-
 {% block content %}
 
 <div class="row">
     <div class="col-lg-9 col-md-offset-3">
         <h2 id="header-text">Реєстрація</h2>
         <!-- Login Form -->
-        {% crispy form %}
+        <form class='form-horizontal blueForms' method="post"
+        action="">
+        {% csrf_token %}
+            <div id="div_id_username" class="form-group">
+                <label class="control-label col-lg-3">
+                    Користувач
+                </label>
+                <div class="controls col-lg-3">
+                    <input class="textinput textInput form-control"
+                    id="id_username" maxlength="30" name="username"
+                    type="text" requariment>
+                </div>
+                {% if form.errors.username %}
+                    <span class="text-danger">
+                        {{ form.username.errors }}
+                    </span>
+                {% endif %}
+            </div>
+            <div id="div_id_password1" class="form-group">
+                <label class="control-label col-lg-3 requiredField">
+                    Пароль
+                </label>
+                <div class="controls col-lg-3">
+                    <input class="textinput textInput form-control"
+                    id="id_password1" maxlength="15" name="password1"
+                    type="password">
+                </div>
+                {% if form.errors.password1 %}
+                    <span class="text-danger">
+                        {{ form.password1.errors }}
+                    </span>
+                {% endif %}
+            </div>
+            <div id="div_id_password2" class="form-group">
+                <label class="control-label col-lg-3 requiredField">
+                    Підтвердження паролю
+                </label>
+                <div class="controls col-lg-3">
+                    <input class="textinput textInput form-control"
+                    id="id_password2" maxlength="15" name="password2"
+                    type="password">
+                </div>
+                {% if form.errors.password2 %}
+                    <span class="text-danger">
+                        {{ form.password2.errors }}
+                    </span>
+                {% endif %}
+            </div>
+            <div id="accounts-buttons" class="buttons-form-submit">
+                <input type="submit" name="save" value="Зареєструватись"
+                class="btn btn-primary" id="submit-id-save">
+                <a class="btn btn-default" href="{% url 'home' %}">
+                    Скасувати
+                </a>
+            </div>
+        </form>
         <!-- Login Form -->
     </div>
 </div>
