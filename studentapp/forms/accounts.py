@@ -10,67 +10,6 @@ from crispy_forms.bootstrap import FormActions
 
 User = get_user_model()
 
-class LoginForm(forms.Form):
-    username = forms.CharField(
-        label=u'Ім’я користувача',
-        max_length=15
-    )
-    password = forms.CharField(
-        widget=forms.PasswordInput(),
-        label=u'Пароль',
-        max_length=15
-    )
-
-    def clean_username(self):
-        username = self.cleaned_data.get('username')
-
-        try:
-            user= User.objects.get(username=username)
-        except User.DoesNotExist:
-            raise forms.ValidationError(
-                'Ви впевнені, що зареєстровані? Такого користувача не існує.')
-
-        return username
-
-    def clean_password(self):
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
-
-        try:
-            user = User.objects.get(username=username)
-        except:
-            user = None
-
-        if user is not None and not user.check_password(password):
-            raise forms.ValidationError('Невірний пароль')
-
-        elif user is None:
-            pass
-
-        else:
-            return password
-
-    def __init__(self, *args, **kwargs):
-        super(LoginForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_id = 'id-loginForm'
-        self.helper.form_class = 'blueForms'
-        self.helper.form_method = 'post'
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-3'
-        self.helper.field_class = 'col-lg-3'
-        self.helper.layout = Layout(
-            'username',
-            'password',
-            FormActions(
-                Submit('save', u'Увійти'),
-                HTML(u'<a class="btn btn-default" href={% url "home" %}> \
-                    Скасувати</a>'),
-                css_class="buttons-form-submit",
-                id="accounts-buttons",
-            ),
-        )
-
 class RegistrationForm(forms.ModelForm):
     class Meta:
         model = User
