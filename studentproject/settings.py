@@ -24,7 +24,9 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/accounts/login/'
+
+LOGIN_REDIRECT_URL = '/'
 
 ALLOWED_HOSTS = []
 
