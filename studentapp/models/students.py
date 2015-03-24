@@ -2,10 +2,7 @@
 
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
-from studentapp.students_signal import student_save_handler
 
 class Student(models.Model):
 
@@ -42,5 +39,3 @@ class Student(models.Model):
 
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)
-
-post_save.connect(student_save_handler, sender=Student)

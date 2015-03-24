@@ -9,3 +9,4 @@ media
 studentproject.iml
 db.py
 *.log
+studentsdb.log
