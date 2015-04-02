@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -27,6 +26,8 @@ TEMPLATE_DEBUG = True
 LOGIN_URL = '/accounts/login/'
 
 LOGIN_REDIRECT_URL = '/'
+
+LOGIN_ERROR_URL = '/'
 
 ALLOWED_HOSTS = []
 
@@ -45,16 +46,17 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'crispy_forms', # let you control the rendering behavior of your Django forms
-
     'studentapp', # application of students database
+    'social_auth', # login by social network
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
 
-    # geolocation by ip
-    'studentapp.context_processors.geoip',
+    'studentapp.context_processors.geoip', # geolocation by ip
+
+    'social_auth.context_processors.social_auth_by_type_backends', # login by social network
 )
 
 MIDDLEWARE_CLASSES = (
@@ -74,7 +76,16 @@ ROOT_URLCONF = 'studentproject.urls'
 
 WSGI_APPLICATION = 'studentproject.wsgi.application'
 
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
+FACEBOOK_APP_ID = '958622704168005'
+FACEBOOK_API_SECRET = 'b208006039bff24f4a4a755751d59362'
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+FACEBOOK_PROFILE_EXTRA_PARAMS = {'locale': 'ru_RU'}
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 

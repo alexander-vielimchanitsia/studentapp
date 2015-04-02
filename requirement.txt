@@ -4,3 +4,4 @@ django_crispy_forms==1.4.0
 setuptools==2.2
 pip==1.5.4
 Pillow==2.6.1
+django-social-auth
